@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulaire de demande de crédit / Loan application form</title>
+<style>
+  :root{
+    --bleu:#1f3a93;
+    --bleu-clair:#eef2fb;
+    --bordure:#c9d3ea;
+    --texte:#1c2530;
+    --gris:#5b6675;
+    --ok:#1a7f4b;
+    --rouge:#b3261e;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--texte);background:#f3f5f9;line-height:1.45;
+  }
+  header.app{
+    background:linear-gradient(135deg,var(--bleu),#2a4fb8);
+    color:#fff;padding:18px 24px;display:flex;align-items:center;
+    justify-content:space-between;flex-wrap:wrap;gap:12px;
+  }
+  header.app h1{font-size:19px;margin:0;font-weight:600;}
+  header.app p{margin:2px 0 0;font-size:13px;opacity:.9;}
+  .toolbar{
+    display:flex;gap:10px;flex-wrap:wrap;
+    position:sticky;top:0;z-index:20;background:#fff;
+    padding:12px 24px;border-bottom:1px solid var(--bordure);
+    box-shadow:0 1px 6px rgba(0,0,0,.05);
+  }
+  button{
+    font:inherit;cursor:pointer;border-radius:8px;border:1px solid transparent;
+    padding:9px 16px;font-weight:600;font-size:14px;transition:.15s;
+  }
+  .btn-prim{background:var(--bleu);color:#fff;}
+  .btn-prim:hover{background:#2a4fb8;}
+  .btn-sec{background:#fff;color:var(--bleu);border-color:var(--bordure);}
+  .btn-sec:hover{background:var(--bleu-clair);}
+  .btn-ghost{background:transparent;color:var(--gris);border-color:transparent;}
+  .btn-ghost:hover{color:var(--rouge);}
+  .wrap{max-width:1050px;margin:22px auto;padding:0 16px;}
+
+  .card{
+    background:#fff;border:1px solid var(--bordure);border-radius:12px;
+    padding:18px 20px;margin-bottom:18px;box-shadow:0 1px 4px rgba(0,0,0,.04);
+  }
+  .card h2{
+    margin:0 0 14px;font-size:16px;color:var(--bleu);
+    border-bottom:2px solid var(--bleu-clair);padding-bottom:8px;
+    display:flex;align-items:center;gap:8px;
+  }
+  .card h2 .num{
+    background:var(--bleu);color:#fff;border-radius:6px;
+    width:24px;height:24px;display:inline-flex;align-items:center;
+    justify-content:center;font-size:13px;flex:0 0 auto;
+  }
+  .card h2 .en{font-size:12px;font-weight:500;color:var(--gris);}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 18px;}
+  .grid.three{grid-template-columns:repeat(3,1fr);}
+  .field{display:flex;flex-direction:column;gap:5px;}
+  .field.full{grid-column:1/-1;}
+  label.lab{display:flex;flex-direction:column;gap:1px;font-weight:600;}
+  label.lab .fr{font-size:13px;color:var(--gris);}
+  label.lab .en{font-size:11px;color:#8a93a3;font-weight:400;}
+  label.lab .req{color:var(--rouge);}
+  input,select,textarea{
+    font:inherit;padding:9px 11px;border:1px solid var(--bordure);
+    border-radius:8px;background:#fafbff;color:var(--texte);width:100%;
+  }
+  input:focus,select:focus,textarea:focus{
+    outline:none;border-color:var(--bleu);background:#fff;
+    box-shadow:0 0 0 3px var(--bleu-clair);
+  }
+  textarea{resize:vertical;min-height:60px;}
+  .radio-row{display:flex;gap:18px;flex-wrap:wrap;padding-top:4px;}
+  .radio-row label{font-weight:500;color:var(--texte);display:flex;align-items:center;gap:6px;cursor:pointer;}
+  .radio-row input{width:auto;accent-color:var(--bleu);}
+  .radio-row .en{font-size:11px;color:#8a93a3;font-weight:400;}
+  .checks{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 18px;}
+  .checks label{font-weight:500;display:flex;align-items:center;gap:8px;cursor:pointer;color:var(--texte);}
+  .checks .en{font-size:11px;color:#8a93a3;font-weight:400;}
+  .checks input{width:auto;accent-color:var(--bleu);}
+
+  /* Téléversements */
+  .uploads{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .up-field{display:flex;flex-direction:column;gap:5px;}
+  .up-field input[type=file]{padding:7px;font-size:12px;}
+  .up-preview{font-size:12px;color:var(--ok);word-break:break-word;}
+  .up-preview img{max-width:100%;max-height:120px;border:1px solid var(--bordure);border-radius:6px;margin-top:5px;display:block;}
+  @media (max-width:680px){ .uploads{grid-template-columns:1fr;} }
+
+  /* Annexes (aperçu imprimable) */
+  .annexes{display:flex;flex-direction:column;gap:14px;}
+  .annex{border:1px solid #e3e7ef;border-radius:8px;padding:10px;page-break-inside:avoid;}
+  .annex-cap{font-size:12px;font-weight:600;color:var(--bleu);margin-bottom:6px;}
+  .annex img{max-width:100%;max-height:340px;border:1px solid #e3e7ef;border-radius:4px;display:block;}
+  .annex-file{font-size:13px;color:var(--gris);background:#f7f9ff;border:1px dashed #c9d3ea;border-radius:6px;padding:16px;text-align:center;}
+
+  /* ---------- APERÇU ---------- */
+  #apercu{display:none;}
+  .doc{background:#fff;max-width:820px;margin:0 auto;padding:36px 44px;
+       box-shadow:0 2px 14px rgba(0,0,0,.12);border:1px solid #e3e7ef;border-radius:4px;}
+  .doc-head{display:flex;justify-content:space-between;align-items:flex-start;
+            border-bottom:3px solid var(--bleu);padding-bottom:14px;margin-bottom:18px;}
+  .doc-head .org{font-size:13px;color:var(--gris);}
+  .doc-head .org strong{color:var(--bleu);font-size:15px;display:block;}
+  .org-head{display:flex;gap:14px;align-items:flex-start;}
+  .org-head .logo{max-width:96px;max-height:96px;border-radius:6px;border:1px solid #e3e7ef;object-fit:contain;}
+  .org-head strong{color:var(--bleu);font-size:16px;display:block;line-height:1.25;}
+  .org-head .org-sub{font-size:11.5px;color:var(--gris);margin-top:1px;}
+  .doc-title{text-align:center;margin:6px 0 20px;}
+  .doc-title h1{font-size:20px;margin:0;color:var(--bleu);letter-spacing:.3px;text-transform:uppercase;}
+  .doc-title .en{display:block;font-size:13px;color:var(--gris);text-transform:none;letter-spacing:0;margin-top:2px;}
+  .doc-title p{margin:6px 0 0;font-size:13px;color:var(--gris);}
+  .sec{margin-bottom:18px;page-break-inside:avoid;}
+  .sec-h{background:var(--bleu-clair);color:var(--bleu);font-weight:700;
+         font-size:13.5px;padding:7px 12px;border-radius:6px;margin-bottom:10px;}
+  .sec-h .en{font-weight:500;opacity:.8;}
+  .row{display:flex;gap:10px 24px;flex-wrap:wrap;}
+  .kv{flex:1 1 45%;margin-bottom:7px;min-width:220px;}
+  .kv .k{font-size:11px;color:var(--gris);}
+  .kv .k .en{display:block;font-size:10px;color:#9aa3b2;}
+  .kv .v{border-bottom:1px solid #bcbfc7;min-height:20px;padding:2px 2px 3px;font-size:14px;
+         font-weight:500;white-space:pre-wrap;word-break:break-word;}
+  .kv.full{flex:1 1 100%;}
+  .sig{margin-top:30px;display:flex;justify-content:space-between;gap:40px;page-break-inside:avoid;}
+  .sig div{flex:1;border-top:1px solid #333;padding-top:6px;font-size:11px;color:var(--gris);text-align:center;}
+  .doc-foot{margin-top:24px;font-size:10.5px;color:var(--gris);text-align:center;border-top:1px solid #e3e7ef;padding-top:10px;}
+  .empty{color:#9aa3b2;font-style:italic;font-weight:400;}
+
+  @media print{
+    body{background:#fff;}
+    header.app,.toolbar,.wrap #formulaire,#msg{display:none !important;}
+    #apercu{display:block !important;}
+    .doc{box-shadow:none;border:none;max-width:100%;margin:0;padding:0 4mm;}
+    @page{margin:12mm;}
+  }
+  @media (max-width:680px){
+    .grid,.grid.three,.checks{grid-template-columns:1fr;}
+  }
+
+  /* Écran de déverrouillage */
+  #gate{position:fixed;inset:0;z-index:1000;background:linear-gradient(135deg,#1f3a93,#2a4fb8);
+        display:flex;align-items:center;justify-content:center;padding:20px;}
+  #gate .box{background:#fff;border-radius:14px;max-width:380px;width:100%;padding:28px 26px;
+             box-shadow:0 10px 40px rgba(0,0,0,.25);text-align:center;}
+  #gate h2{margin:0 0 6px;color:var(--bleu);font-size:18px;line-height:1.2;}
+  #gate p{margin:0 0 16px;color:var(--gris);font-size:13px;}
+  #gate input{margin-bottom:12px;text-align:center;letter-spacing:1px;font-size:15px;}
+  #gate .err{color:var(--rouge);font-size:13px;min-height:18px;margin-top:8px;}
+  #gate .hint{font-size:11px;color:#8a93a3;margin-top:14px;}
+  body.locked #formulaire,body.locked .toolbar,body.locked #msg{display:none !important;}
+</style>
+</head>
+<body class="locked">
+
+<div id="gate">
+  <div class="box">
+    <div style="font-size:34px">🔒</div>
+    <h2>Accès restreint<br><span style="font-size:12px;font-weight:400;color:var(--gris)">Restricted access</span></h2>
+    <p>Veuillez saisir le mot de passe pour ouvrir le formulaire.<br><span style="font-size:11px">Please enter the password to open the form.</span></p>
+    <input id="gatePass" type="password" placeholder="Mot de passe / Password" autocomplete="off">
+    <button class="btn-prim" id="btnUnlock" style="width:100%">Déverrouiller / Unlock</button>
+    <div class="err" id="gateErr"></div>
+    <div class="hint">Formulaire réservé à son propriétaire. / Form reserved for its owner.</div>
+  </div>
+</div>
+
+<header class="app">
+  <div>
+    <h1>Formulaire de demande de crédit <span style="opacity:.8;font-weight:500">/ Loan application form</span></h1>
+    <p>Saisissez vos informations, consultez l'aperçu puis imprimez en PDF. <span style="opacity:.85">Fill in, preview, then print to PDF.</span></p>
+  </div>
+  <div class="org" style="text-align:right;font-size:13px;opacity:.95">
+    <strong>ÉTABLISSEMENT DE CRÉDIT</strong><br>
+    <span style="font-size:11px">CREDIT INSTITUTION</span><br>
+    Réf. dossier / Ref. : <span id="refAuto"></span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <button class="btn-prim" id="btnApercu">👁 Générer l'aperçu / Generate preview</button>
+  <button class="btn-sec" id="btnEdit" style="display:none">✏️ Modifier / Edit</button>
+  <button class="btn-sec" id="btnPrint">🖨 Imprimer / PDF · Print / PDF</button>
+  <button class="btn-ghost" id="btnReset">Effacer / Clear</button>
+  <button class="btn-ghost" id="btnLock">🔒 Verrouiller / Lock</button>
+</div>
+
+<div class="wrap">
+
+  <!-- ===================== FORMULAIRE DE SAISIE ===================== -->
+  <form id="formulaire" novalidate>
+
+    <!-- EN-TÊTE ÉTABLISSEMENT -->
+    <section class="card" style="border-color:#9bb0e0;background:#f7f9ff">
+      <h2><span class="num" style="background:#2a4fb8">0</span> Informations de l'établissement émetteur <span class="en">/ Issuing institution details</span>
+        <small style="font-weight:400;color:#8a93a3">— affichées en tête du document / shown at the top of the document</small></h2>
+      <div class="grid three">
+        <div class="field full">
+          <label class="lab" for="orgLogo"><span class="fr">Logo</span><span class="en">Logo (image)</span></label>
+          <input id="orgLogo" name="Org_Logo" type="file" accept="image/*" style="padding:6px">
+        </div>
+        <div class="field">
+          <label class="lab" for="orgRaison"><span class="fr">Raison sociale</span><span class="en">Company name</span></label>
+          <input id="orgRaison" name="Org_Raison sociale">
+        </div>
+        <div class="field">
+          <label class="lab" for="orgReg"><span class="fr">N° d'enregistrement</span><span class="en">Registration no.</span></label>
+          <input id="orgReg" name="Org_N° enregistrement">
+        </div>
+        <div class="field">
+          <label class="lab" for="orgTel"><span class="fr">Téléphone</span><span class="en">Phone</span></label>
+          <input id="orgTel" name="Org_Téléphone" type="tel">
+        </div>
+        <div class="field full">
+          <label class="lab" for="orgAdresse"><span class="fr">Adresse</span><span class="en">Address</span></label>
+          <textarea id="orgAdresse" name="Org_Adresse"></textarea>
+        </div>
+        <div class="field">
+          <label class="lab" for="orgEmail"><span class="fr">E-mail</span><span class="en">Email</span></label>
+          <input id="orgEmail" name="Org_E-mail" type="email">
+        </div>
+        <div class="field">
+          <label class="lab" for="orgWeb"><span class="fr">Site web</span><span class="en">Website</span></label>
+          <input id="orgWeb" name="Org_Site web">
+        </div>
+      </div>
+    </section>
+
+    <!-- IDENTITÉ -->
+    <section class="card">
+      <h2><span class="num">1</span> Informations sur l'identité de la personne <span class="en">/ Identity information</span></h2>
+      <div class="grid">
+        <div class="field">
+          <label class="lab" for="nom"><span class="fr">Nom <span class="req">*</span></span><span class="en">Last name</span></label>
+          <input id="nom" name="Nom" required>
+        </div>
+        <div class="field">
+          <label class="lab" for="prenoms"><span class="fr">Prénoms <span class="req">*</span></span><span class="en">First names</span></label>
+          <input id="prenoms" name="Prénoms" required>
+        </div>
+        <div class="field full">
+          <label class="lab" for="raison"><span class="fr">Raison sociale</span><span class="en">Company name (if applicable)</span></label>
+          <input id="raison" name="Raison sociale">
+        </div>
+        <div class="field full">
+          <label class="lab" for="adresse"><span class="fr">Adresse <span class="req">*</span></span><span class="en">Address</span></label>
+          <textarea id="adresse" name="Adresse" required></textarea>
+        </div>
+        <div class="field">
+          <label class="lab" for="tel"><span class="fr">Numéro de téléphone <span class="req">*</span></span><span class="en">Phone number</span></label>
+          <input id="tel" name="Numéro de téléphone" type="tel" required>
+        </div>
+        <div class="field">
+          <label class="lab" for="whats"><span class="fr">N° WhatsApp</span><span class="en">WhatsApp number</span></label>
+          <input id="whats" name="N° WhatsApp" type="tel">
+        </div>
+        <div class="field">
+          <label class="lab" for="dnais"><span class="fr">Date de naissance <span class="req">*</span></span><span class="en">Date of birth</span></label>
+          <input id="dnais" name="Date de naissance" type="date" required>
+        </div>
+        <div class="field">
+          <label class="lab" for="lnais"><span class="fr">Lieu de naissance <span class="req">*</span></span><span class="en">Place of birth</span></label>
+          <input id="lnais" name="Lieu de naissance" required>
+        </div>
+        <div class="field">
+          <label class="lab"><span class="fr">Sexe <span class="req">*</span></span><span class="en">Gender</span></label>
+          <div class="radio-row">
+            <label><input type="radio" name="Sexe" value="Masculin" required> Masculin <span class="en">Male</span></label>
+            <label><input type="radio" name="Sexe" value="Féminin"> Féminin <span class="en">Female</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lab" for="matri"><span class="fr">Situation matrimoniale <span class="req">*</span></span><span class="en">Marital status</span></label>
+          <select id="matri" name="Situation matrimoniale" required>
+            <option value=""></option>
+            <option>Célibataire / Single</option>
+            <option>Marié(e) / Married</option>
+            <option>Divorcé(e) / Divorced</option>
+            <option>Veuf(ve) / Widowed</option>
+            <option>Union libre / Cohabiting</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lab" for="enfants"><span class="fr">Enfants à charge <span class="req">*</span></span><span class="en">Dependent children</span></label>
+          <input id="enfants" name="Enfants à charge" type="number" min="0" value="0" required>
+        </div>
+        <div class="field">
+          <label class="lab" for="cin"><span class="fr">N° Pièce d'identité</span><span class="en">ID number (CNI / Passport)</span></label>
+          <input id="cin" name="N° Pièce d'identité">
+        </div>
+        <div class="field">
+          <label class="lab" for="nationalite"><span class="fr">Nationalité</span><span class="en">Nationality</span></label>
+          <input id="nationalite" name="Nationalité">
+        </div>
+      </div>
+    </section>
+
+    <!-- PROFESSION -->
+    <section class="card">
+      <h2><span class="num">2</span> Informations sur votre profession <span class="en">/ Professional information</span></h2>
+      <div class="grid three">
+        <div class="field">
+          <label class="lab" for="statut"><span class="fr">Statut professionnel <span class="req">*</span></span><span class="en">Employment status</span></label>
+          <select id="statut" name="Statut professionnel" required>
+            <option value=""></option>
+            <option>Salarié(e) du privé / Private employee</option>
+            <option>Fonctionnaire / Civil servant</option>
+            <option>Indépendant / Profession libérale / Self-employed</option>
+            <option>Commerçant / Artisan / Trader / Craftsman</option>
+            <option>Agriculteur / Éleveur / Farmer</option>
+            <option>Retraité(e) / Retired</option>
+            <option>Étudiant(e) / Student</option>
+            <option>Sans emploi / Unemployed</option>
+            <option>Autre / Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lab" for="prof"><span class="fr">Profession / Métier <span class="req">*</span></span><span class="en">Profession / Occupation</span></label>
+          <input id="prof" name="Profession" required>
+        </div>
+        <div class="field">
+          <label class="lab" for="poste"><span class="fr">Fonction / Poste occupé</span><span class="en">Job title / Position</span></label>
+          <input id="poste" name="Fonction / Poste occupé">
+        </div>
+        <div class="field">
+          <label class="lab" for="secteur"><span class="fr">Secteur d'activité</span><span class="en">Business sector</span></label>
+          <input id="secteur" name="Secteur d'activité">
+        </div>
+        <div class="field">
+          <label class="lab" for="contrat"><span class="fr">Type de contrat</span><span class="en">Contract type</span></label>
+          <select id="contrat" name="Type de contrat">
+            <option value=""></option>
+            <option>CDI / Permanent</option><option>CDD / Fixed-term</option>
+            <option>Intérim / Temp</option><option>Stage / Internship</option>
+            <option>Freelance</option><option>N/A</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lab" for="employeur"><span class="fr">Employeur / Entreprise</span><span class="en">Employer / Company</span></label>
+          <input id="employeur" name="Employeur / Entreprise">
+        </div>
+        <div class="field">
+          <label class="lab" for="ancien"><span class="fr">Ancienneté (années)</span><span class="en">Tenure (years)</span></label>
+          <input id="ancien" name="Ancienneté (années)" type="number" min="0" step="0.5">
+        </div>
+        <div class="field">
+          <label class="lab" for="csp"><span class="fr">Catégorie socio-professionnelle</span><span class="en">Socio-professional category</span></label>
+          <select id="csp" name="Catégorie socio-professionnelle">
+            <option value=""></option>
+            <option>Cadre / Dirigeant / Executive</option>
+            <option>Profession intermédiaire / Intermediate</option>
+            <option>Employé / Employee</option>
+            <option>Ouvrier / Worker</option>
+            <option>Indépendant / Self-employed</option>
+            <option>Autre / Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="lab" for="siret"><span class="fr">N° SIRET / SIREN</span><span class="en">Company registration no.</span></label>
+          <input id="siret" name="N° SIRET / SIREN">
+        </div>
+        <div class="field">
+          <label class="lab" for="cnss"><span class="fr">N° CNSS</span><span class="en">Social security no.</span></label>
+          <input id="cnss" name="N° CNSS">
+        </div>
+        <div class="field full">
+          <label class="lab" for="adressepro"><span class="fr">Adresse professionnelle</span><span class="en">Business address</span></label>
+          <textarea id="adressepro" name="Adresse professionnelle"></textarea>
+        </div>
+        <div class="field">
+          <label class="lab" for="telpro"><span class="fr">Téléphone professionnel</span><span class="en">Work phone</span></label>
+          <input id="telpro" name="Téléphone professionnel" type="tel">
+        </div>
+        <div class="field">
+          <label class="lab" for="emailpro"><span class="fr">E-mail professionnel</span><span class="en">Work email</span></label>
+          <input id="emailpro" name="E-mail professionnel" type="email">
+        </div>
+      </div>
+    </section>
+
+    <!-- CRÉDIT -->
+    <section class="card">
+      <h2><span class="num">3</span> Informations sur le crédit <span class="en">/ Credit information</span></h2>
+      <div class="grid">
+        <div class="field">
+          <label class="lab"><span class="fr">Type de prêt <span class="req">*</span></span><span class="en">Loan type</span></label>
+          <div class="radio-row">
+            <label><input type="radio" name="Type de prêt" value="Personnel" required> Personnel <span class="en">Personal</span></label>
+            <label><input type="radio" name="Type de prêt" value="Hypothécaire"> Hypothécaire <span class="en">Mortgage</span></label>
+            <label><input type="radio" name="Type de prêt" value="Professionnel"> Professionnel <span class="en">Business</span></label>
+            <label><input type="radio" name="Type de prêt" value="Investissement"> Investissement <span class="en">Investment</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="lab" for="objet"><span class="fr">Objet du crédit</span><span class="en">Purpose of loan (specify)</span></label>
+          <input id="objet" name="Objet du crédit" placeholder="ex. achat véhicule, immobilier, trésorerie… / e.g. car, property, cash">
+        </div>
+        <div class="field">
+          <label class="lab" for="montant"><span class="fr">Montant sollicité (€) <span class="req">*</span></span><span class="en">Amount requested</span></label>
+          <input id="montant" name="Montant sollicité" type="number" min="0" required>
+        </div>
+        <div class="field">
+          <label class="lab" for="duree"><span class="fr">Durée (mois) <span class="req">*</span></span><span class="en">Term (months)</span></label>
+          <input id="duree" name="Durée" type="number" min="1" required>
+        </div>
+        <div class="field">
+          <label class="lab" for="taux"><span class="fr">Intérêt sollicité (%) <span class="req">*</span></span><span class="en">Interest rate requested</span></label>
+          <input id="taux" name="Intérêt sollicité" type="number" step="0.01" min="0" required>
+        </div>
+        <div class="field">
+          <label class="lab" for="datedeb"><span class="fr">Date de début souhaitée</span><span class="en">Desired start date</span></label>
+          <input id="datedeb" name="Date de début souhaitée" type="date">
+        </div>
+        <div class="field full">
+          <label class="lab" for="garantie"><span class="fr">Garanties proposées</span><span class="en">Collateral offered (mortgage, guarantee…)</span></label>
+          <textarea id="garantie" name="Garanties proposées"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVENUS & CHARGES -->
+    <section class="card">
+      <h2><span class="num">4</span> Revenus et charges mensuels <span class="en">/ Monthly income and expenses</span></h2>
+      <div class="grid three">
+        <div class="field">
+          <label class="lab" for="revmens"><span class="fr">Montant revenus mensuels (€) <span class="req">*</span></span><span class="en">Monthly income amount</span></label>
+          <input id="revmens" name="Montant revenus mensuels" type="number" min="0" required>
+        </div>
+        <div class="field">
+          <label class="lab" for="autresrev"><span class="fr">Autres revenus (€)</span><span class="en">Other income</span></label>
+          <input id="autresrev" name="Autres revenus mensuels" type="number" min="0">
+        </div>
+        <div class="field">
+          <label class="lab" for="charges"><span class="fr">Charges mensuelles (€)</span><span class="en">Monthly expenses (rent, loans…)</span></label>
+          <input id="charges" name="Charges mensuelles" type="number" min="0">
+        </div>
+        <div class="field">
+          <label class="lab" for="banque"><span class="fr">Banque / Établissement</span><span class="en">Bank / Institution</span></label>
+          <input id="banque" name="Banque" placeholder="ex. SG, BNP, Crédit Agricole…">
+        </div>
+        <div class="field">
+          <label class="lab" for="rib"><span class="fr">N° de compte / IBAN</span><span class="en">Account number / IBAN</span></label>
+          <input id="rib" name="N° de compte / IBAN">
+        </div>
+        <div class="field">
+          <label class="lab" for="impot"><span class="fr">Revenu fiscal de référence (€)</span><span class="en">Tax reference income</span></label>
+          <input id="impot" name="Revenu fiscal de référence" type="number" min="0">
+        </div>
+      </div>
+    </section>
+
+    <!-- PIÈCES JOINTES -->
+    <section class="card">
+      <h2><span class="num">5</span> Pièces jointes à fournir <span class="en">/ Supporting documents</span>
+        <small style="font-weight:400;color:#8a93a3">— 3 documents requis minimum / at least 3 required</small></h2>
+
+      <p style="font-size:13px;color:var(--gris);margin:0 0 10px"><strong>Documents requis / Required documents :</strong></p>
+      <div class="uploads">
+        <div class="up-field">
+          <label class="lab" for="upId"><span class="fr">Pièce d'identité valide <span class="req">*</span></span><span class="en">Valid ID</span></label>
+          <input id="upId" name="Pièce d'identité (requis)" type="file" accept="image/*,application/pdf" required>
+          <div class="up-preview" id="prev_upId"></div>
+        </div>
+        <div class="up-field">
+          <label class="lab" for="upRev"><span class="fr">Justificatif de revenu <span class="req">*</span></span><span class="en">Proof of income</span></label>
+          <input id="upRev" name="Justificatif de revenu (requis)" type="file" accept="image/*,application/pdf" required>
+          <div class="up-preview" id="prev_upRev"></div>
+        </div>
+        <div class="up-field">
+          <label class="lab" for="upDom"><span class="fr">Justificatif de domicile <span class="req">*</span></span><span class="en">Proof of address</span></label>
+          <input id="upDom" name="Justificatif de domicile (requis)" type="file" accept="image/*,application/pdf" required>
+          <div class="up-preview" id="prev_upDom"></div>
+        </div>
+      </div>
+
+      <p style="font-size:13px;color:var(--gris);margin:14px 0 10px"><strong>Autres documents (facultatif) / Other documents (optional) :</strong></p>
+      <div class="uploads">
+        <div class="up-field">
+          <label class="lab" for="upO1"><span class="fr">Autre document 1</span><span class="en">Other document 1</span></label>
+          <input id="upO1" name="Autre document 1" type="file" accept="image/*,application/pdf">
+          <div class="up-preview" id="prev_upO1"></div>
+        </div>
+        <div class="up-field">
+          <label class="lab" for="upO2"><span class="fr">Autre document 2</span><span class="en">Other document 2</span></label>
+          <input id="upO2" name="Autre document 2" type="file" accept="image/*,application/pdf">
+          <div class="up-preview" id="prev_upO2"></div>
+        </div>
+        <div class="up-field">
+          <label class="lab" for="upO3"><span class="fr">Autre document 3</span><span class="en">Other document 3</span></label>
+          <input id="upO3" name="Autre document 3" type="file" accept="image/*,application/pdf">
+          <div class="up-preview" id="prev_upO3"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DÉCLARATION -->
+    <section class="card">
+      <h2><span class="num">6</span> Déclaration et signature <span class="en">/ Declaration and signature</span></h2>
+      <div class="grid">
+        <div class="field">
+          <label class="lab" for="lieu"><span class="fr">Fait à</span><span class="en">Made in</span></label>
+          <input id="lieu" name="Fait à">
+        </div>
+        <div class="field">
+          <label class="lab" for="date"><span class="fr">Le</span><span class="en">Date</span></label>
+          <input id="date" name="Date de signature" type="date">
+        </div>
+        <div class="field full">
+          <label class="lab" style="font-weight:400">
+            <span style="display:flex;gap:8px;align-items:flex-start"><input type="checkbox" id="decl" name="Déclaration" style="width:auto;accent-color:var(--bleu);margin-top:3px">
+            <span>Je certifie sur l'honneur l'exactitude des informations fournies et j'autorise l'établissement à vérifier ces données.<br>
+            <span style="font-size:11px;color:#8a93a3">I certify the accuracy of the information provided and authorize the institution to verify it.</span></span></span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+  </form>
+
+  <!-- ===================== APERÇU ===================== -->
+  <div id="apercu"></div>
+
+  <p id="msg" style="text-align:center;color:var(--gris);font-size:13px;margin:6px 0 30px;">
+    Conseil / Tip : remplissez le formulaire, cliquez sur « Générer l'aperçu », puis « Imprimer / PDF »
+    et choisissez « Enregistrer au format PDF » / fill the form, click “Generate preview”, then “Print / PDF” → “Save as PDF”.
+  </p>
+
+</div>
+
+<script>
+(function(){
+  const form = document.getElementById('formulaire');
+  const apercu = document.getElementById('apercu');
+  const btnApercu = document.getElementById('btnApercu');
+  const btnEdit = document.getElementById('btnEdit');
+  const btnPrint = document.getElementById('btnPrint');
+  const btnReset = document.getElementById('btnReset');
+
+  // ---- Écran de déverrouillage / Unlock screen ----
+  // Mot de passe à personnaliser (visible dans le code : c'est un dissuasif, pas un coffre-fort).
+  const GATE_PASS = "VioXsRAiC6wy";
+  const gate = document.getElementById('gate');
+  const gatePass = document.getElementById('gatePass');
+  const gateErr = document.getElementById('gateErr');
+  function unlock(){
+    if(gatePass.value === GATE_PASS){
+      try{ sessionStorage.setItem('formUnlocked','1'); }catch(e){}
+      document.body.classList.remove('locked');
+      gate.style.display = 'none';
+      gateErr.textContent = '';
+    } else {
+      gateErr.textContent = 'Mot de passe incorrect / Incorrect password';
+      gatePass.value = '';
+      gatePass.focus();
+    }
+  }
+  document.getElementById('btnUnlock').addEventListener('click', unlock);
+  gatePass.addEventListener('keydown', e=>{ if(e.key==='Enter') unlock(); });
+  const btnLock = document.getElementById('btnLock');
+  if(btnLock){
+    btnLock.addEventListener('click', ()=>{ try{ sessionStorage.removeItem('formUnlocked'); }catch(e){} location.reload(); });
+  }
+  // État initial
+  let deja = false;
+  try{ deja = sessionStorage.getItem('formUnlocked')==='1'; }catch(e){}
+  if(deja){
+    document.body.classList.remove('locked');
+    gate.style.display = 'none';
+  } else {
+    document.body.classList.add('locked');
+    gatePass.focus();
+  }
+
+  // Référence de dossier auto
+  const ref = 'D' + new Date().getFullYear() + '-' + Math.floor(100000 + Math.random()*900000);
+  document.getElementById('refAuto').textContent = ref;
+
+  // Logo de l'établissement émetteur (image -> data URL)
+  window.__logo = '';
+  const logoFile = document.getElementById('orgLogo');
+  logoFile.addEventListener('change', e=>{
+    const f = e.target.files && e.target.files[0];
+    if(!f){ window.__logo=''; return; }
+    const r = new FileReader();
+    r.onload = ev => { window.__logo = ev.target.result; };
+    r.readAsDataURL(f);
+  });
+
+  // Téléversements des pièces jointes -> annexes
+  const uploads = [
+    {id:'upId', fr:"Pièce d'identité valide", en:'Valid ID'},
+    {id:'upRev', fr:'Justificatif de revenu', en:'Proof of income'},
+    {id:'upDom', fr:'Justificatif de domicile', en:'Proof of address'},
+    {id:'upO1', fr:'Autre document 1', en:'Other document 1'},
+    {id:'upO2', fr:'Autre document 2', en:'Other document 2'},
+    {id:'upO3', fr:'Autre document 3', en:'Other document 3'}
+  ];
+  window.__annexes = {};
+  uploads.forEach(u=>{
+    const inp = document.getElementById(u.id);
+    const prev = document.getElementById('prev_'+u.id);
+    inp.addEventListener('change', e=>{
+      const f = e.target.files && e.target.files[0];
+      if(!f){ window.__annexes[u.id]=null; prev.innerHTML=''; return; }
+      const fr = new FileReader();
+      fr.onload = ev=>{
+        window.__annexes[u.id] = {fr:u.fr, en:u.en, name:f.name, type:f.type, dataURL:ev.target.result};
+        if(f.type && f.type.indexOf('image/')===0){
+          prev.innerHTML = '✅ '+escapeHtml(f.name)+'<br><img src="'+ev.target.result+'">';
+        } else {
+          prev.innerHTML = '✅ '+escapeHtml(f.name)+' <span style="opacity:.7">('+escapeHtml(f.type||'fichier')+')</span>';
+        }
+      };
+      fr.readAsDataURL(f);
+    });
+  });
+
+  function euro(v){
+    if(v===''||v==null||isNaN(v)) return '';
+    return Number(v).toLocaleString('fr-FR') + ' €';
+  }
+  function escapeHtml(s){
+    return (s==null?'':String(s))
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;');
+  }
+  function nl2br(s){ return s.replace(/\n/g,'<br>'); }
+
+  // Récupère toutes les valeurs du formulaire (clés en français)
+  function collect(){
+    const data = {};
+    form.querySelectorAll('input[name],select[name],textarea[name]').forEach(el=>{
+      const n = el.getAttribute('name');
+      if(el.type==='radio'){
+        if(el.checked) data[n] = el.value;
+      } else if(el.type==='checkbox'){
+        if(el.name==='PJ'){
+          data._pj = data._pj || [];
+          if(el.checked) data._pj.push(el.value);
+        } else if(el.checked){
+          data[n] = 'Oui / Yes';
+        }
+      } else {
+        data[n] = el.value;
+      }
+    });
+    return data;
+  }
+
+  // label = texte bilingue affiché ; key = clé de donnée (français)
+  function kv(label,key,full){
+    const v = (window.__d[key] && String(window.__d[key]).trim()!=='') ? escapeHtml(window.__d[key]) : '<span class="empty">—</span>';
+    const en = label.en ? `<span class="en">${escapeHtml(label.en)}</span>` : '';
+    return `<div class="kv ${full?'full':''}"><div class="k">${escapeHtml(label.fr)}${en}</div><div class="v">${v}</div></div>`;
+  }
+
+  function build(){
+    const d = collect();
+    window.__d = d;
+
+    // En-tête établissement émetteur (société propriétaire)
+    const logo = window.__logo ? `<img class="logo" src="${window.__logo}" alt="logo">` : '';
+    const orgRaison = d['Org_Raison sociale'];
+    const orgReg = d['Org_N° enregistrement'];
+    const orgAdresse = d['Org_Adresse'];
+    const orgTel = d['Org_Téléphone'];
+    const orgEmail = d['Org_E-mail'];
+    const orgWeb = d['Org_Site web'];
+    const contacts = [orgTel&&('Tél : '+orgTel), orgEmail&&('E-mail : '+orgEmail), orgWeb&&orgWeb].filter(Boolean).join('  ·  ');
+    const orgName = orgRaison ? escapeHtml(orgRaison) : 'ÉTABLISSEMENT DE CRÉDIT';
+
+    // Annexes : documents téléversés
+    const annexList = uploads.map(u=>window.__annexes[u.id]).filter(Boolean);
+    let annexHtml;
+    if(annexList.length){
+      annexHtml = annexList.map(a=>{
+        const cap = escapeHtml(a.fr)+' / '+escapeHtml(a.en)+' — '+escapeHtml(a.name);
+        const isImg = a.type && a.type.indexOf('image/')===0;
+        const body = isImg
+          ? `<img src="${a.dataURL}" alt="${escapeHtml(a.name)}">`
+          : `<div class="annex-file">📄 ${escapeHtml(a.name)} <span style="opacity:.7">(${escapeHtml(a.type||'document')})</span></div>`;
+        return `<div class="annex"><div class="annex-cap">${cap}</div>${body}</div>`;
+      }).join('');
+    } else {
+      annexHtml = '<div class="kv full"><div class="v"><span class="empty">— Aucune pièce jointe / No attachments —</span></div></div>';
+    }
+
+    return `
+    <div class="doc">
+      <div class="doc-head">
+        <div class="org-head">
+          ${logo}
+          <div>
+            <strong>${orgName}</strong>
+            ${orgReg?`<div class="org-sub">${escapeHtml(orgReg)}</div>`:''}
+            ${orgAdresse?`<div class="org-sub">${nl2br(escapeHtml(orgAdresse))}</div>`:''}
+            ${contacts?`<div class="org-sub">${escapeHtml(contacts)}</div>`:''}
+          </div>
+        </div>
+        <div class="org" style="text-align:right">Réf. dossier / Ref. : <strong>${ref}</strong></div>
+      </div>
+      <div class="doc-title">
+        <h1>Demande de crédit<span class="en">Loan application form</span></h1>
+        <p>Formulaire de renseignements client — ${new Date().toLocaleDateString('fr-FR')} / Client information form</p>
+      </div>
+
+      <div class="sec">
+        <div class="sec-h">1 · Identité du demandeur <span class="en">/ Applicant identity</span></div>
+        <div class="row">
+          ${kv({fr:'Nom',en:'Last name'},'Nom')}
+          ${kv({fr:'Prénoms',en:'First names'},'Prénoms')}
+          ${kv({fr:'Raison sociale',en:'Company name'},'Raison sociale',true)}
+          ${kv({fr:'Adresse',en:'Address'},'Adresse',true)}
+          ${kv({fr:'Téléphone',en:'Phone'},'Numéro de téléphone')}
+          ${kv({fr:'WhatsApp',en:'WhatsApp no.'},'N° WhatsApp')}
+          ${kv({fr:'Date de naissance',en:'Date of birth'},'Date de naissance')}
+          ${kv({fr:'Lieu de naissance',en:'Place of birth'},'Lieu de naissance')}
+          ${kv({fr:'Sexe',en:'Gender'},'Sexe')}
+          ${kv({fr:'Situation matrimoniale',en:'Marital status'},'Situation matrimoniale')}
+          ${kv({fr:'Enfants à charge',en:'Dependent children'},'Enfants à charge')}
+          ${kv({fr:"N° Pièce d'identité",en:'ID number'},"N° Pièce d'identité")}
+          ${kv({fr:'Nationalité',en:'Nationality'},'Nationalité')}
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-h">2 · Informations professionnelles <span class="en">/ Professional information</span></div>
+        <div class="row">
+          ${kv({fr:'Statut professionnel',en:'Employment status'},'Statut professionnel')}
+          ${kv({fr:'Profession',en:'Profession'},'Profession')}
+          ${kv({fr:'Fonction / Poste',en:'Job title'},'Fonction / Poste occupé')}
+          ${kv({fr:"Secteur d'activité",en:'Business sector'},'Secteur d\'activité')}
+          ${kv({fr:'Type de contrat',en:'Contract type'},'Type de contrat')}
+          ${kv({fr:'Employeur / Entreprise',en:'Employer'},'Employeur / Entreprise')}
+          ${kv({fr:'Ancienneté (années)',en:'Tenure (yrs)'},'Ancienneté (années)')}
+          ${kv({fr:'Catégorie socio-prof.',en:'Socio-prof. category'},'Catégorie socio-professionnelle')}
+          ${kv({fr:'N° SIRET / SIREN',en:'Company reg. no.'},'N° SIRET / SIREN')}
+          ${kv({fr:'N° CNSS',en:'Social sec. no.'},'N° CNSS')}
+          ${kv({fr:'Adresse professionnelle',en:'Business address'},'Adresse professionnelle',true)}
+          ${kv({fr:'Tél. professionnel',en:'Work phone'},'Téléphone professionnel')}
+          ${kv({fr:'E-mail professionnel',en:'Work email'},'E-mail professionnel')}
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-h">3 · Informations sur le crédit <span class="en">/ Credit information</span></div>
+        <div class="row">
+          ${kv({fr:'Type de prêt',en:'Loan type'},'Type de prêt')}
+          ${kv({fr:'Objet du crédit',en:'Purpose'},'Objet du crédit')}
+          ${kv({fr:'Montant sollicité',en:'Amount requested'},'Montant sollicité')}
+          ${kv({fr:'Durée (mois)',en:'Term (months)'},'Durée')}
+          ${kv({fr:'Intérêt sollicité',en:'Interest rate'},'Intérêt sollicité')}
+          ${kv({fr:'Date de début souhaitée',en:'Desired start date'},'Date de début souhaitée')}
+          ${kv({fr:'Garanties proposées',en:'Collateral offered'},'Garanties proposées',true)}
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-h">4 · Revenus et charges <span class="en">/ Income and expenses</span></div>
+        <div class="row">
+          ${kv({fr:'Revenus mensuels',en:'Monthly income'},'Montant revenus mensuels')}
+          ${kv({fr:'Autres revenus',en:'Other income'},'Autres revenus mensuels')}
+          ${kv({fr:'Charges mensuelles',en:'Monthly expenses'},'Charges mensuelles')}
+          ${kv({fr:'Banque',en:'Bank'},'Banque')}
+          ${kv({fr:'N° compte / IBAN',en:'Account / IBAN'},'N° de compte / IBAN')}
+          ${kv({fr:'Revenu fiscal de réf.',en:'Tax ref. income'},'Revenu fiscal de référence')}
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-h">5 · Déclaration et signature <span class="en">/ Declaration and signature</span></div>
+        <div class="row">
+          ${kv({fr:'Déclaration sur l\'honneur',en:'Declaration on honor'},'Déclaration')}
+          ${kv({fr:'Fait à',en:'Made in'},'Fait à')}
+          ${kv({fr:'Date',en:'Date'},'Date de signature')}
+        </div>
+        <div class="sig">
+          <div>Signature du demandeur<br><span style="opacity:.7">Applicant's signature</span></div>
+          <div>Cachet et signature de l'établissement<br><span style="opacity:.7">Institution stamp &amp; signature</span></div>
+        </div>
+      </div>
+
+      <div class="sec">
+        <div class="sec-h">6 · Annexes — Pièces jointes <span class="en">/ Appendices — Supporting documents</span></div>
+        <div class="annexes">
+          ${annexHtml}
+        </div>
+      </div>
+
+      <div class="doc-foot">Document généré automatiquement — Réf. ${ref} — Ce formulaire ne constitue pas un engagement de l'établissement. / Auto-generated document — not a commitment.</div>
+    </div>`;
+  }
+
+  function showApercu(){
+    window.__d = collect();
+    const manquants = [];
+    form.querySelectorAll('[required]').forEach(el=>{
+      if(el.type==='radio'){
+        const grp = form.querySelectorAll(`input[name="${el.name}"]`);
+        if(![...grp].some(r=>r.checked)) manquants.push(el.name);
+      } else if(!el.value.trim()){
+        manquants.push(el.name);
+      }
+    });
+    apercu.innerHTML = build();
+    apercu.style.display = 'block';
+    form.style.display = 'none';
+    btnApercu.style.display = 'none';
+    btnEdit.style.display = '';
+    window.scrollTo({top:0,behavior:'smooth'});
+    const uniq = [...new Set(manquants)];
+    if(uniq.length){
+      alert("Aperçu généré / Preview generated.\nChamps requis manquants / Missing required fields :\n- " + uniq.join('\n- '));
+    }
+  }
+
+  function showEdit(){
+    apercu.style.display = 'none';
+    form.style.display = 'block';
+    btnApercu.style.display = '';
+    btnEdit.style.display = 'none';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  btnApercu.addEventListener('click', showApercu);
+  btnEdit.addEventListener('click', showEdit);
+  btnPrint.addEventListener('click', ()=>{
+    window.__d = collect();
+    apercu.innerHTML = build();
+    apercu.style.display = 'block';
+    form.style.display = 'none';
+    btnApercu.style.display = 'none';
+    btnEdit.style.display = '';
+    window.print();
+  });
+  window.addEventListener('beforeprint', ()=>{ window.__d = collect(); apercu.innerHTML = build(); });
+
+  btnReset.addEventListener('click', ()=>{
+    if(confirm('Effacer toutes les données saisies ? / Clear all entered data?')){
+      form.reset();
+      document.getElementById('enfants').value = 0;
+      showEdit();
+    }
+  });
+})();
+</script>
+</body>
+</html>
