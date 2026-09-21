@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profil institutionnel — TRADE EUROPE / Institutional profile</title>
+<!--
+  ================================================================
+  PROFIL INSTITUTIONNEL — TRADE EUROPE
+  Document de présentation bilingue (FR / EN) — structuré et EXTENSIBLE.
+
+  COMMENT COMPLÉTER CE DOCUMENT
+  -----------------------------
+  Option 1 — dans le navigateur (recommandé) :
+    1. Cliquer sur « ✏️ Modifier / Edit » : le document devient éditable.
+    2. Cliquer directement sur un texte pour le modifier ou compléter
+       les zones « À compléter » (encadrés pointillés).
+    3. « 💾 Enregistrer / Save » : la version est mémorisée dans ce
+       navigateur (stockage local).
+    4. « 🖨 Imprimer / PDF » : exporter le document final en PDF.
+    5. « ↺ Réinitialiser / Reset » : revenir au texte d'origine.
+
+  Option 2 — dans le code :
+    * Chaque section est marquée par un commentaire HTML indiquant son
+      numéro (ex. : « SECTION 1 : IDENTIFICATION DE L'ETABLISSEMENT »).
+    * Pour AJOUTER une section : copier/coller un bloc <section class="sec">
+      … </section> et le renuméroter.
+    * Pour COMPLÉTER une zone « à compléter » : remplacer le contenu du
+      bloc <div class="todo"> par le texte final (puis retirer la classe
+      « todo » si l'encadré pointillé n'est plus voulu).
+  ================================================================
+-->
+<style>
+  :root{
+    --bleu:#1f3a93;
+    --bleu-clair:#eef2fb;
+    --bordure:#c9d3ea;
+    --texte:#1c2530;
+    --gris:#5b6675;
+    --ok:#1a7f4b;
+    --rouge:#b3261e;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--texte);background:#f3f5f9;line-height:1.5;
+  }
+  header.app{
+    background:linear-gradient(135deg,var(--bleu),#2a4fb8);
+    color:#fff;padding:18px 24px;display:flex;align-items:center;
+    justify-content:space-between;flex-wrap:wrap;gap:12px;
+  }
+  header.app h1{font-size:19px;margin:0;font-weight:600;}
+  header.app p{margin:2px 0 0;font-size:13px;opacity:.9;}
+  .toolbar{
+    display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+    position:sticky;top:0;z-index:20;background:#fff;
+    padding:12px 24px;border-bottom:1px solid var(--bordure);
+    box-shadow:0 1px 6px rgba(0,0,0,.05);
+  }
+  .toolbar .status{font-size:12.5px;color:var(--gris);flex:1 1 auto;text-align:right;}
+  .toolbar .status.ok{color:var(--ok);font-weight:600;}
+  button{
+    font:inherit;cursor:pointer;border-radius:8px;border:1px solid transparent;
+    padding:9px 16px;font-weight:600;font-size:14px;transition:.15s;
+  }
+  .btn-prim{background:var(--bleu);color:#fff;}
+  .btn-prim:hover{background:#2a4fb8;}
+  .btn-prim.active{background:var(--ok);}
+  .btn-sec{background:#fff;color:var(--bleu);border-color:var(--bordure);}
+  .btn-sec:hover{background:var(--bleu-clair);}
+  .btn-ghost{background:transparent;color:var(--gris);border-color:transparent;}
+  .btn-ghost:hover{color:var(--rouge);}
+  .edit-hint{
+    display:none;background:#fff8e6;border-bottom:1px solid #e8d9a8;
+    color:#7a5b00;font-size:13px;padding:8px 24px;
+  }
+  .wrap{max-width:900px;margin:22px auto;padding:0 16px 40px;}
+
+  /* ---------- DOCUMENT ---------- */
+  .doc{background:#fff;max-width:820px;margin:0 auto;padding:36px 44px;
+       box-shadow:0 2px 14px rgba(0,0,0,.12);border:1px solid #e3e7ef;border-radius:4px;}
+  body.editing .doc{outline:2px dashed #b9c8ee;outline-offset:6px;}
+  body.editing .doc p:hover,body.editing .doc li:hover,body.editing .doc .v:hover{background:#f4f7ff;}
+
+  .doc-head{display:flex;justify-content:space-between;align-items:flex-start;
+            border-bottom:3px solid var(--bleu);padding-bottom:14px;margin-bottom:18px;gap:14px;}
+  .doc-head .org{font-size:13px;color:var(--gris);}
+  .doc-head .org strong{color:var(--bleu);font-size:15px;display:block;}
+  .org-head{display:flex;gap:14px;align-items:flex-start;}
+  .monogram{
+    flex:0 0 auto;width:58px;height:58px;border-radius:8px;
+    background:linear-gradient(135deg,var(--bleu),#2a4fb8);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:22px;font-weight:700;letter-spacing:1px;
+  }
+  .org-head strong{color:var(--bleu);font-size:17px;display:block;line-height:1.25;}
+  .org-head .org-sub{font-size:11.5px;color:var(--gris);margin-top:1px;}
+  .doc-title{text-align:center;margin:10px 0 20px;}
+  .doc-title h1{font-size:20px;margin:0;color:var(--bleu);letter-spacing:.3px;text-transform:uppercase;}
+  .doc-title .en{display:block;font-size:13px;color:var(--gris);text-transform:none;letter-spacing:0;margin-top:2px;}
+  .doc-title p{margin:6px 0 0;font-size:12.5px;color:var(--gris);}
+  .doc-title .meta{
+    display:inline-block;margin-top:8px;font-size:11px;color:var(--bleu);
+    background:var(--bleu-clair);border:1px solid var(--bordure);
+    border-radius:20px;padding:3px 12px;
+  }
+
+  .sec{margin-bottom:20px;page-break-inside:avoid;}
+  .sec-h{background:var(--bleu-clair);color:var(--bleu);font-weight:700;
+         font-size:13.5px;padding:7px 12px;border-radius:6px;margin-bottom:10px;
+         display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .sec-h .num{
+    background:var(--bleu);color:#fff;border-radius:6px;
+    min-width:22px;height:22px;display:inline-flex;align-items:center;
+    justify-content:center;font-size:12px;padding:0 5px;flex:0 0 auto;
+  }
+  .sec-h .en{font-weight:500;opacity:.8;}
+  .sec p{margin:0 0 8px;font-size:13.5px;}
+
+  /* Rubriques (clés / valeurs) */
+  .row{display:flex;gap:10px 24px;flex-wrap:wrap;}
+  .kv{flex:1 1 45%;margin-bottom:8px;min-width:230px;}
+  .kv .k{font-size:11px;color:var(--gris);font-weight:600;}
+  .kv .k .en{display:block;font-size:10px;color:#9aa3b2;font-weight:400;}
+  .kv .v{border-bottom:1px solid #bcbfc7;min-height:20px;padding:2px 2px 3px;font-size:13.5px;
+         font-weight:500;white-space:pre-wrap;word-break:break-word;}
+  .kv .v.blank{color:#9aa3b2;font-weight:400;font-style:italic;}
+  .kv.full{flex:1 1 100%;}
+
+  /* Blocs bilingues : FR texte principal, EN encadré */
+  .lang-block{margin-bottom:10px;}
+  .lang-block .tag{
+    display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:1px;
+    color:var(--bleu);background:var(--bleu-clair);border:1px solid var(--bordure);
+    border-radius:4px;padding:1px 6px;margin-bottom:4px;
+  }
+  .en-block{
+    font-size:12.5px;color:var(--gris);margin-top:8px;padding:9px 12px;
+    background:#f8faff;border-left:3px solid #b9c8ee;border-radius:0 6px 6px 0;
+  }
+  .en-block .tag{color:#7d8aa5;background:#fff;border-color:#dde3f0;}
+  .en-block p{font-size:12.5px;margin:0 0 6px;}
+  .en-block p:last-child{margin-bottom:0;}
+
+  /* Listes bilingues (FR | EN) */
+  .bili{display:grid;grid-template-columns:1fr 1fr;gap:10px 24px;}
+  .bili ul{margin:6px 0 0;padding-left:18px;font-size:13px;}
+  .bili ul li{margin-bottom:5px;}
+  .bili .en-side{color:var(--gris);font-size:12.5px;}
+  .bili .en-side ul{font-size:12.5px;}
+
+  /* Appel (point clé) */
+  .callout{
+    background:var(--bleu-clair);border:1px solid var(--bordure);
+    border-left:4px solid var(--bleu);border-radius:8px;
+    padding:10px 14px;font-size:13px;margin-bottom:10px;
+  }
+  .callout b{color:var(--bleu);}
+  .callout .en{display:block;font-size:12px;color:var(--gris);margin-top:2px;}
+
+  /* Note (vérification RCI) */
+  .note{
+    background:#f2fbf5;border:1px solid #bfe3cc;border-left:4px solid var(--ok);
+    border-radius:8px;padding:10px 14px;font-size:12.5px;margin-top:10px;
+  }
+  .note b{color:var(--ok);}
+  .note a{color:var(--bleu);word-break:break-all;}
+  .note .en{display:block;font-size:12px;color:var(--gris);margin-top:2px;}
+
+  /* Schéma de fonctionnement */
+  .flow{display:flex;align-items:stretch;gap:6px;flex-wrap:wrap;margin:12px 0 14px;}
+  .flow .step{
+    flex:1 1 120px;background:var(--bleu-clair);border:1px solid var(--bordure);
+    border-radius:8px;padding:9px 10px;font-size:11.5px;line-height:1.35;
+  }
+  .flow .step b{display:block;color:var(--bleu);font-size:10.5px;letter-spacing:.4px;margin-bottom:3px;}
+  .flow .arrow{align-self:center;color:var(--bleu);font-size:15px;font-weight:700;}
+
+  /* Zones à compléter */
+  .todo{
+    border:2px dashed #b9c8ee;border-radius:8px;background:#fafbff;
+    padding:12px 14px;margin-bottom:10px;
+  }
+  .todo .todo-label{
+    display:inline-block;font-size:10px;font-weight:700;letter-spacing:1px;
+    color:#fff;background:#8fa3d8;border-radius:4px;padding:2px 8px;margin-bottom:6px;
+  }
+  .todo p{font-size:12.5px;color:#8a93a3;font-style:italic;margin:0;}
+  .todo .en{font-size:11.5px;}
+
+  .sec-foot{font-size:11px;color:#9aa3b2;margin-top:6px;}
+
+  .doc-foot{
+    margin-top:26px;font-size:10.5px;color:var(--gris);text-align:center;
+    border-top:1px solid #e3e7ef;padding-top:10px;line-height:1.6;
+  }
+  .doc-foot a{color:var(--bleu);}
+
+  @media print{
+    body{background:#fff;}
+    header.app,.toolbar,.edit-hint{display:none !important;}
+    .wrap{max-width:100%;margin:0;padding:0;}
+    .doc{box-shadow:none;border:none;max-width:100%;margin:0;padding:0 2mm;}
+    body.editing .doc{outline:none;}
+    .todo{break-inside:avoid;}
+    .sec{page-break-inside:avoid;}
+    @page{margin:12mm;}
+  }
+  @media (max-width:680px){
+    .bili{grid-template-columns:1fr;}
+    .doc{padding:24px 20px;}
+    .doc-head{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<header class="app">
+  <div>
+    <h1>TRADE EUROPE <span style="opacity:.8;font-weight:500">· Profil institutionnel / Institutional profile</span></h1>
+    <p>Document de présentation bilingue, structuré et extensible. <span style="opacity:.85">Bilingual, structured and extensible presentation document.</span></p>
+  </div>
+  <div style="text-align:right;font-size:12px;opacity:.95">
+    <strong>PRINCIPAUTÉ DE MONACO</strong><br>
+    <span>31, avenue Princesse Grace – L'Estoril – 98000 Monaco</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <button class="btn-prim" id="btnEdit" type="button">✏️ Modifier / Edit</button>
+  <button class="btn-sec" id="btnSave" type="button">💾 Enregistrer / Save</button>
+  <button class="btn-sec" id="btnPrint" type="button">🖨 Imprimer / PDF</button>
+  <button class="btn-ghost" id="btnReset" type="button">↺ Réinitialiser / Reset</button>
+  <span class="status" id="status"></span>
+</div>
+
+<div class="edit-hint" id="editHint">
+  Mode modification actif — cliquez directement sur un texte pour le compléter, puis « Enregistrer » et « Imprimer / PDF ».
+  <span style="opacity:.8">Editing mode on — click any text to complete it, then Save and Print/PDF.</span>
+</div>
+
+<div class="wrap">
+<article class="doc" id="doc">
+
+  <!-- EN-TÊTE -->
+  <div class="doc-head">
+    <div class="org-head">
+      <div class="monogram">TE</div>
+      <div>
+        <strong>TRADE EUROPE</strong>
+        <div class="org-sub">Établissement principal / Principal establishment<br>
+        31, avenue Princesse Grace – L'Estoril – 98000 Monaco<br>
+        Principauté de Monaco / Principality of Monaco</div>
+      </div>
+    </div>
+    <div class="org" style="text-align:right">
+      <strong>NIS 4618Y09563</strong>
+      Répertoire du Commerce et de<br>l'Industrie de Monaco
+    </div>
+  </div>
+
+  <div class="doc-title">
+    <h1>Profil institutionnel</h1>
+    <span class="en">Institutional profile</span>
+    <p>Document de présentation de l'établissement</p>
+    <span class="meta">Version du 21 septembre 2026 · Document extensible — compléter les zones « À compléter » / Extensible document</span>
+  </div>
+
+  <!-- SECTION 1 : IDENTIFICATION DE L'ÉTABLISSEMENT -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">1</span> Identification de l'établissement <span class="en">/ Establishment identification</span></div>
+    <div class="row">
+      <div class="kv"><div class="k">Rubrique <span class="en">Field</span></div><div class="v">Information</div></div>
+      <div class="kv"><div class="k">Type d'établissement <span class="en">Establishment type</span></div><div class="v">Établissement principal / Principal establishment</div></div>
+      <div class="kv"><div class="k">Enseigne <span class="en">Trade name</span></div><div class="v">TRADE EUROPE</div></div>
+      <div class="kv"><div class="k">Adresse <span class="en">Address</span></div><div class="v">31, avenue Princesse Grace – L'Estoril – 98000 Monaco</div></div>
+      <div class="kv"><div class="k">Exploitant / Fondateur <span class="en">Operator / Founder</span></div><div class="v">M. Alessandro MANGO</div></div>
+      <div class="kv"><div class="k">NIS</div><div class="v">4618Y09563</div></div>
+      <div class="kv full"><div class="k">Activité <span class="en">Activity</span></div><div class="v" style="font-weight:400;line-height:1.55">En Principauté de Monaco et à l'étranger : importation, exportation, achat, vente en gros, commercialisation, négoce, représentation, commission et courtage de dispositifs et équipements technologiques, sans stockage sur place. Conception, développement, commercialisation, installation et maintenance de logiciels, accompagnement associé, réalisation d'études et formations non diplômantes dans le domaine de l'intelligence artificielle. À titre accessoire : organisation, promotion et développement de manifestations et événements liés à l'objet social, acquisition de brevets, cession et concession de licences. Analyse de marchés, recherche de clientèle et prospection de nouveaux marchés.</div></div>
+    </div>
+    <div class="en-block"><span class="tag">EN</span>
+      <p>In the Principality of Monaco and abroad: import, export, purchase, wholesale sale, marketing, trading, representation, commission and brokerage of technological devices and equipment, without on-site storage. Design, development, marketing, installation and maintenance of software, related support, carrying out studies and non-degree training in the field of artificial intelligence. On an ancillary basis: organization, promotion and development of any events and manifestations related to the above purpose, acquisition of all invention patents, assignment and licensing. Market analysis, customer research and prospecting for new markets.</p>
+    </div>
+    <div class="note">
+      <b>Vérification.</b> Données vérifiables sur le site officiel de la Principauté de Monaco, notamment dans le Répertoire du Commerce et de l'Industrie en ligne :
+      <a href="https://teleservice.gouv.mc/rci/" target="_blank" rel="noopener">https://teleservice.gouv.mc/rci/</a>
+      <span class="en">Data verifiable on the official website of the Principality of Monaco, in particular in the online Trade and Industry Register of Monaco.</span>
+    </div>
+  </section>
+
+  <!-- SECTION 2 : POSITIONNEMENT STRATÉGIQUE -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">2</span> Positionnement stratégique <span class="en">/ Strategic positioning</span></div>
+    <p>TRADE EUROPE constitue l'interface monégasque d'une structure de financement privée européenne, active entre Monaco, la Suisse, l'Allemagne et le Liechtenstein.</p>
+    <p>Notre rôle est de qualifier, structurer et présenter les dossiers au Comité des Investisseurs. Lorsqu'un dossier est retenu, le véhicule d'investissement peut décider d'allouer des fonds selon les termes contractuels convenus.</p>
+    <p>Nous mettons en relation des porteurs de projets avec un réseau d'investisseurs privés, de bailleurs de fonds et de capitaux-risqueurs réunis au sein d'un Comité d'Investissement. Chaque décision de financement est prise collégialement et exécutée par l'établissement bancaire dépositaire, sur instruction du Comité, dans le respect des procédures de conformité applicables.</p>
+    <div class="en-block"><span class="tag">EN</span>
+      <p>TRADE EUROPE is the Monegasque interface of a European private financing structure, active between Monaco, Switzerland, Germany and Liechtenstein.</p>
+      <p>Our role is to qualify, structure and present files to the Investors Committee. When a file is selected, the investment vehicle may decide to allocate funds under the agreed contractual terms.</p>
+      <p>We connect project promoters with a network of private investors, funders and venture capitalists assembled within an Investment Committee. Each financing decision is made collegially and executed by the depositary bank, upon instruction from the Committee, in compliance with applicable compliance procedures.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 3 : DOMAINES D'INTERVENTION -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">3</span> Domaines d'intervention <span class="en">/ Areas of activity</span></div>
+    <div class="bili">
+      <div>
+        <div class="lang-block"><span class="tag">FR</span></div>
+        <ul>
+          <li>Recherche de clientèle et prospection de nouveaux marchés</li>
+          <li>Investissement et financement de projets immobiliers</li>
+          <li>Accompagnement financier des professionnels et des particuliers</li>
+          <li>Instruments bancaires et commerce international</li>
+          <li>Agrégation de paiements</li>
+          <li>Autres opérations liées à l'objet social</li>
+        </ul>
+      </div>
+      <div class="en-side">
+        <div class="lang-block"><span class="tag">EN</span></div>
+        <ul>
+          <li>Customer research and prospecting for new markets</li>
+          <li>Investment and financing of real estate projects</li>
+          <li>Financial support for professionals and individuals</li>
+          <li>Banking instruments and international trade</li>
+          <li>Payment aggregation</li>
+          <li>Other operations related to the corporate purpose</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 : FONCTIONNEMENT DU VÉHICULE DE FINANCEMENT -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">4</span> Fonctionnement du véhicule de financement <span class="en">/ Operation of the financing vehicle</span></div>
+    <div class="flow">
+      <div class="step"><b>ÉTAPE 1</b>Dossier du porteur de projet</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>ÉTAPE 2</b>Qualification &amp; structuration par TRADE EUROPE</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>ÉTAPE 3</b>Présentation au Comité des Investisseurs</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>ÉTAPE 4</b>Décision collégiale · due diligence · KYC/AML</div>
+      <div class="arrow">→</div>
+      <div class="step"><b>ÉTAPE 5</b>Exécution par l'établissement bancaire dépositaire</div>
+    </div>
+    <p>Le modèle repose sur un Comité d'Investisseurs composé d'investisseurs privés, de bailleurs de fonds et de capitaux-risqueurs. Ces derniers mettent à disposition des ressources financières dans le cadre d'une politique d'investissement définie, en contrepartie d'une rémunération.</p>
+    <p>La gestion opérationnelle et la relation avec les partenaires bancaires sont assurées par la direction générale de TRADE EUROPE. Les flux financiers sont exécutés par un établissement bancaire dépositaire, qui agit uniquement sur instruction du Comité d'Investisseurs, après validation du dossier et conformément aux exigences de conformité en vigueur.</p>
+    <div class="en-block"><span class="tag">EN</span>
+      <p>The model relies on an Investors Committee composed of private investors, funders and venture capitalists. These provide financial resources under a defined investment policy, in exchange for remuneration.</p>
+      <p>Operational management and relationships with banking partners are handled by the senior management of TRADE EUROPE. Financial flows are executed by a depositary bank, which acts solely on instruction from the Investors Committee, after validation of the file and in accordance with applicable compliance requirements.</p>
+    </div>
+  </section>
+
+  <!-- SECTION 5 : CONDITIONS D'ACCÈS ET POINTS À RETENIR -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">5</span> Conditions d'accès et points à retenir <span class="en">/ Access conditions &amp; key points</span></div>
+    <div class="callout">
+      <b>Point clé</b> — Il ne s'agit pas d'un prêt bancaire classique.
+      <span class="en">Key point — This is not a conventional bank loan.</span>
+    </div>
+    <div class="bili">
+      <div>
+        <div class="lang-block"><span class="tag">FR</span></div>
+        <ul>
+          <li>Le financement est privé, traité au cas par cas, selon une gouvernance collégiale.</li>
+          <li>L'accès au financement est conditionné à l'éligibilité du dossier, à la due diligence et à la décision du Comité d'Investisseurs.</li>
+          <li>Le porteur de projet présente un dossier ; en cas d'acceptation, les modalités de financement sont formalisées contractuellement.</li>
+          <li>Toute opération est soumise aux vérifications KYC/AML et à la réglementation applicable à Monaco et dans les juridictions concernées.</li>
+        </ul>
+      </div>
+      <div class="en-side">
+        <div class="lang-block"><span class="tag">EN</span></div>
+        <ul>
+          <li>Financing is private, handled on a case-by-case basis, under collegial governance.</li>
+          <li>Access to financing is subject to file eligibility, due diligence and the decision of the Investors Committee.</li>
+          <li>The project promoter submits a file; if accepted, the financing terms are formalized contractually.</li>
+          <li>Any transaction is subject to KYC/AML checks and the regulations applicable in Monaco and the relevant jurisdictions.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6 : ZONES À COMPLÉTER (extension du document) -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">6</span> À compléter <span class="en">/ To be completed</span></div>
+    <p style="color:var(--gris);font-size:12.5px">Les blocs ci-dessous sont prévus pour enrichir ce document : insérer le texte correspondant (directement dans le navigateur via « Modifier », ou dans le code).</p>
+
+    <div class="todo">
+      <span class="todo-label">À COMPLÉTER</span>
+      <p><b>Histoire &amp; jalons / History &amp; milestones</b> — Texte à insérer ici. (ex. : création de l'établissement, étapes clés, évolutions de l'activité)</p>
+    </div>
+    <div class="todo">
+      <span class="todo-label">À COMPLÉTER</span>
+      <p><b>Gouvernance &amp; équipe dirigeante / Governance &amp; senior management</b> — Texte à insérer ici. (ex. : organes de décision, membres de la direction, fonctions)</p>
+    </div>
+    <div class="todo">
+      <span class="todo-label">À COMPLÉTER</span>
+      <p><b>Partenaires bancaires &amp; réseau / Banking partners &amp; network</b> — Texte à insérer ici. (ex. : établissements partenaires, juridictions desservies : Monaco, Suisse, Allemagne, Liechtenstein)</p>
+    </div>
+    <div class="todo">
+      <span class="todo-label">À COMPLÉTER</span>
+      <p><b>Chiffres clés &amp; références / Key figures &amp; references</b> — Texte à insérer ici. (ex. : indicateurs, références de projets, engagements)</p>
+    </div>
+    <div class="todo">
+      <span class="todo-label">À COMPLÉTER</span>
+      <p><b>Autre section libre / Additional section</b> — Texte à insérer ici. (titre et contenu au choix)</p>
+    </div>
+  </section>
+
+  <!-- SECTION 7 : CONTACTS -->
+  <section class="sec">
+    <div class="sec-h"><span class="num">7</span> Contacts <span class="en">/ Contact details</span></div>
+    <div class="row">
+      <div class="kv"><div class="k">Téléphone / Phone</div><div class="v blank">— (à compléter / to be completed) —</div></div>
+      <div class="kv"><div class="k">E-mail / E-mail</div><div class="v blank">— (à compléter / to be completed) —</div></div>
+      <div class="kv"><div class="k">Site web / Website</div><div class="v blank">— (à compléter / to be completed) —</div></div>
+      <div class="kv"><div class="k">Adresse / Address</div><div class="v">31, avenue Princesse Grace – L'Estoril – 98000 Monaco</div></div>
+    </div>
+  </section>
+
+  <!-- PIED DE PAGE -->
+  <div class="doc-foot">
+    TRADE EUROPE · NIS 4618Y09563 · 31, avenue Princesse Grace – L'Estoril – 98000 Monaco, Principauté de Monaco<br>
+    Document de présentation — version du 21/09/2026 — extensible (zones « à compléter » à renseigner)<br>
+    Données vérifiables sur <a href="https://teleservice.gouv.mc/rci/" target="_blank" rel="noopener">teleservice.gouv.mc/rci</a> (Répertoire du Commerce et de l'Industrie de Monaco)
+  </div>
+
+</article>
+</div>
+
+<script>
+(function(){
+  var KEY = 'te-profil-institutionnel-v1';
+  var doc = document.getElementById('doc');
+  var btnEdit = document.getElementById('btnEdit');
+  var btnSave = document.getElementById('btnSave');
+  var btnPrint = document.getElementById('btnPrint');
+  var btnReset = document.getElementById('btnReset');
+  var statusEl = document.getElementById('status');
+  var hint = document.getElementById('editHint');
+  var editing = false;
+
+  function setStatus(t, ok){
+    statusEl.textContent = t;
+    statusEl.className = 'status' + (ok ? ' ok' : '');
+  }
+
+  // Restaurer une version enregistrée dans ce navigateur
+  try {
+    var saved = localStorage.getItem(KEY);
+    if (saved) { doc.innerHTML = saved; setStatus('Version enregistrée chargée / Saved version loaded'); }
+  } catch(e) {}
+
+  btnEdit.addEventListener('click', function(){
+    editing = !editing;
+    document.body.classList.toggle('editing', editing);
+    doc.setAttribute('contenteditable', editing ? 'true' : 'false');
+    btnEdit.classList.toggle('active', editing);
+    hint.style.display = editing ? 'block' : 'none';
+    setStatus(editing ? 'Mode modification actif / Editing mode on' : '', editing);
+  });
+
+  btnSave.addEventListener('click', function(){
+    try {
+      localStorage.setItem(KEY, doc.innerHTML);
+      setStatus('✓ Document enregistré dans ce navigateur / Saved in this browser', true);
+    } catch(e) {
+      setStatus('Enregistrement impossible / Save failed');
+    }
+  });
+
+  btnPrint.addEventListener('click', function(){ window.print(); });
+
+  btnReset.addEventListener('click', function(){
+    if (confirm('Réinitialiser le document (supprimer la version enregistrée dans ce navigateur) ?\n/ Reset the document (delete the saved version in this browser)?')) {
+      try { localStorage.removeItem(KEY); } catch(e) {}
+      location.reload();
+    }
+  });
+})();
+</script>
+</body>
+</html>
