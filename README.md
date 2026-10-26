@@ -7,7 +7,7 @@ Site vitrine statique + formulaire de demande de crédit.
 | `index.html` | **Page d'accueil du site** (vitrine CC Investment). Affichée en premier par Bolt et par tout serveur statique. |
 | `demande-credit.html` | Formulaire de demande de crédit bilingue FR/EN : saisie guidée, aperçu, impression / PDF, écran « Accès restreint » par mot de passe. Accessible depuis le menu du site. |
 | `formulaire-interne.html` | Le même formulaire **sans** écran de mot de passe (démonstration / usage interne). |
-| `contrat-personnalise.html` | Générateur local d’un projet de contrat de prêt, avec champs variables, référence automatique, date à l’impression, aperçu et PDF. Contient un avertissement de vérification juridique et un accès restreint. |
+| `contrat-personnalise.html` | Générateur local d’un projet de contrat de prêt, avec champs variables, calcul et tableau d’amortissement ACT/360, référence automatique, date à l’impression, aperçu et PDF. Contient un avertissement de vérification juridique et un accès restreint. |
 
 Chaque page est autonome : CSS et JS sont inline, aucune dépendance de production.
 
