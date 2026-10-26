@@ -30,6 +30,30 @@ Le mot de passe d'accès au formulaire est défini par la constante `GATE_PASS` 
 pas une protection réelle — pour un formulaire confidentiel, il faut une authentification serveur.
 Aucune donnée saisie n'est transmise : tout reste dans le navigateur de l'utilisateur.
 
+## Afficher le projet dans Bolt.ai (ou tout autre sandbox en ligne)
+
+Le dépôt contient la configuration nécessaire pour être lancé comme une application
+Vite (pages HTML statiques, aucun framework) :
+
+```bash
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # génère dist/ (index.html + formulaire-interne.html)
+```
+
+`vite.config.js` est réglé pour les aperçus embarqués : écoute sur `0.0.0.0`,
+`allowedHosts: true` (domaines `*.bolt.host`, `*.e2b.app`, `*.e2b.dev`…),
+`cors: true` et HMR adapté au proxy HTTPS.
+
+**Import dans Bolt.ai** : ouvrir <https://bolt.new/~/github.com/dahcode2020/formul>
+(ou *Import from GitHub* → `dahcode2020/formul`), puis, si Bolt demande une commande
+de lancement : `npm run dev`, port `5173`.
+
+> À l'ouverture, le formulaire est masqué par l'écran « Accès restreint » : saisir le mot
+> de passe (`GATE_PASS`, actuellement `VioXsRAiC6wy`) pour voir la page.
+> Pour une démonstration sans mot de passe, ouvrir `formulaire-interne.html`
+> (même formulaire, sans écran de verrouillage).
+
 ## `livraison-cccapital/`
 
 Paquets prêts à intégrer ce formulaire dans le dépôt `dahcode2020/cccapital-`
