@@ -1,5 +1,11 @@
 node_modules/
+dist/
+.vite/
+*.log
+.DS_Store
 .env
+
+# fichiers temporaires de Vite / Vitest
 vite.config.js.timestamp-*.mjs
 vite.config.mjs.timestamp-*.mjs
 vite.config.cjs.timestamp-*.mjs
