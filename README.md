@@ -1,10 +1,10 @@
-# Sillage Capital — site
+# CC Investment — site
 
 Site vitrine statique + formulaire de demande de crédit.
 
 | Fichier | Contenu |
 | --- | --- |
-| `index.html` | **Page d'accueil du site** (vitrine Sillage Capital). Affichée en premier par Bolt et par tout serveur statique. |
+| `index.html` | **Page d'accueil du site** (vitrine CC Investment). Affichée en premier par Bolt et par tout serveur statique. |
 | `demande-credit.html` | Formulaire de demande de crédit bilingue FR/EN : saisie guidée, aperçu, impression / PDF, écran « Accès restreint » par mot de passe. Accessible depuis le menu du site. |
 | `formulaire-interne.html` | Le même formulaire **sans** écran de mot de passe (démonstration / usage interne). |
 
@@ -32,8 +32,8 @@ Le mot de passe est défini dans `demande-credit.html` (constante `GATE_PASS`, a
 `VioXsRAiC6wy`). Il est visible dans le code source : c'est un dissuasif, pas une protection
 réelle. Aucune donnée saisie n'est transmise : tout reste dans le navigateur de l'utilisateur.
 
-## Charte graphique
+## Identité et localisation
 
-Le formulaire reprend l'identité du site : encre `#0a0a0a`, papier `#f1efe8`, acide `#d9ff43`,
-orange `#ff5a36` en accent d'alerte, Archivo + DM Mono, angles vifs, boutons mono capitales,
-champs en filet souligné, aperçu imprimable documentaire (sections en aplat noir).
+Le site présente CC Investment comme basé à Monaco. La charte reprend l’image fournie : bleu marine (`#00205c`, `#001756`, `#00438d`), gris argent (`#929395`) et blanc. Les titres utilisent Cormorant Garamond et les textes Inter.
+
+Les coordonnées de contact d’origine ont été conservées, faute de nouvelles coordonnées confirmées ; le domaine et le téléphone pourront être mis à jour dès réception des informations exactes.

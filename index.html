@@ -3,28 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0a0a">
-  <meta name="description" content="Sillage Capital, fonds d’investissement privé indépendant. Private equity, dette privée et real assets : des convictions fortes, un capital engagé, une vision de long terme.">
-  <title>Sillage Capital — Fonds d’investissement privé</title>
+  <meta name="theme-color" content="#00205c">
+  <meta name="description" content="CC Investment, fonds d’investissement privé indépendant. Private equity, dette privée et real assets : des convictions fortes, un capital engagé, une vision de long terme.">
+  <title>CC Investment — Fonds d’investissement privé</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23d9ff43'/%3E%3Cpath d='M17 46L46 17M20 20h25v25' stroke='%230a0a0a' stroke-width='7' fill='none'/%3E%3C/svg%3E">
 
   <style>
     :root {
-      --ink: #0a0a0a;
-      --ink-soft: #141414;
-      --paper: #f1efe8;
-      --paper-deep: #e5e2d9;
-      --acid: #d9ff43;
-      --orange: #ff5a36;
-      --grey: #97978f;
-      --line-dark: rgba(255,255,255,.16);
-      --line-light: rgba(10,10,10,.18);
-      --mono: "DM Mono", monospace;
-      --sans: "Archivo", sans-serif;
+      /* Charte CC Investment — reprise du logo : bleu marine, gris, blanc */
+      --navy: #00205c;
+      --navy-deep: #001756;
+      --navy-light: #00438d;
+      --steel: #6f8bb3;
+      --ink: #001756;
+      --ink-soft: #00205c;
+      --paper: #ffffff;
+      --paper-deep: #eef1f7;
+      --acid: #cfd9e6;
+      --orange: #929395;
+      --grey: #929395;
+      --line-dark: rgba(255,255,255,.18);
+      --line-light: rgba(0,32,92,.16);
+      --mono: "Inter", system-ui, sans-serif;
+      --sans: "Cormorant Garamond", "Times New Roman", serif;
+      --body: "Inter", system-ui, sans-serif;
       --container: 1480px;
       --header-h: 86px;
     }
@@ -46,9 +52,9 @@
       overflow-x: hidden;
       background: var(--ink);
       color: var(--paper);
-      font-family: var(--sans);
+      font-family: var(--body);
       font-size: 16px;
-      line-height: 1.5;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
@@ -126,8 +132,9 @@
 
     .section-title {
       font-size: clamp(3.4rem, 7.3vw, 7.7rem);
-      font-weight: 900;
-      letter-spacing: -.07em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .86;
       text-transform: uppercase;
     }
@@ -240,7 +247,7 @@
     .site-header.scrolled {
       top: 0;
       height: 74px;
-      background: rgba(10,10,10,.93);
+      background: rgba(0,23,86,.93);
       backdrop-filter: blur(16px);
     }
 
@@ -260,23 +267,14 @@
     }
 
     .brand-mark {
-      position: relative;
-      width: 31px;
-      height: 31px;
-      overflow: hidden;
-      background: var(--acid);
+      display: block;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      background: linear-gradient(135deg, var(--navy-light), var(--navy-deep));
     }
 
-    .brand-mark::before,
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      background: var(--ink);
-      transform: rotate(-45deg);
-    }
-
-    .brand-mark::before { width: 5px; height: 45px; left: 13px; top: -7px; }
-    .brand-mark::after { width: 16px; height: 4px; left: 14px; top: 6px; transform: none; }
+    .brand-mark svg { display: block; width: 100%; height: 100%; }
 
     .brand-type {
       display: flex;
@@ -285,10 +283,16 @@
     }
 
     .brand-name {
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -.055em;
+      font-size: 17px;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
+
+    .brand-name .wm-a { color: var(--paper); }
+    .brand-name .wm-b { color: var(--acid); }
 
     .brand-sub {
       margin-top: 5px;
@@ -313,7 +317,7 @@
       font-size: 10px;
       letter-spacing: .06em;
       text-transform: uppercase;
-      color: rgba(241,239,232,.75);
+      color: rgba(255,255,255,.75);
       transition: color .25s ease;
     }
 
@@ -464,8 +468,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, var(--ink) 0%, rgba(10,10,10,.55) 24%, transparent 62%),
-        linear-gradient(0deg, rgba(10,10,10,.82), transparent 50%);
+        linear-gradient(90deg, var(--ink) 0%, rgba(0,23,86,.55) 24%, transparent 62%),
+        linear-gradient(0deg, rgba(0,23,86,.82), transparent 50%);
     }
 
     .hero-visual img {
@@ -560,8 +564,9 @@
     .hero-title {
       max-width: 1330px;
       font-size: clamp(4.8rem, 10.1vw, 10.6rem);
-      font-weight: 900;
-      letter-spacing: -.075em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .82;
       text-transform: uppercase;
     }
@@ -593,11 +598,11 @@
 
     .hero-side-label {
       max-width: 280px;
-      color: rgba(241,239,232,.56);
+      color: rgba(255,255,255,.56);
     }
 
     .hero-intro {
-      color: rgba(241,239,232,.82);
+      color: rgba(255,255,255,.82);
       font-size: 17px;
       line-height: 1.55;
     }
@@ -638,7 +643,7 @@
     }
 
     .hero-stat-label {
-      color: rgba(241,239,232,.56);
+      color: rgba(255,255,255,.56);
       font-family: var(--mono);
       font-size: 9px;
       letter-spacing: .07em;
@@ -697,8 +702,9 @@
     .manifesto-title {
       max-width: 1300px;
       font-size: clamp(3.7rem, 8vw, 8.4rem);
-      font-weight: 900;
-      letter-spacing: -.075em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .87;
       text-transform: uppercase;
     }
@@ -842,7 +848,7 @@
     .strategies-copy {
       max-width: 390px;
       padding-bottom: 8px;
-      color: rgba(241,239,232,.63);
+      color: rgba(255,255,255,.63);
       font-size: 16px;
       line-height: 1.7;
     }
@@ -930,7 +936,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(0deg, rgba(10,10,10,.65), transparent 55%);
+      background: linear-gradient(0deg, rgba(0,23,86,.65), transparent 55%);
     }
 
     .strategy-image img {
@@ -967,7 +973,7 @@
 
     .strategy-description {
       max-width: 670px;
-      color: rgba(241,239,232,.68);
+      color: rgba(255,255,255,.68);
       font-size: 15px;
       line-height: 1.65;
     }
@@ -1247,7 +1253,7 @@
     .filter-btn {
       min-height: 40px;
       padding: 0 16px;
-      border: 1px solid rgba(10,10,10,.35);
+      border: 1px solid rgba(0,23,86,.35);
       background: transparent;
       color: var(--ink);
       font-family: var(--mono);
@@ -1375,15 +1381,16 @@
     .simulator-title {
       margin-bottom: 38px;
       font-size: clamp(3.5rem, 6.3vw, 6.9rem);
-      font-weight: 900;
-      letter-spacing: -.07em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .87;
       text-transform: uppercase;
     }
 
     .simulator-copy {
       max-width: 470px;
-      color: rgba(241,239,232,.65);
+      color: rgba(255,255,255,.65);
       font-size: 16px;
       line-height: 1.7;
     }
@@ -1396,7 +1403,7 @@
       gap: 14px;
       padding: 16px 0;
       border-bottom: 1px solid var(--line-dark);
-      color: rgba(241,239,232,.78);
+      color: rgba(255,255,255,.78);
       font-size: 13px;
     }
 
@@ -1668,8 +1675,9 @@
 
     .faq-title {
       font-size: clamp(3.2rem, 5.8vw, 6rem);
-      font-weight: 900;
-      letter-spacing: -.07em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .88;
       text-transform: uppercase;
     }
@@ -1736,7 +1744,7 @@
       position: absolute;
       right: -2vw;
       bottom: -15vw;
-      color: rgba(10,10,10,.065);
+      color: rgba(0,23,86,.065);
       font-size: 48vw;
       font-weight: 400;
       line-height: 1;
@@ -1750,8 +1758,9 @@
     .closing-title {
       max-width: 1300px;
       font-size: clamp(4rem, 9vw, 9.5rem);
-      font-weight: 900;
-      letter-spacing: -.08em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .82;
       text-transform: uppercase;
     }
@@ -1850,10 +1859,11 @@
     .newsletter-feedback { min-height: 18px; margin-top: 10px; color: var(--acid); font-family: var(--mono); font-size: 9px; }
 
     .footer-word {
-      margin: 10px -1vw 28px;
-      font-size: clamp(5.4rem, 15.8vw, 16rem);
-      font-weight: 900;
-      letter-spacing: -.09em;
+      margin: 10px 0 28px;
+      font-size: clamp(2.6rem, 8.6vw, 8.6rem);
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .7;
       text-align: center;
       text-transform: uppercase;
@@ -1947,8 +1957,9 @@
 
     .contact-title {
       font-size: clamp(3rem, 5vw, 5rem);
-      font-weight: 900;
-      letter-spacing: -.07em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .87;
       text-transform: uppercase;
     }
@@ -2062,8 +2073,9 @@
     .case-dialog-title {
       margin-bottom: 25px;
       font-size: clamp(2.7rem, 5vw, 5rem);
-      font-weight: 900;
-      letter-spacing: -.07em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .9;
       text-transform: uppercase;
     }
@@ -2155,14 +2167,15 @@
       .container { width: calc(100% - 32px); }
       .topline-inner { font-size: 8px; }
       .topline-center { display: none; }
-      .brand-name { font-size: 20px; }
+      .brand-name { font-size: 15px; }
       .brand-sub { font-size: 6px; }
       .brand-mark { width: 28px; height: 28px; }
+      .brand-mark svg { width: 100%; height: 100%; }
       .brand-mark::before { left: 12px; }
       .hero { min-height: 850px; padding-top: 115px; }
       .hero-main { justify-content: flex-start; padding-top: 64px; }
       .hero-visual { width: 100%; clip-path: none; opacity: .42; }
-      .hero-visual::after { background: linear-gradient(90deg, rgba(10,10,10,.78), rgba(10,10,10,.2)), linear-gradient(0deg, var(--ink), transparent 60%); }
+      .hero-visual::after { background: linear-gradient(90deg, rgba(0,23,86,.78), rgba(0,23,86,.2)), linear-gradient(0deg, var(--ink), transparent 60%); }
       .hero-coordinate { display: none; }
       .hero-grid { opacity: .18; }
       .hero-kicker { margin-bottom: 24px; font-size: 9px; }
@@ -2250,7 +2263,7 @@
       .closing .button { width: 100%; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 45px 25px; }
       .footer-newsletter { grid-column: 1 / -1; }
-      .footer-word { margin-top: 25px; font-size: 20vw; }
+      .footer-word { margin-top: 25px; font-size: 11vw; }
       .footer-disclaimer { grid-template-columns: 1fr; gap: 16px; }
       .footer-bottom { flex-direction: column; gap: 16px; }
       .contact-layout { grid-template-columns: 1fr; }
@@ -2311,7 +2324,7 @@
 
   <div class="topline" id="topline">
     <div class="container topline-inner">
-      <span>Sillage / Private Investment Fund</span>
+      <span>CC Investment / Private Investment Fund</span>
       <span class="topline-center">Indépendant par nature. Exigeant par choix.</span>
       <span>Réservé aux investisseurs avertis</span>
     </div>
@@ -2319,11 +2332,14 @@
 
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
-      <a class="brand" href="#accueil" aria-label="Sillage Capital — Accueil">
-        <span class="brand-mark" aria-hidden="true"></span>
+      <a class="brand" href="#accueil" aria-label="CC Investment — Accueil">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false" aria-hidden="true">
+          <path d="M41 21.5a13.5 13.5 0 1 0 0 21" fill="none" stroke="#fff" stroke-width="5.4" stroke-linecap="round"/>
+          <path d="M51.5 26a8.6 8.6 0 1 0 0 12" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>
+        </svg></span>
         <span class="brand-type">
-          <span class="brand-name">SILLAGE</span>
-          <span class="brand-sub">Private Capital</span>
+          <span class="brand-name"><span class="wm-a">CC</span> <span class="wm-b">INVESTMENT</span></span>
+          <span class="brand-sub">Monaco</span>
         </span>
       </a>
 
@@ -2360,8 +2376,8 @@
         Espace investisseur <span class="arrow" aria-hidden="true">↗</span>
       </button>
       <div class="mobile-contact-row mono">
-        <span>Paris · Luxembourg</span>
-        <span data-paris-time>--:--</span>
+        <span>Monaco</span>
+        <span data-monaco-time>--:--</span>
       </div>
     </div>
   </div>
@@ -2372,7 +2388,7 @@
       <div class="hero-visual" aria-hidden="true">
         <img id="heroImage" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=85" alt="">
       </div>
-      <span class="hero-coordinate mono" aria-hidden="true">48.8566° N — 2.3522° E / PARIS</span>
+      <span class="hero-coordinate mono" aria-hidden="true">43.7384° N — 7.4246° E / MONACO</span>
 
       <div class="hero-seal" aria-hidden="true">
         <svg viewBox="0 0 140 140">
@@ -2387,7 +2403,7 @@
       <div class="container hero-main">
         <div class="eyebrow hero-kicker">
           <span class="live-dot" aria-hidden="true"></span>
-          Fonds d’investissement privé · Paris / Luxembourg
+          Fonds d’investissement privé · Monaco
         </div>
 
         <h1 class="hero-title" id="heroTitle">
@@ -2468,7 +2484,7 @@
         <div class="manifesto-grid">
           <figure class="manifesto-image reveal">
             <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1000&q=85" alt="Espace de travail contemporain du comité d’investissement" loading="lazy">
-            <span class="image-number mono">FIG. 01 — PARIS</span>
+            <span class="image-number mono">FIG. 01 — MONACO</span>
             <figcaption class="image-tag mono">Le comité d’investissement<br>Une voix. Une responsabilité.</figcaption>
           </figure>
 
@@ -2603,26 +2619,26 @@
               <span class="mono" style="color:#777">Base 100 · Données mensuelles</span>
             </div>
             <div class="chart-legend mono">
-              <span class="legend-item"><i class="legend-line" aria-hidden="true"></i>Sillage composite</span>
+              <span class="legend-item"><i class="legend-line" aria-hidden="true"></i>CC Investment composite</span>
               <span class="legend-item"><i class="legend-line benchmark" aria-hidden="true"></i>Indice de référence</span>
             </div>
           </div>
 
           <div class="chart-wrap" id="chartWrap">
-            <svg id="performanceChart" viewBox="0 0 1000 420" preserveAspectRatio="none" role="img" aria-label="Évolution de la performance Sillage sur un an">
+            <svg id="performanceChart" viewBox="0 0 1000 420" preserveAspectRatio="none" role="img" aria-label="Évolution de la performance CC Investment sur un an">
               <defs>
                 <linearGradient id="performanceAreaGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#d9ff43" stop-opacity=".22"></stop>
-                  <stop offset="100%" stop-color="#d9ff43" stop-opacity="0"></stop>
+                  <stop offset="0%" stop-color="#00438d" stop-opacity=".22"></stop>
+                  <stop offset="100%" stop-color="#00438d" stop-opacity="0"></stop>
                 </linearGradient>
               </defs>
               <g id="performanceGrid"></g>
               <path id="performanceArea" fill="url(#performanceAreaGradient)"></path>
               <path id="performanceBenchmark" fill="none" stroke="#777" stroke-width="1.5" stroke-dasharray="7 8"></path>
-              <path id="performanceFund" fill="none" stroke="#d9ff43" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path id="performanceFund" fill="none" stroke="#00438d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
               <line id="chartCrosshair" x1="0" y1="25" x2="0" y2="375" stroke="#fff" stroke-opacity=".25" stroke-width="1" visibility="hidden"></line>
-              <circle id="chartBenchmarkDot" r="4" fill="#999" stroke="#0a0a0a" stroke-width="2" visibility="hidden"></circle>
-              <circle id="chartFundDot" r="6" fill="#d9ff43" stroke="#0a0a0a" stroke-width="3" visibility="hidden"></circle>
+              <circle id="chartBenchmarkDot" r="4" fill="#999" stroke="#001756" stroke-width="2" visibility="hidden"></circle>
+              <circle id="chartFundDot" r="6" fill="#00438d" stroke="#001756" stroke-width="3" visibility="hidden"></circle>
             </svg>
             <div class="chart-tooltip" id="chartTooltip" aria-hidden="true"></div>
           </div>
@@ -2722,7 +2738,7 @@
                 <span class="case-category mono">Private Equity</span>
                 <span class="case-open-icon" aria-hidden="true">↗</span>
               </div>
-              <div class="case-meta mono"><span>Tech B2B · Paris</span><span>Depuis 2024</span></div>
+              <div class="case-meta mono"><span>Tech B2B · Monaco</span><span>Depuis 2024</span></div>
               <h3>Metera Systems</h3>
               <p>Industrialiser la donnée de mesure pour les réseaux essentiels.</p>
             </button>
@@ -2802,8 +2818,8 @@
               <svg id="projectionSvg" viewBox="0 0 600 140" preserveAspectRatio="none" role="img" aria-label="Projection de capital dans le temps">
                 <defs>
                   <linearGradient id="projectionGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#d9ff43" stop-opacity=".23"></stop>
-                    <stop offset="100%" stop-color="#d9ff43" stop-opacity="0"></stop>
+                    <stop offset="0%" stop-color="#00438d" stop-opacity=".23"></stop>
+                    <stop offset="100%" stop-color="#00438d" stop-opacity="0"></stop>
                   </linearGradient>
                 </defs>
                 <g stroke="#292929" stroke-width="1">
@@ -2812,8 +2828,8 @@
                   <line x1="0" y1="115" x2="600" y2="115"></line>
                 </g>
                 <path id="projectionArea" fill="url(#projectionGradient)"></path>
-                <path id="projectionLine" fill="none" stroke="#d9ff43" stroke-width="3" vector-effect="non-scaling-stroke"></path>
-                <circle id="projectionDot" r="5" fill="#ff5a36"></circle>
+                <path id="projectionLine" fill="none" stroke="#00438d" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+                <circle id="projectionDot" r="5" fill="#929395"></circle>
               </svg>
             </div>
             <div class="projection-bottom">
@@ -2924,11 +2940,11 @@
 
         <div class="footer-column">
           <h3>Nous trouver</h3>
-          <p class="footer-address">Paris · Luxembourg<br>France<br><br><a href="mailto:contact@sillage-capital.fr">contact@sillage-capital.fr</a><br><a href="tel:+33184250000">+33 (0)1 84 25 00 00</a></p>
+          <p class="footer-address">Monaco<br><br><a href="mailto:contact@sillage-capital.fr">contact@sillage-capital.fr</a><br><a href="tel:+33184250000">+33 (0)1 84 25 00 00</a></p>
         </div>
 
         <div class="footer-column footer-newsletter">
-          <h3>La note Sillage</h3>
+          <h3>La note CC Investment</h3>
           <p class="newsletter-title">Une conviction, une analyse, une fois par mois.</p>
           <form class="newsletter-form" id="newsletterForm">
             <label for="newsletterEmail" class="mono" style="position:absolute;left:-9999px">Votre adresse e-mail</label>
@@ -2939,15 +2955,15 @@
         </div>
       </div>
 
-      <div class="footer-word" aria-hidden="true">Sillage</div>
+      <div class="footer-word" aria-hidden="true">CC INVESTMENT</div>
 
       <div class="footer-disclaimer">
-        <p>SILLAGE CAPITAL<br>INVESTISSEMENT PRIVÉ<br>PARIS / LUXEMBOURG</p>
+        <p>CC INVESTMENT<br>INVESTISSEMENT PRIVÉ<br>MONACO</p>
         <p>L’investissement dans des actifs non cotés comporte des risques, notamment un risque de perte en capital et de liquidité. Les informations présentées sur ce site ont une vocation exclusivement institutionnelle et ne constituent ni une offre de souscription, ni un conseil personnalisé, ni une recommandation d’investissement. Toute souscription doit être précédée de la lecture des documents réglementaires applicables. Les performances passées ne préjugent pas des performances futures.</p>
       </div>
 
       <div class="footer-bottom mono">
-        <span>© <span id="currentYear">2025</span> Sillage Capital. Tous droits réservés.</span>
+        <span>© <span id="currentYear">2025</span> CC Investment. Tous droits réservés.</span>
         <div class="footer-legal">
           <button type="button" data-legal="mentions">Mentions légales</button>
           <button type="button" data-legal="privacy">Confidentialité</button>
@@ -2962,7 +2978,7 @@
     <div class="contact-layout">
       <button class="dialog-close" type="button" data-close-dialog aria-label="Fermer">×</button>
       <aside class="contact-aside">
-        <span class="eyebrow">Sillage Capital · Paris</span>
+        <span class="eyebrow">CC Investment · Monaco</span>
         <h2 class="contact-title" id="contactDialogTitle">Parlons<br>capital.</h2>
         <p class="contact-aside-copy" id="contactDialogCopy">Exposez-nous votre projet ou vos objectifs. Un membre de notre équipe vous répondra directement.</p>
         <div class="contact-aside-bottom">
@@ -3027,7 +3043,7 @@
 
           <label class="consent">
             <input type="checkbox" required>
-            <span>J’accepte que Sillage Capital utilise ces informations pour répondre à ma demande. Je comprends que ce formulaire ne constitue pas un ordre de souscription. *</span>
+            <span>J’accepte que CC Investment utilise ces informations pour répondre à ma demande. Je comprends que ce formulaire ne constitue pas un ordre de souscription. *</span>
           </label>
 
           <button class="button button-dark contact-submit" id="contactSubmit" type="submit">Envoyer ma demande <span class="arrow" aria-hidden="true">↗</span></button>
@@ -3036,7 +3052,7 @@
         <div class="form-success" id="contactSuccess" hidden>
           <span class="success-mark" aria-hidden="true">↗</span>
           <h3>Message<br>bien reçu.</h3>
-          <p>Merci pour votre confiance. Votre demande a été enregistrée et un membre de l’équipe Sillage reviendra vers vous dans les meilleurs délais.</p>
+          <p>Merci pour votre confiance. Votre demande a été enregistrée et un membre de l’équipe CC Investment reviendra vers vous dans les meilleurs délais.</p>
           <button class="button button-dark" type="button" data-close-dialog>Revenir au site <span class="arrow" aria-hidden="true">→</span></button>
         </div>
       </div>
@@ -3107,16 +3123,16 @@
       }, { passive: true });
       updateScroll();
 
-      function updateParisTime() {
+      function updateMonacoTime() {
         const time = new Intl.DateTimeFormat("fr-FR", {
-          timeZone: "Europe/Paris",
+          timeZone: "Europe/Monaco",
           hour: "2-digit",
           minute: "2-digit"
         }).format(new Date());
-        $$('[data-paris-time]').forEach(el => el.textContent = `Paris · ${time}`);
+        $$('[data-monaco-time]').forEach(el => el.textContent = `Monaco · ${time}`);
       }
-      updateParisTime();
-      setInterval(updateParisTime, 60000);
+      updateMonacoTime();
+      setInterval(updateMonacoTime, 60000);
       $("#currentYear").textContent = new Date().getFullYear();
 
       const menuToggle = $("#menuToggle");
@@ -3326,7 +3342,7 @@
           labels: buildLabels(13, 1),
           value: "+12,8 %",
           label: "Performance nette · 2024",
-          aria: "Évolution de la performance Sillage sur un an",
+          aria: "Évolution de la performance CC Investment sur un an",
           metrics: [["6,4 %", "Volatilité annualisée"], ["1,42", "Ratio de Sharpe"], ["+5,1 pts", "Surperformance vs indice"]]
         },
         "3a": {
@@ -3335,7 +3351,7 @@
           labels: buildLabels(13, 3),
           value: "+13,9 %",
           label: "Performance annualisée · 3 ans",
-          aria: "Évolution de la performance Sillage sur trois ans",
+          aria: "Évolution de la performance CC Investment sur trois ans",
           metrics: [["8,1 %", "Volatilité annualisée"], ["1,36", "Ratio de Sharpe"], ["+6,6 pts", "Surperformance annualisée"]]
         },
         "5a": {
@@ -3344,7 +3360,7 @@
           labels: buildLabels(21, 3),
           value: "+12,8 %",
           label: "Performance annualisée · 5 ans",
-          aria: "Évolution de la performance Sillage sur cinq ans",
+          aria: "Évolution de la performance CC Investment sur cinq ans",
           metrics: [["9,3 %", "Volatilité annualisée"], ["1,29", "Ratio de Sharpe"], ["+4,2 pts", "Surperformance annualisée"]]
         },
         "10a": {
@@ -3353,7 +3369,7 @@
           labels: buildLabels(21, 6),
           value: "+12,0 %",
           label: "Performance annualisée · 10 ans",
-          aria: "Évolution de la performance Sillage sur dix ans",
+          aria: "Évolution de la performance CC Investment sur dix ans",
           metrics: [["10,1 %", "Volatilité annualisée"], ["1,24", "Ratio de Sharpe"], ["+3,8 pts", "Surperformance annualisée"]]
         }
       };
@@ -3500,7 +3516,7 @@
         const formatIndex = value => value.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
         tooltip.innerHTML = `
           <span class="chart-tooltip-date">${set.labels[index]}</span>
-          <span class="chart-tooltip-value"><span>Sillage</span><strong>${formatIndex(set.fund[index])}</strong></span>
+          <span class="chart-tooltip-value"><span>CC INVESTMENT</span><strong>${formatIndex(set.fund[index])}</strong></span>
           <span class="chart-tooltip-value"><span>Référence</span><strong>${formatIndex(set.benchmark[index])}</strong></span>`;
         const leftPercent = Math.max(9, Math.min(91, cx / CW * 100));
         tooltip.style.left = `${leftPercent}%`;
@@ -3616,7 +3632,7 @@
         },
         metera: {
           title: "Metera Systems",
-          meta: "Private Equity · Technologie B2B · Paris · 2024",
+          meta: "Private Equity · Technologie B2B · Monaco · 2024",
           image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
           lead: "Transformer la mesure technique en décision opérationnelle.",
           body: [
@@ -3812,9 +3828,9 @@
         mentions: {
           meta: "Informations réglementaires",
           title: "Mentions légales",
-          lead: "Informations relatives à l’éditeur et à l’utilisation du site Sillage Capital.",
+          lead: "Informations relatives à l’éditeur et à l’utilisation du site CC Investment.",
           paragraphs: [
-            "Le présent site est un site institutionnel consacré aux activités de Sillage Capital. Il est édité depuis Paris, France. La direction de la publication est assurée par la direction générale de Sillage Capital.",
+            "Le présent site est un site institutionnel consacré aux activités de CC Investment. Il est basé à Monaco. La direction de la publication est assurée par la direction générale de CC Investment.",
             "Les informations publiées sont fournies à titre général et peuvent être modifiées sans préavis. Elles ne constituent ni une offre de services financiers, ni une sollicitation, ni un conseil en investissement personnalisé. L’accès à certains véhicules est soumis à des conditions d’éligibilité et à la remise d’une documentation réglementaire complète.",
             "L’ensemble des contenus, textes, éléments graphiques et signes distinctifs présents sur ce site est protégé par les règles applicables à la propriété intellectuelle. Toute reproduction ou représentation non autorisée est interdite."
           ],

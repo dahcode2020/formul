@@ -3,40 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0a0a">
-<meta name="description" content="Formulaire de demande de crédit — Sillage Capital, fonds d'investissement privé. Renseignez votre dossier, consultez l'aperçu puis imprimez en PDF. Loan application form.">
-<title>Demande de crédit — Sillage Capital</title>
+<meta name="theme-color" content="#00205c">
+<meta name="description" content="Formulaire de demande de crédit — CC Investment, fonds d'investissement privé. Renseignez votre dossier, consultez l'aperçu puis imprimez en PDF. Loan application form.">
+<title>Demande de crédit — CC Investment</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23d9ff43'/%3E%3Cpath d='M17 46L46 17M20 20h25v25' stroke='%230a0a0a' stroke-width='7' fill='none'/%3E%3C/svg%3E">
 
 <style>
   /* =========================================================
-     Sillage Capital — design system (ink / paper / acid)
+     CC Investment — design system (ink / paper / acid)
      ========================================================= */
   :root{
-    --ink:#0a0a0a;
-    --ink-soft:#141414;
-    --paper:#f1efe8;
-    --paper-deep:#e5e2d9;
-    --acid:#d9ff43;
-    --orange:#ff5a36;
-    --grey:#6d6d64;
-    --grey-soft:#9a9a91;
-    --line:rgba(10,10,10,.16);
-    --line-strong:rgba(10,10,10,.5);
-    --line-dark:rgba(255,255,255,.18);
-    --mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-    --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+    --navy:#00205c;
+    --navy-deep:#001756;
+    --navy-light:#00438d;
+    --silver:#929395;
+    --ink:#001756;
+    --ink-soft:#00205c;
+    --paper:#ffffff;
+    --paper-deep:#eef1f7;
+    --acid:#d9e0eb;
+    --orange:#929395;
+    --grey:#707b8c;
+    --grey-soft:#929395;
+    --line:rgba(0,32,92,.16);
+    --line-strong:rgba(0,32,92,.5);
+    --line-dark:rgba(255,255,255,.2);
+    --mono:"Inter",system-ui,sans-serif;
+    --sans:"Cormorant Garamond","Times New Roman",serif;
     /* alias de compatibilité avec l'ancienne feuille */
     --bleu:var(--ink);
-    --bleu-clair:#eceadf;
+    --bleu-clair:#eef1f7;
     --bordure:var(--line);
     --texte:var(--ink);
     --gris:var(--grey);
-    --ok:#0a0a0a;
+    --ok:#001756;
     --rouge:var(--orange);
   }
   *{box-sizing:border-box;}
@@ -64,13 +68,13 @@
     display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;
   }
   .app-brand{display:inline-flex;align-items:center;gap:12px;flex:0 0 auto;text-decoration:none;color:var(--paper);}
-  .brand-mark{position:relative;width:31px;height:31px;overflow:hidden;background:var(--acid);}
-  .brand-mark::before,.brand-mark::after{content:"";position:absolute;background:var(--ink);}
-  .brand-mark::before{width:5px;height:45px;left:13px;top:-7px;transform:rotate(-45deg);}
-  .brand-mark::after{width:16px;height:4px;left:14px;top:6px;}
+  .brand-mark{display:block;width:34px;height:34px;flex:0 0 auto;background:linear-gradient(135deg,var(--navy-light),var(--navy-deep));}
+  .brand-mark svg{display:block;width:100%;height:100%;}
+
+
   .brand-type{display:flex;flex-direction:column;line-height:1;}
-  .brand-name{font-size:20px;font-weight:900;letter-spacing:-.055em;}
-  .brand-sub{margin-top:5px;font-family:var(--mono);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#b9b9b0;}
+  .brand-name{font-family:var(--sans);font-size:18px;font-weight:600;letter-spacing:.12em;}
+  .brand-sub{margin-top:5px;font-family:var(--mono);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#c5cad3;}
 
   .app-title{max-width:640px;margin-left:auto;text-align:right;}
   .app-title .eyebrow{
@@ -92,7 +96,7 @@
   .toolbar{
     position:sticky;top:0;z-index:20;
     display:flex;gap:9px;flex-wrap:wrap;align-items:center;
-    padding:13px 24px;background:rgba(241,239,232,.95);
+    padding:13px 24px;background:rgba(255,255,255,.95);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
@@ -248,7 +252,7 @@
   #apercu{display:none;}
   .doc{
     background:#fff;max-width:840px;margin:0 auto;padding:40px 46px 46px;
-    border:1px solid var(--line);box-shadow:0 3px 34px rgba(10,10,10,.10);
+    border:1px solid var(--line);box-shadow:0 3px 34px rgba(0,23,86,.10);
     font-size:13px;
   }
   .doc-head{
@@ -304,7 +308,7 @@
   }
   .kv .k .en{display:block;font-size:7.5px;letter-spacing:.08em;color:var(--grey-soft);margin-top:2px;}
   .kv .v{
-    border-bottom:1px solid rgba(10,10,10,.32);min-height:22px;
+    border-bottom:1px solid rgba(0,23,86,.32);min-height:22px;
     padding:4px 1px 5px;font-size:13px;font-weight:500;
     white-space:pre-wrap;word-break:break-word;
   }
@@ -460,9 +464,9 @@
 <header class="app">
   <div class="app-inner">
     <div class="app-brand">
-      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><path d="M41 21.5a13.5 13.5 0 1 0 0 21" fill="none" stroke="#fff" stroke-width="5.4" stroke-linecap="round"/><path d="M51.5 26a8.6 8.6 0 1 0 0 12" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg></span>
       <span class="brand-type">
-        <span class="brand-name">SILLAGE</span>
+        <span class="brand-name">CC INVESTMENT</span>
         <span class="brand-sub">Private Capital</span>
       </span>
     </div>
@@ -828,8 +832,8 @@
 
 <footer class="form-foot">
   <div class="form-foot-inner">
-    <span>© <span id="yearFoot"></span> Sillage Capital · <span class="acid">Private Capital</span></span>
-    <span>Paris · Luxembourg</span>
+    <span>© <span id="yearFoot"></span> CC Investment · <span class="acid">Private Capital</span></span>
+    <span>Monaco</span>
     <span>Vos informations restent confidentielles</span>
   </div>
 </footer>
