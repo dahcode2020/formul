@@ -55,6 +55,9 @@
 
   /* ---------- Bandeau supérieur ---------- */
   .topline{background:var(--acid);color:var(--ink);}
+  .language-switch{display:inline-flex;align-items:center;gap:3px;flex:0 0 auto;}
+  .language-switch button,.gate-language-switch button{border:1px solid currentColor;background:transparent;color:inherit;padding:4px 6px;font:500 9px var(--mono);cursor:pointer;}
+  .language-switch button.is-active,.gate-language-switch button.is-active{background:var(--acid);color:var(--ink);}
   .topline-inner{
     max-width:1180px;margin:0 auto;padding:8px 24px;
     display:flex;align-items:center;justify-content:space-between;gap:18px;
@@ -458,7 +461,7 @@
 
 <div id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
   <div class="box">
-    <div class="gate-top"><span>CC Investment</span><span>Accès restreint</span></div>
+    <div class="gate-top"><span>CC Investment</span><span class="gate-language-switch" role="group" aria-label="Choisir la langue"><button type="button" data-site-lang="fr">FR</button><button type="button" data-site-lang="en">EN</button><button type="button" data-site-lang="de">DE</button></span><span>Accès restreint</span></div>
     <div class="gate-body">
       <span class="gate-mark" aria-hidden="true">↗</span>
       <h2 id="gateTitle">Accès restreint<span class="en">Restricted access</span></h2>
@@ -476,6 +479,7 @@
   <div class="topline-inner">
     <span>Indépendant par nature. Exigeant par choix.</span>
     <span>Formulaire confidentiel · Confidential form</span>
+    <span class="language-switch" role="group" aria-label="Choisir la langue"><button type="button" data-site-lang="fr">FR</button><button type="button" data-site-lang="en">EN</button><button type="button" data-site-lang="de">DE</button></span>
   </div>
 </div>
 
@@ -1137,6 +1141,7 @@
       }
     });
     apercu.innerHTML = build();
+    if(window.applySiteLanguage) window.applySiteLanguage(document.body.dataset.language || 'fr');
     apercu.style.display = 'block';
     form.style.display = 'none';
     btnApercu.style.display = 'none';
@@ -1189,6 +1194,7 @@
   btnPrint.addEventListener('click', ()=>{
     window.__d = collect();
     apercu.innerHTML = build();
+    if(window.applySiteLanguage) window.applySiteLanguage(document.body.dataset.language || 'fr');
     apercu.style.display = 'block';
     form.style.display = 'none';
     btnApercu.style.display = 'none';
@@ -1204,6 +1210,173 @@
       showEdit();
     }
   });
+})();
+</script>
+<script>
+(() => {
+  const phrase = {
+    "Approche": ["Approach", "Ansatz"], "Stratégies": ["Strategies", "Strategien"],
+    "Performance": ["Performance", "Wertentwicklung"], "Portefeuille": ["Portfolio", "Portfolio"],
+    "Perspectives": ["Insights", "Einblicke"], "Demande de crédit": ["Credit application", "Kreditantrag"],
+    "Espace investisseur": ["Investor area", "Investorenbereich"], "Ouvrir le menu": ["Open menu", "Menü öffnen"],
+    "Fermer le menu": ["Close menu", "Menü schließen"], "Réservé aux investisseurs avertis": ["For professional investors", "Nur für professionelle Anleger"],
+    "Indépendant par nature. Exigeant par choix.": ["Independent by nature. Demanding by choice.", "Unabhängig aus Überzeugung. Anspruchsvoll aus Prinzip."],
+    "Capital engagé": ["Committed capital", "Engagiertes Kapital"], "Vision indépendante": ["Independent vision", "Unabhängige Perspektive"],
+    "Décisions assumées": ["Decisive action", "Konsequente Entscheidungen"],
+    "Nous investissons dans des entreprises et des actifs singuliers, avec une conviction simple : la valeur durable se construit, elle ne se décrète pas.": ["We invest in distinctive businesses and assets, guided by a simple belief: lasting value is built, never decreed.", "Wir investieren in besondere Unternehmen und Vermögenswerte – in der Überzeugung, dass nachhaltiger Wert geschaffen und nicht verordnet wird."],
+    "Nous rencontrer": ["Get in touch", "Kontakt aufnehmen"], "Nous contacter": ["Contact us", "Kontaktieren Sie uns"],
+    "Notre doctrine": ["Our principles", "Unsere Grundsätze"], "Nos stratégies": ["Our strategies", "Unsere Strategien"],
+    "Trois terrains.": ["Three arenas.", "Drei Anlagefelder."], "Une exigence.": ["One standard.", "Ein Anspruch."],
+    "Des chiffres.": ["The numbers.", "Zahlen."], "Des preuves.": ["The evidence.", "Belege."],
+    "En portefeuille": ["Portfolio", "Im Portfolio"], "Tout voir": ["View all", "Alle anzeigen"],
+    "Dette privée": ["Private debt", "Private Debt"], "Simulateur de projection": ["Investment projection tool", "Anlageprojektion"],
+    "Votre capital,": ["Your capital,", "Ihr Kapital,"], "en perspective.": ["in perspective.", "im Blick."],
+    "Projection personnalisée": ["Personalised projection", "Individuelle Projektion"], "Prudent": ["Conservative", "Konservativ"],
+    "Équilibré": ["Balanced", "Ausgewogen"], "Dynamique": ["Growth", "Dynamisch"],
+    "Recevoir une étude personnalisée": ["Request a tailored analysis", "Individuelle Analyse anfordern"],
+    "Regarder": ["Looking", "Weiter"], "plus loin.": ["ahead.", "denken."], "Questions fréquentes": ["Frequently asked questions", "Häufige Fragen"],
+    "Sans langue": ["No", "Klartext"], "de bois.": ["euphemisms.", "statt Floskeln."],
+    "Un premier échange, simplement": ["A first conversation, simply", "Ein erstes Gespräch – ganz unkompliziert"],
+    "Passons": ["Let's move", "Gehen wir"], "aux actes.": ["forward.", "es an."], "Navigation": ["Navigation", "Navigation"],
+    "Nous trouver": ["Find us", "Kontakt"], "La note CC Investment": ["The CC Investment note", "Der CC Investment Newsletter"],
+    "Mentions légales": ["Legal notice", "Impressum"], "Confidentialité": ["Privacy", "Datenschutz"],
+    "Accès espace investisseur": ["Investor access", "Investorenzugang"], "Étude personnalisée": ["Tailored analysis", "Individuelle Analyse"],
+    "Stratégie Private Equity": ["Private equity strategy", "Private-Equity-Strategie"], "Stratégie Dette privée": ["Private debt strategy", "Private-Debt-Strategie"],
+    "Stratégie Real Assets": ["Real assets strategy", "Real-Assets-Strategie"], "Sélectionner": ["Select", "Bitte auswählen"],
+    "Votre demande *": ["Your enquiry *", "Ihr Anliegen *"], "Votre message": ["Your message", "Ihre Nachricht"],
+    "E-mail professionnel *": ["Business email *", "Geschäftliche E-Mail *"], "Téléphone": ["Phone", "Telefon"],
+    "Vous êtes *": ["You are *", "Sie sind *"], "Prénom *": ["First name *", "Vorname *"], "Nom *": ["Last name *", "Nachname *"],
+    "Investisseur privé": ["Private investor", "Privatanleger"], "Investisseur institutionnel": ["Institutional investor", "Institutioneller Anleger"],
+    "Dirigeant / Entrepreneur": ["Business owner / Entrepreneur", "Unternehmer/in"], "Conseil": ["Advisor", "Berater/in"],
+    "Votre application de messagerie s’ouvre. Envoyez le message pour confirmer l’inscription.": ["Your email app will open. Send the message to confirm your subscription.", "Ihre E-Mail-Anwendung wird geöffnet. Senden Sie die Nachricht, um die Anmeldung zu bestätigen."],
+    "Envoyer ma demande": ["Send my enquiry", "Anfrage senden"], "Demander un crédit": ["Request credit", "Kredit beantragen"],
+    "Accès restreint": ["Restricted access", "Zugang beschränkt"], "Mot de passe / Password": ["Password", "Passwort"],
+    "Déverrouiller / Unlock": ["Unlock", "Entsperren"], "Formulaire confidentiel · Confidential form": ["Confidential form", "Vertrauliches Formular"],
+    "Imprimer / PDF": ["Print / PDF", "Drucken / PDF"], "Effacer / Clear": ["Clear", "Löschen"],
+    "Verrouiller / Lock": ["Lock", "Sperren"], "Générer l'aperçu": ["Generate preview", "Vorschau erstellen"],
+    "Modifier": ["Edit", "Bearbeiten"], "← Retour à l'accueil": ["← Back to home", "← Zur Startseite"],
+    "Vos informations restent confidentielles": ["Your information remains confidential", "Ihre Angaben bleiben vertraulich"],
+    "Informations de l'établissement émetteur": ["Issuing institution details", "Angaben zum Kreditinstitut"],
+    "Identité du demandeur": ["Applicant identity", "Identität des Antragstellers"],
+    "Informations professionnelles": ["Professional information", "Berufliche Angaben"],
+    "Situation financière": ["Financial situation", "Finanzielle Situation"],
+    "Demande de crédit": ["Credit application", "Kreditantrag"],
+    "Merci de m’inscrire à la note CC Investment.": ["Please subscribe me to the CC Investment note.", "Bitte abonnieren Sie mich für den CC Investment Newsletter."],
+    "Merci de m’inscrire à la note CC Investment.\n\nAdresse e-mail :": ["Please subscribe me to the CC Investment note.\n\nEmail address:", "Bitte abonnieren Sie mich für den CC Investment Newsletter.\n\nE-Mail-Adresse:"],
+
+    "Adresse": ["Address", "Adresse"], "Adresse *": ["Address *", "Adresse *"],
+    "Adresse professionnelle": ["Business address", "Geschäftsanschrift"], "Ancienneté (années)": ["Years in current role", "Dauer (Jahre)"],
+    "Autre document 1": ["Other document 1", "Weiteres Dokument 1"], "Autre document 2": ["Other document 2", "Weiteres Dokument 2"], "Autre document 3": ["Other document 3", "Weiteres Dokument 3"],
+    "Autres revenus (€)": ["Other income (€)", "Sonstige Einkünfte (€)"], "Banque / Établissement": ["Bank / Institution", "Bank / Institut"],
+    "Catégorie socio-professionnelle": ["Occupation category", "Berufliche Kategorie"], "Charges mensuelles (€)": ["Monthly expenses (€)", "Monatliche Ausgaben (€)"],
+    "Date de début souhaitée": ["Desired start date", "Gewünschter Beginn"], "Date de naissance *": ["Date of birth *", "Geburtsdatum *"],
+    "Durée (mois) *": ["Term (months) *", "Laufzeit (Monate) *"], "E-mail": ["Email", "E-Mail"],
+    "E-mail professionnel": ["Business email", "Geschäftliche E-Mail"], "Employeur / Entreprise": ["Employer / Company", "Arbeitgeber / Unternehmen"],
+    "Enfants à charge *": ["Dependent children *", "Unterhaltsberechtigte Kinder *"], "Fait à": ["Place", "Ort"],
+    "Fonction / Poste occupé": ["Position held", "Position"], "Garanties proposées": ["Proposed collateral", "Angebotene Sicherheiten"],
+    "Intérêt sollicité (%) *": ["Requested interest rate (%) *", "Beantragter Zinssatz (%) *"], "Justificatif de domicile *": ["Proof of address *", "Wohnsitznachweis *"],
+    "Justificatif de revenu *": ["Proof of income *", "Einkommensnachweis *"], "Le": ["Date", "Am"],
+    "Lieu de naissance *": ["Place of birth *", "Geburtsort *"], "Logo": ["Logo", "Logo"],
+    "Montant revenus mensuels (€) *": ["Monthly income (€) *", "Monatliches Einkommen (€) *"], "Montant sollicité (€) *": ["Requested amount (€) *", "Beantragter Betrag (€) *"],
+    "Nationalité": ["Nationality", "Staatsangehörigkeit"], "Nom *": ["Last name *", "Nachname *"],
+    "Numéro de téléphone *": ["Phone number *", "Telefonnummer *"], "N° CNSS": ["Social security number", "Sozialversicherungsnummer"],
+    "N° Pièce d'identité": ["ID document number", "Ausweisnummer"], "N° SIRET / SIREN": ["Company registration no.", "Handelsregisternummer"],
+    "N° WhatsApp": ["WhatsApp number", "WhatsApp-Nummer"], "N° d'enregistrement": ["Registration number", "Registrierungsnummer"],
+    "N° de compte / IBAN": ["Account number / IBAN", "Kontonummer / IBAN"], "Objet du crédit": ["Purpose of credit", "Verwendungszweck des Kredits"],
+    "Pièce d'identité valide *": ["Valid identity document *", "Gültiger Identitätsnachweis *"], "Profession / Métier *": ["Occupation *", "Beruf *"],
+    "Prénoms *": ["First name(s) *", "Vorname(n) *"], "Raison sociale": ["Company name", "Firmenname"],
+    "Revenu fiscal de référence (€)": ["Reference taxable income (€)", "Steuerliches Referenzeinkommen (€)"], "Secteur d'activité": ["Business sector", "Branche"],
+    "Sexe *": ["Gender *", "Geschlecht *"], "Site web": ["Website", "Website"],
+    "Situation matrimoniale *": ["Marital status *", "Familienstand *"], "Statut professionnel *": ["Employment status *", "Berufsstatus *"],
+    "Type de contrat": ["Contract type", "Vertragsart"], "Type de prêt *": ["Loan type *", "Kreditart *"],
+    "Téléphone professionnel": ["Business phone", "Geschäftliche Telefonnummer"],
+    "Veuillez saisir le mot de passe pour ouvrir le formulaire.": ["Please enter the password to open the form.", "Bitte geben Sie das Passwort ein, um das Formular zu öffnen."],
+    "Veuillez saisir votre demande.": ["Please enter your enquiry.", "Bitte geben Sie Ihre Anfrage ein."],
+    "Prudent · 4,5%": ["Conservative · 4.5%", "Konservativ · 4,5 %"], "Équilibré · 7%": ["Balanced · 7%", "Ausgewogen · 7 %"], "Dynamique · 10%": ["Growth · 10%", "Dynamisch · 10 %"],
+    "Ouvrons la conversation.": ["Let's start a conversation.", "Lassen Sie uns ins Gespräch kommen."],
+    "Les champs marqués d’un astérisque sont obligatoires.": ["Fields marked with an asterisk are required.", "Mit einem Stern gekennzeichnete Felder sind Pflichtfelder."],
+    "Parlez-nous de votre projet, de votre horizon ou de vos attentes.": ["Tell us about your project, time horizon or expectations.", "Erzählen Sie uns von Ihrem Vorhaben, Ihrem Zeithorizont oder Ihren Erwartungen."],
+    "Je suis investisseur privé": ["I am a private investor", "Ich bin Privatanleger"],
+
+    "Fonds d’investissement privé · Monaco": ["Private investment firm · Monaco", "Private Investmentgesellschaft · Monaco"],
+    "Créer de": ["Create", "Werte"], "la valeur.": ["value.", "schaffen."], "Pas du bruit.": ["Not noise.", "Keine Schlagzeilen."],
+    "Notre approche": ["Our approach", "Unser Ansatz"], "Le comité d’investissement": ["The investment committee", "Das Investmentkomitee"],
+    "Une voix. Une responsabilité.": ["One voice. One responsibility.", "Eine Stimme. Eine Verantwortung."],
+    "Pas de pilote": ["No", "Kein"], "automatique.": ["autopilot.", "Autopilot."], "Des décisions.": ["Decisions.", "Entscheidungen."],
+    "Peu de lignes. Des convictions lisibles. Et l’exigence de savoir précisément pourquoi nous investissons.": ["A focused portfolio. Clear convictions. And the discipline to know exactly why we invest.", "Ein fokussiertes Portfolio. Klare Überzeugungen. Und der Anspruch, genau zu wissen, warum wir investieren."],
+    "Nous ne cherchons pas à être partout. Nous choisissons des situations où notre capital, notre réseau et notre expérience opérationnelle peuvent réellement changer la trajectoire. Aux côtés des dirigeants, nous restons présents quand le chemin se complique.": ["We do not try to be everywhere. We choose situations where our capital, network and operating experience can genuinely change the trajectory. We stand alongside management teams, especially when the path gets difficult.", "Wir wollen nicht überall sein. Wir wählen Situationen, in denen unser Kapital, unser Netzwerk und unsere operative Erfahrung den Kurs tatsächlich verändern können. Wir stehen an der Seite der Führungsteams – besonders, wenn der Weg anspruchsvoll wird."],
+    "Comprendre avant d’investir": ["Understand before investing", "Verstehen, bevor wir investieren"],
+    "Travail de terrain, analyse des usages et retournement des modèles économiques : aucune conviction ne remplace le travail.": ["On-the-ground research, analysis of real-world use and business models: no conviction can replace hard work.", "Vor-Ort-Recherche, Nutzungsanalyse und Prüfung von Geschäftsmodellen: Eine Überzeugung ersetzt keine sorgfältige Arbeit."],
+    "S’engager au-delà du capital": ["Commit beyond capital", "Mehr als Kapital einbringen"],
+    "Gouvernance, recrutement, croissance externe et transformation : nous mettons les mains dans le concret, avec les équipes.": ["Governance, hiring, acquisitions and transformation: we work on the practical details with our teams.", "Governance, Personalgewinnung, Zukäufe und Transformation: Gemeinsam mit den Teams arbeiten wir an konkreten Lösungen."],
+    "Donner au temps sa valeur": ["Give time its value", "Der Zeit ihren Wert geben"],
+    "Nous refusons les raccourcis. Notre horizon permet aux entreprises de investir, de se transformer et de grandir sans précipitation.": ["We reject shortcuts. Our long-term horizon gives companies the time to invest, transform and grow without rushing.", "Wir lehnen Abkürzungen ab. Unser langfristiger Horizont gibt Unternehmen Zeit, zu investieren, sich zu verändern und nachhaltig zu wachsen."],
+    "Des stratégies complémentaires, unifiées par une sélectivité absolue et une même discipline du risque. Choisissez un terrain pour explorer notre approche.": ["Complementary strategies, united by rigorous selectivity and a consistent approach to risk. Choose an area to explore our approach.", "Komplementäre Strategien, verbunden durch konsequente Auswahl und eine einheitliche Risikodisziplin. Wählen Sie einen Bereich, um unseren Ansatz kennenzulernen."],
+    "Contrôle & co-investissement": ["Control & co-investment", "Kontrolle & Co-Investments"],
+    "Ticket d’investissement": ["Investment size", "Investitionsvolumen"], "Horizon de détention": ["Holding period", "Anlagehorizont"], "Implication opérationnelle": ["Operating involvement", "Operative Begleitung"],
+    "Recevoir une étude personnalisée": ["Request a tailored analysis", "Individuelle Analyse anfordern"],
+    "Inscription à la note CC Investment": ["Subscribe to the CC Investment note", "CC Investment Newsletter abonnieren"],
+    "Parlez-nous de votre projet, de votre horizon ou de vos attentes.": ["Tell us about your project, time horizon or expectations.", "Erzählen Sie uns von Ihrem Vorhaben, Ihrem Zeithorizont oder Ihren Erwartungen."],
+    "nom@societe.com": ["name@company.com", "name@unternehmen.de"],
+    "Prendre rendez-vous": ["Book a meeting", "Termin vereinbaren"],
+    "Ouvrir le menu": ["Open menu", "Menü öffnen"], "Fermer le menu": ["Close menu", "Menü schließen"],
+  };
+  const langButtons = [...document.querySelectorAll('[data-site-lang]')];
+  if (!langButtons.length) return;
+  const getLang = () => { try { return localStorage.getItem('cc-lang') || 'fr'; } catch (_) { return 'fr'; } };
+  const original = new WeakMap();
+  const attrs = new WeakMap();
+  function applyLanguage(lang) {
+    const selected = ['fr','en','de'].includes(lang) ? lang : 'fr';
+    document.documentElement.lang = selected;
+    document.body.dataset.language = selected;
+    const pageTitles = {
+      fr: document.body.classList.contains('locked') || location.pathname.includes('demande-credit') || location.pathname.includes('formulaire-interne') ? 'Demande de crédit — CC Investment' : 'CC Investment — Fonds d’investissement privé',
+      en: document.body.classList.contains('locked') || location.pathname.includes('demande-credit') || location.pathname.includes('formulaire-interne') ? 'Credit application — CC Investment' : 'CC Investment — Private Investment Firm',
+      de: document.body.classList.contains('locked') || location.pathname.includes('demande-credit') || location.pathname.includes('formulaire-interne') ? 'Kreditantrag — CC Investment' : 'CC Investment — Private Investmentgesellschaft'
+    };
+    document.title = pageTitles[selected];
+    try { localStorage.setItem('cc-lang', selected); } catch (_) {}
+    document.querySelectorAll('[data-site-lang]').forEach(button => {
+      const active = button.dataset.siteLang === selected;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue.trim() || node.parentElement.closest('script,style,svg,[aria-hidden="true"]')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (!original.has(node)) original.set(node, node.nodeValue);
+      const base = original.get(node);
+      const key = base.trim();
+      if (selected === 'fr') node.nodeValue = base;
+      else if (phrase[key]) node.nodeValue = base.replace(key, phrase[key][selected === 'en' ? 0 : 1]);
+    }
+    document.querySelectorAll('[placeholder],[aria-label],title').forEach(el => {
+      ['placeholder','aria-label','title'].forEach(attr => {
+        if (!el.hasAttribute(attr)) return;
+        let saved = attrs.get(el); if (!saved) { saved = {}; attrs.set(el, saved); }
+        if (saved[attr] === undefined) saved[attr] = el.getAttribute(attr);
+        const key = saved[attr];
+        if (selected === 'fr') el.setAttribute(attr, key);
+        else if (phrase[key]) el.setAttribute(attr, phrase[key][selected === 'en' ? 0 : 1]);
+      });
+    });
+    document.querySelectorAll('.fr').forEach(el => {
+      el.style.display = selected === 'en' ? 'none' : '';
+      if (!el.dataset.originalText) el.dataset.originalText = el.textContent;
+      if (selected === 'de' && phrase[el.dataset.originalText.trim()]) el.textContent = phrase[el.dataset.originalText.trim()][1];
+      else if (selected !== 'de') el.textContent = el.dataset.originalText;
+    });
+    document.querySelectorAll('.en').forEach(el => { el.style.display = selected === 'en' ? '' : 'none'; });
+  }
+  window.applySiteLanguage = applyLanguage;
+  langButtons.forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.siteLang)));
+  applyLanguage(getLang());
 })();
 </script>
 </body>
