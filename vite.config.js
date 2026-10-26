@@ -2,12 +2,12 @@ import { defineConfig } from 'vite';
 import { fileURLToPath, URL } from 'node:url';
 
 /**
- * Configuration minimale : le projet est constitué de pages HTML statiques
- * (CSS et JS inline dans chaque fichier), sans framework.
+ * Site statique : pages HTML autonomes (CSS et JS inline), aucun framework.
  *
- * - `host: true` et `allowedHosts: true` : indispensables pour que l'aperçu
- *   fonctionne derrière le proxy de Bolt / Arena (domaines *.bolt.new, *.e2b.app).
- * - `cors: true` : évite les blocages quand l'aperçu est chargé dans une iframe.
+ * `host: 0.0.0.0` + `allowedHosts: true` + `cors: true` sont nécessaires pour les
+ * aperçus embarqués (Bolt.ai, sandboxes *.e2b.app, tunnels HTTPS).
+ *
+ * `index.html` = page d'accueil du site (affichée en premier par Bolt).
  */
 export default defineConfig({
   base: './',
@@ -29,7 +29,8 @@ export default defineConfig({
     outDir: 'dist',
     rollupOptions: {
       input: {
-        main: fileURLToPath(new URL('./index.html', import.meta.url)),
+        accueil: fileURLToPath(new URL('./index.html', import.meta.url)),
+        demande: fileURLToPath(new URL('./demande-credit.html', import.meta.url)),
         interne: fileURLToPath(new URL('./formulaire-interne.html', import.meta.url)),
       },
     },
