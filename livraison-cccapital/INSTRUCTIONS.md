@@ -6,9 +6,11 @@ Le dépôt `https://github.com/dahcode2020/cccapital-.git` a été cloné locale
 `/home/user/cccapital-`, et une branche `homepage-formulaire` y contient **un commit prêt à pousser** :
 
 ```
-f957a6c Ajout du formulaire de demande de credit et lien depuis l'accueil
-  + demande-credit.html   (formulaire de demande de crédit, 44 Ko, autonome : CSS + JS inclus,
-                           aperçu, impression PDF, écran « Accès restreint » par mot de passe conservé)
+75720c4 Ajout du formulaire de demande de credit et lien depuis l'accueil
+  + demande-credit.html   (formulaire de demande de crédit, 54 Ko, autonome : CSS + JS inclus,
+                           aperçu, impression PDF, écran « Accès restreint » par mot de passe conservé,
+                           restylé selon la charte du site : ink / papier / acid, Archivo + DM Mono,
+                           angles vifs, filets en soulignement, cartouches acide)
   ~ index.html            (+3 lignes : liens « Demande de crédit » dans la nav desktop,
                            le menu mobile et le pied de page ; la page vitrine existante est intacte)
 ```
@@ -16,6 +18,8 @@ f957a6c Ajout du formulaire de demande de credit et lien depuis l'accueil
 Décisions retenues (selon vos réponses) :
 - la page d'accueil existante (`Sillage Capital`) **n'est pas remplacée** ; le formulaire est ajouté
   à côté, en `demande-credit.html`, avec des liens depuis l'accueil ;
+- le formulaire suit la **charte graphique du site** (`--ink #0a0a0a`, `--paper #f1efe8`,
+  `--acid #d9ff43`, `--orange #ff5a36`, Archivo + DM Mono, angles vifs, boutons mono capitales) ;
 - l'écran « Accès restreint » avec mot de passe est **conservé** (mot de passe actuel : `VioXsRAiC6wy`,
   défini par la constante `GATE_PASS` dans `demande-credit.html`).
 
