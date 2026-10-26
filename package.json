@@ -1,9 +1,9 @@
 {
-  "name": "sillage-credit-form",
+  "name": "sillage-capital-site",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "Formulaire de demande de crédit — Sillage Capital (FR/EN), statique, servi par Vite.",
+  "description": "Site Sillage Capital — page d'accueil vitrine + formulaire de demande de crédit (FR/EN). Statique, servi par Vite.",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 5173",
     "start": "vite --host 0.0.0.0 --port 5173",
