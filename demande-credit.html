@@ -3,40 +3,44 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0a0a">
-<meta name="description" content="Formulaire de demande de crédit — Sillage Capital, fonds d'investissement privé. Renseignez votre dossier, consultez l'aperçu puis imprimez en PDF. Loan application form.">
-<title>Demande de crédit — Sillage Capital</title>
+<meta name="theme-color" content="#00205c">
+<meta name="description" content="Formulaire de demande de crédit — CC Investment, fonds d'investissement privé. Renseignez votre dossier, consultez l'aperçu puis imprimez en PDF. Loan application form.">
+<title>Demande de crédit — CC Investment</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23d9ff43'/%3E%3Cpath d='M17 46L46 17M20 20h25v25' stroke='%230a0a0a' stroke-width='7' fill='none'/%3E%3C/svg%3E">
 
 <style>
   /* =========================================================
-     Sillage Capital — design system (ink / paper / acid)
+     CC Investment — design system (ink / paper / acid)
      ========================================================= */
   :root{
-    --ink:#0a0a0a;
-    --ink-soft:#141414;
-    --paper:#f1efe8;
-    --paper-deep:#e5e2d9;
-    --acid:#d9ff43;
-    --orange:#ff5a36;
-    --grey:#6d6d64;
-    --grey-soft:#9a9a91;
-    --line:rgba(10,10,10,.16);
-    --line-strong:rgba(10,10,10,.5);
-    --line-dark:rgba(255,255,255,.18);
-    --mono:"DM Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
-    --sans:"Archivo","Helvetica Neue",Arial,sans-serif;
+    --navy:#00205c;
+    --navy-deep:#001756;
+    --navy-light:#00438d;
+    --silver:#929395;
+    --ink:#001756;
+    --ink-soft:#00205c;
+    --paper:#ffffff;
+    --paper-deep:#eef1f7;
+    --acid:#d9e0eb;
+    --orange:#929395;
+    --grey:#707b8c;
+    --grey-soft:#929395;
+    --line:rgba(0,32,92,.16);
+    --line-strong:rgba(0,32,92,.5);
+    --line-dark:rgba(255,255,255,.2);
+    --mono:"Inter",system-ui,sans-serif;
+    --sans:"Cormorant Garamond","Times New Roman",serif;
     /* alias de compatibilité avec l'ancienne feuille */
     --bleu:var(--ink);
-    --bleu-clair:#eceadf;
+    --bleu-clair:#eef1f7;
     --bordure:var(--line);
     --texte:var(--ink);
     --gris:var(--grey);
-    --ok:#0a0a0a;
+    --ok:#001756;
     --rouge:var(--orange);
   }
   *{box-sizing:border-box;}
@@ -51,6 +55,9 @@
 
   /* ---------- Bandeau supérieur ---------- */
   .topline{background:var(--acid);color:var(--ink);}
+  .language-switch{display:inline-flex;align-items:center;gap:3px;flex:0 0 auto;}
+  .language-switch button,.gate-language-switch button{border:1px solid currentColor;background:transparent;color:inherit;padding:4px 6px;font:500 9px var(--mono);cursor:pointer;}
+  .language-switch button.is-active,.gate-language-switch button.is-active{background:var(--acid);color:var(--ink);}
   .topline-inner{
     max-width:1180px;margin:0 auto;padding:8px 24px;
     display:flex;align-items:center;justify-content:space-between;gap:18px;
@@ -64,13 +71,13 @@
     display:flex;align-items:flex-start;justify-content:space-between;gap:32px;flex-wrap:wrap;
   }
   .app-brand{display:inline-flex;align-items:center;gap:12px;flex:0 0 auto;text-decoration:none;color:var(--paper);}
-  .brand-mark{position:relative;width:31px;height:31px;overflow:hidden;background:var(--acid);}
-  .brand-mark::before,.brand-mark::after{content:"";position:absolute;background:var(--ink);}
-  .brand-mark::before{width:5px;height:45px;left:13px;top:-7px;transform:rotate(-45deg);}
-  .brand-mark::after{width:16px;height:4px;left:14px;top:6px;}
+  .brand-mark{display:block;width:34px;height:34px;flex:0 0 auto;background:linear-gradient(135deg,var(--navy-light),var(--navy-deep));}
+  .brand-mark svg{display:block;width:100%;height:100%;}
+
+
   .brand-type{display:flex;flex-direction:column;line-height:1;}
-  .brand-name{font-size:20px;font-weight:900;letter-spacing:-.055em;}
-  .brand-sub{margin-top:5px;font-family:var(--mono);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#b9b9b0;}
+  .brand-name{font-family:var(--sans);font-size:18px;font-weight:600;letter-spacing:.12em;}
+  .brand-sub{margin-top:5px;font-family:var(--mono);font-size:7px;letter-spacing:.2em;text-transform:uppercase;color:#c5cad3;}
 
   .app-title{max-width:640px;margin-left:auto;text-align:right;}
   .app-title .eyebrow{
@@ -92,7 +99,7 @@
   .toolbar{
     position:sticky;top:0;z-index:20;
     display:flex;gap:9px;flex-wrap:wrap;align-items:center;
-    padding:13px 24px;background:rgba(241,239,232,.95);
+    padding:13px 24px;background:rgba(255,255,255,.95);
     backdrop-filter:blur(8px);
     border-bottom:1px solid var(--line);
   }
@@ -248,7 +255,7 @@
   #apercu{display:none;}
   .doc{
     background:#fff;max-width:840px;margin:0 auto;padding:40px 46px 46px;
-    border:1px solid var(--line);box-shadow:0 3px 34px rgba(10,10,10,.10);
+    border:1px solid var(--line);box-shadow:0 3px 34px rgba(0,23,86,.10);
     font-size:13px;
   }
   .doc-head{
@@ -304,7 +311,7 @@
   }
   .kv .k .en{display:block;font-size:7.5px;letter-spacing:.08em;color:var(--grey-soft);margin-top:2px;}
   .kv .v{
-    border-bottom:1px solid rgba(10,10,10,.32);min-height:22px;
+    border-bottom:1px solid rgba(0,23,86,.32);min-height:22px;
     padding:4px 1px 5px;font-size:13px;font-weight:500;
     white-space:pre-wrap;word-break:break-word;
   }
@@ -454,7 +461,7 @@
 
 <div id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
   <div class="box">
-    <div class="gate-top"><span>Sillage Capital</span><span>Accès restreint</span></div>
+    <div class="gate-top"><span>CC Investment</span><span class="gate-language-switch" role="group" aria-label="Choisir la langue"><button type="button" data-site-lang="fr">FR</button><button type="button" data-site-lang="en">EN</button><button type="button" data-site-lang="de">DE</button></span><span>Accès restreint</span></div>
     <div class="gate-body">
       <span class="gate-mark" aria-hidden="true">↗</span>
       <h2 id="gateTitle">Accès restreint<span class="en">Restricted access</span></h2>
@@ -472,18 +479,19 @@
   <div class="topline-inner">
     <span>Indépendant par nature. Exigeant par choix.</span>
     <span>Formulaire confidentiel · Confidential form</span>
+    <span class="language-switch" role="group" aria-label="Choisir la langue"><button type="button" data-site-lang="fr">FR</button><button type="button" data-site-lang="en">EN</button><button type="button" data-site-lang="de">DE</button></span>
   </div>
 </div>
 
 <header class="app">
   <div class="app-inner">
-    <div class="app-brand">
-      <span class="brand-mark" aria-hidden="true"></span>
+    <a class="app-brand" href="index.html" aria-label="CC Investment — retour à l’accueil">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><path d="M41 21.5a13.5 13.5 0 1 0 0 21" fill="none" stroke="#fff" stroke-width="5.4" stroke-linecap="round"/><path d="M51.5 26a8.6 8.6 0 1 0 0 12" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/></svg></span>
       <span class="brand-type">
-        <span class="brand-name">SILLAGE</span>
+        <span class="brand-name">CC INVESTMENT</span>
         <span class="brand-sub">Private Capital</span>
       </span>
-    </div>
+    </a>
     <div class="app-title">
       <span class="eyebrow">Réf. dossier / Ref. — <span id="refAuto"></span></span>
       <h1>Demande de crédit<span class="en">Loan application form</span></h1>
@@ -495,9 +503,11 @@
 <div class="toolbar">
   <div class="toolbar-inner">
     <a class="btn-sec" href="index.html">← Retour à l'accueil <span aria-hidden="true">↗</span></a>
+    <a class="btn-sec" href="contrat-personnalise.html">Contrat personnalisé <span aria-hidden="true">↗</span></a>
     <button class="btn-prim" id="btnApercu">Générer l'aperçu <span aria-hidden="true">↗</span></button>
     <button class="btn-sec" id="btnEdit" style="display:none">Modifier <span aria-hidden="true">↘</span></button>
     <button class="btn-sec" id="btnPrint">Imprimer / PDF <span aria-hidden="true">↗</span></button>
+    <button class="btn-prim" id="btnEmail">Envoyer le dossier par e-mail <span aria-hidden="true">↗</span></button>
     <button class="btn-ghost" id="btnReset">Effacer / Clear</button>
     <button class="btn-ghost" id="btnLock">Verrouiller / Lock</button>
   </div>
@@ -848,8 +858,8 @@
 
 <footer class="form-foot">
   <div class="form-foot-inner">
-    <span>© <span id="yearFoot"></span> Sillage Capital · <span class="acid">Private Capital</span></span>
-    <span>Paris · Luxembourg</span>
+    <span>© <span id="yearFoot"></span> CC Investment · <span class="acid">Private Capital</span></span>
+    <span>Monaco</span>
     <span>Vos informations restent confidentielles</span>
   </div>
 </footer>
@@ -1132,6 +1142,7 @@
       }
     });
     apercu.innerHTML = build();
+    if(window.applySiteLanguage) window.applySiteLanguage(document.body.dataset.language || 'fr');
     apercu.style.display = 'block';
     form.style.display = 'none';
     btnApercu.style.display = 'none';
@@ -1153,9 +1164,38 @@
 
   btnApercu.addEventListener('click', showApercu);
   btnEdit.addEventListener('click', showEdit);
+  document.getElementById('btnEmail').addEventListener('click', ()=>{
+    if(!form.reportValidity()) return;
+    const data = collect();
+    const rows = Object.entries(data)
+      .filter(([key, value]) => !key.startsWith('_') && !(value instanceof File) && String(value || '').trim())
+      .map(([key, value]) => `${key} : ${value}`);
+    const files = uploads.map(u=>{
+      const input=document.getElementById(u.id);
+      return input && input.files && input.files[0] ? input.files[0].name : null;
+    }).filter(Boolean);
+    const body = [
+      `Référence du dossier : ${ref}`,
+      `Date : ${new Date().toLocaleDateString('fr-FR')}`,
+      '',
+      ...rows,
+      '',
+      files.length ? `Fichiers sélectionnés (à joindre manuellement dans votre e-mail) : ${files.join(', ')}` : 'Aucune pièce jointe sélectionnée.',
+      '',
+      'Ce formulaire est hébergé sans serveur d’envoi : vérifiez le brouillon et cliquez sur Envoyer dans votre messagerie.'
+    ].join('\n');
+    const subject = `Demande de crédit — ${ref}`;
+    window.location.href = `mailto:contact@churchill-capital.pro?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const msg=document.getElementById('msg');
+    if(msg){
+      msg.textContent='Votre application de messagerie doit s’ouvrir avec le dossier adressé à contact@churchill-capital.pro. Vérifiez le contenu et les pièces jointes, puis cliquez sur Envoyer.';
+      msg.style.display='block';
+    }
+  });
   btnPrint.addEventListener('click', ()=>{
     window.__d = collect();
     apercu.innerHTML = build();
+    if(window.applySiteLanguage) window.applySiteLanguage(document.body.dataset.language || 'fr');
     apercu.style.display = 'block';
     form.style.display = 'none';
     btnApercu.style.display = 'none';
@@ -1171,6 +1211,174 @@
       showEdit();
     }
   });
+})();
+</script>
+<script>
+(() => {
+  const phrase = {
+    "Approche": ["Approach", "Ansatz"], "Stratégies": ["Strategies", "Strategien"],
+    "Performance": ["Performance", "Wertentwicklung"], "Portefeuille": ["Portfolio", "Portfolio"],
+    "Perspectives": ["Insights", "Einblicke"], "Demande de crédit": ["Credit application", "Kreditantrag"],
+    "Espace investisseur": ["Investor area", "Investorenbereich"], "Ouvrir le menu": ["Open menu", "Menü öffnen"],
+    "Fermer le menu": ["Close menu", "Menü schließen"], "Réservé aux investisseurs avertis": ["For professional investors", "Nur für professionelle Anleger"],
+    "Indépendant par nature. Exigeant par choix.": ["Independent by nature. Demanding by choice.", "Unabhängig aus Überzeugung. Anspruchsvoll aus Prinzip."],
+    "Capital engagé": ["Committed capital", "Engagiertes Kapital"], "Vision indépendante": ["Independent vision", "Unabhängige Perspektive"],
+    "Décisions assumées": ["Decisive action", "Konsequente Entscheidungen"],
+    "Nous investissons dans des entreprises et des actifs singuliers, avec une conviction simple : la valeur durable se construit, elle ne se décrète pas.": ["We invest in distinctive businesses and assets, guided by a simple belief: lasting value is built, never decreed.", "Wir investieren in besondere Unternehmen und Vermögenswerte – in der Überzeugung, dass nachhaltiger Wert geschaffen und nicht verordnet wird."],
+    "Nous rencontrer": ["Get in touch", "Kontakt aufnehmen"], "Nous contacter": ["Contact us", "Kontaktieren Sie uns"],
+    "Notre doctrine": ["Our principles", "Unsere Grundsätze"], "Nos stratégies": ["Our strategies", "Unsere Strategien"],
+    "Trois terrains.": ["Three arenas.", "Drei Anlagefelder."], "Une exigence.": ["One standard.", "Ein Anspruch."],
+    "Des chiffres.": ["The numbers.", "Zahlen."], "Des preuves.": ["The evidence.", "Belege."],
+    "En portefeuille": ["Portfolio", "Im Portfolio"], "Tout voir": ["View all", "Alle anzeigen"],
+    "Dette privée": ["Private debt", "Private Debt"], "Simulateur de projection": ["Investment projection tool", "Anlageprojektion"],
+    "Votre capital,": ["Your capital,", "Ihr Kapital,"], "en perspective.": ["in perspective.", "im Blick."],
+    "Projection personnalisée": ["Personalised projection", "Individuelle Projektion"], "Prudent": ["Conservative", "Konservativ"],
+    "Équilibré": ["Balanced", "Ausgewogen"], "Dynamique": ["Growth", "Dynamisch"],
+    "Recevoir une étude personnalisée": ["Request a tailored analysis", "Individuelle Analyse anfordern"],
+    "Regarder": ["Looking", "Weiter"], "plus loin.": ["ahead.", "denken."], "Questions fréquentes": ["Frequently asked questions", "Häufige Fragen"],
+    "Sans langue": ["No", "Klartext"], "de bois.": ["euphemisms.", "statt Floskeln."],
+    "Un premier échange, simplement": ["A first conversation, simply", "Ein erstes Gespräch – ganz unkompliziert"],
+    "Passons": ["Let's move", "Gehen wir"], "aux actes.": ["forward.", "es an."], "Navigation": ["Navigation", "Navigation"],
+    "Nous trouver": ["Find us", "Kontakt"], "La note CC Investment": ["The CC Investment note", "Der CC Investment Newsletter"],
+    "Mentions légales": ["Legal notice", "Impressum"], "Confidentialité": ["Privacy", "Datenschutz"],
+    "Accès espace investisseur": ["Investor access", "Investorenzugang"], "Étude personnalisée": ["Tailored analysis", "Individuelle Analyse"],
+    "Stratégie Private Equity": ["Private equity strategy", "Private-Equity-Strategie"], "Stratégie Dette privée": ["Private debt strategy", "Private-Debt-Strategie"],
+    "Stratégie Real Assets": ["Real assets strategy", "Real-Assets-Strategie"], "Sélectionner": ["Select", "Bitte auswählen"],
+    "Votre demande *": ["Your enquiry *", "Ihr Anliegen *"], "Votre message": ["Your message", "Ihre Nachricht"],
+    "E-mail professionnel *": ["Business email *", "Geschäftliche E-Mail *"], "Téléphone": ["Phone", "Telefon"],
+    "Vous êtes *": ["You are *", "Sie sind *"], "Prénom *": ["First name *", "Vorname *"], "Nom *": ["Last name *", "Nachname *"],
+    "Investisseur privé": ["Private investor", "Privatanleger"], "Investisseur institutionnel": ["Institutional investor", "Institutioneller Anleger"],
+    "Dirigeant / Entrepreneur": ["Business owner / Entrepreneur", "Unternehmer/in"], "Conseil": ["Advisor", "Berater/in"],
+    "Votre application de messagerie s’ouvre. Envoyez le message pour confirmer l’inscription.": ["Your email app will open. Send the message to confirm your subscription.", "Ihre E-Mail-Anwendung wird geöffnet. Senden Sie die Nachricht, um die Anmeldung zu bestätigen."],
+    "Envoyer ma demande": ["Send my enquiry", "Anfrage senden"], "Demander un crédit": ["Request credit", "Kredit beantragen"],
+    "Accès restreint": ["Restricted access", "Zugang beschränkt"], "Mot de passe / Password": ["Password", "Passwort"],
+    "Déverrouiller / Unlock": ["Unlock", "Entsperren"], "Formulaire confidentiel · Confidential form": ["Confidential form", "Vertrauliches Formular"],
+    "Imprimer / PDF": ["Print / PDF", "Drucken / PDF"], "Effacer / Clear": ["Clear", "Löschen"],
+    "Verrouiller / Lock": ["Lock", "Sperren"], "Générer l'aperçu": ["Generate preview", "Vorschau erstellen"],
+    "Modifier": ["Edit", "Bearbeiten"], "← Retour à l'accueil": ["← Back to home", "← Zur Startseite"],
+    "Vos informations restent confidentielles": ["Your information remains confidential", "Ihre Angaben bleiben vertraulich"],
+    "Informations de l'établissement émetteur": ["Issuing institution details", "Angaben zum Kreditinstitut"],
+    "Identité du demandeur": ["Applicant identity", "Identität des Antragstellers"],
+    "Informations professionnelles": ["Professional information", "Berufliche Angaben"],
+    "Situation financière": ["Financial situation", "Finanzielle Situation"],
+    "Demande de crédit": ["Credit application", "Kreditantrag"],
+    "Merci de m’inscrire à la note CC Investment.": ["Please subscribe me to the CC Investment note.", "Bitte abonnieren Sie mich für den CC Investment Newsletter."],
+    "Merci de m’inscrire à la note CC Investment.\n\nAdresse e-mail :": ["Please subscribe me to the CC Investment note.\n\nEmail address:", "Bitte abonnieren Sie mich für den CC Investment Newsletter.\n\nE-Mail-Adresse:"],
+
+    "Adresse": ["Address", "Adresse"], "Adresse *": ["Address *", "Adresse *"],
+    "Adresse professionnelle": ["Business address", "Geschäftsanschrift"], "Ancienneté (années)": ["Years in current role", "Dauer (Jahre)"],
+    "Autre document 1": ["Other document 1", "Weiteres Dokument 1"], "Autre document 2": ["Other document 2", "Weiteres Dokument 2"], "Autre document 3": ["Other document 3", "Weiteres Dokument 3"],
+    "Autres revenus (€)": ["Other income (€)", "Sonstige Einkünfte (€)"], "Banque / Établissement": ["Bank / Institution", "Bank / Institut"],
+    "Catégorie socio-professionnelle": ["Occupation category", "Berufliche Kategorie"], "Charges mensuelles (€)": ["Monthly expenses (€)", "Monatliche Ausgaben (€)"],
+    "Date de début souhaitée": ["Desired start date", "Gewünschter Beginn"], "Date de naissance *": ["Date of birth *", "Geburtsdatum *"],
+    "Durée (mois) *": ["Term (months) *", "Laufzeit (Monate) *"], "E-mail": ["Email", "E-Mail"],
+    "E-mail professionnel": ["Business email", "Geschäftliche E-Mail"], "Employeur / Entreprise": ["Employer / Company", "Arbeitgeber / Unternehmen"],
+    "Enfants à charge *": ["Dependent children *", "Unterhaltsberechtigte Kinder *"], "Fait à": ["Place", "Ort"],
+    "Fonction / Poste occupé": ["Position held", "Position"], "Garanties proposées": ["Proposed collateral", "Angebotene Sicherheiten"],
+    "Intérêt sollicité (%) *": ["Requested interest rate (%) *", "Beantragter Zinssatz (%) *"], "Justificatif de domicile *": ["Proof of address *", "Wohnsitznachweis *"],
+    "Justificatif de revenu *": ["Proof of income *", "Einkommensnachweis *"], "Le": ["Date", "Am"],
+    "Lieu de naissance *": ["Place of birth *", "Geburtsort *"], "Logo": ["Logo", "Logo"],
+    "Montant revenus mensuels (€) *": ["Monthly income (€) *", "Monatliches Einkommen (€) *"], "Montant sollicité (€) *": ["Requested amount (€) *", "Beantragter Betrag (€) *"],
+    "Nationalité": ["Nationality", "Staatsangehörigkeit"], "Nom *": ["Last name *", "Nachname *"],
+    "Numéro de téléphone *": ["Phone number *", "Telefonnummer *"], "N° CNSS": ["Social security number", "Sozialversicherungsnummer"],
+    "N° Pièce d'identité": ["ID document number", "Ausweisnummer"], "N° SIRET / SIREN": ["Company registration no.", "Handelsregisternummer"],
+    "N° WhatsApp": ["WhatsApp number", "WhatsApp-Nummer"], "N° d'enregistrement": ["Registration number", "Registrierungsnummer"],
+    "N° de compte / IBAN": ["Account number / IBAN", "Kontonummer / IBAN"], "Objet du crédit": ["Purpose of credit", "Verwendungszweck des Kredits"],
+    "Pièce d'identité valide *": ["Valid identity document *", "Gültiger Identitätsnachweis *"], "Profession / Métier *": ["Occupation *", "Beruf *"],
+    "Prénoms *": ["First name(s) *", "Vorname(n) *"], "Raison sociale": ["Company name", "Firmenname"],
+    "Revenu fiscal de référence (€)": ["Reference taxable income (€)", "Steuerliches Referenzeinkommen (€)"], "Secteur d'activité": ["Business sector", "Branche"],
+    "Sexe *": ["Gender *", "Geschlecht *"], "Site web": ["Website", "Website"],
+    "Situation matrimoniale *": ["Marital status *", "Familienstand *"], "Statut professionnel *": ["Employment status *", "Berufsstatus *"],
+    "Type de contrat": ["Contract type", "Vertragsart"], "Type de prêt *": ["Loan type *", "Kreditart *"],
+    "Téléphone professionnel": ["Business phone", "Geschäftliche Telefonnummer"],
+    "Veuillez saisir le mot de passe pour ouvrir le formulaire.": ["Please enter the password to open the form.", "Bitte geben Sie das Passwort ein, um das Formular zu öffnen."],
+    "Veuillez saisir votre demande.": ["Please enter your enquiry.", "Bitte geben Sie Ihre Anfrage ein."],
+    "Prudent · 4,5%": ["Conservative · 4.5%", "Konservativ · 4,5 %"], "Équilibré · 7%": ["Balanced · 7%", "Ausgewogen · 7 %"], "Dynamique · 10%": ["Growth · 10%", "Dynamisch · 10 %"],
+    "Ouvrons la conversation.": ["Let's start a conversation.", "Lassen Sie uns ins Gespräch kommen."],
+    "Les champs marqués d’un astérisque sont obligatoires.": ["Fields marked with an asterisk are required.", "Mit einem Stern gekennzeichnete Felder sind Pflichtfelder."],
+    "Parlez-nous de votre projet, de votre horizon ou de vos attentes.": ["Tell us about your project, time horizon or expectations.", "Erzählen Sie uns von Ihrem Vorhaben, Ihrem Zeithorizont oder Ihren Erwartungen."],
+    "Je suis investisseur privé": ["I am a private investor", "Ich bin Privatanleger"],
+
+    "Fonds d’investissement privé · Monaco": ["Private investment firm · Monaco", "Private Investmentgesellschaft · Monaco"],
+    "Créer de": ["Create", "Werte"], "la valeur.": ["value.", "schaffen."], "Pas du bruit.": ["Not noise.", "Keine Schlagzeilen."],
+    "Notre approche": ["Our approach", "Unser Ansatz"], "Le comité d’investissement": ["The investment committee", "Das Investmentkomitee"],
+    "Une voix. Une responsabilité.": ["One voice. One responsibility.", "Eine Stimme. Eine Verantwortung."],
+    "Pas de pilote": ["No", "Kein"], "automatique.": ["autopilot.", "Autopilot."], "Des décisions.": ["Decisions.", "Entscheidungen."],
+    "Peu de lignes. Des convictions lisibles. Et l’exigence de savoir précisément pourquoi nous investissons.": ["A focused portfolio. Clear convictions. And the discipline to know exactly why we invest.", "Ein fokussiertes Portfolio. Klare Überzeugungen. Und der Anspruch, genau zu wissen, warum wir investieren."],
+    "Nous ne cherchons pas à être partout. Nous choisissons des situations où notre capital, notre réseau et notre expérience opérationnelle peuvent réellement changer la trajectoire. Aux côtés des dirigeants, nous restons présents quand le chemin se complique.": ["We do not try to be everywhere. We choose situations where our capital, network and operating experience can genuinely change the trajectory. We stand alongside management teams, especially when the path gets difficult.", "Wir wollen nicht überall sein. Wir wählen Situationen, in denen unser Kapital, unser Netzwerk und unsere operative Erfahrung den Kurs tatsächlich verändern können. Wir stehen an der Seite der Führungsteams – besonders, wenn der Weg anspruchsvoll wird."],
+    "Comprendre avant d’investir": ["Understand before investing", "Verstehen, bevor wir investieren"],
+    "Travail de terrain, analyse des usages et retournement des modèles économiques : aucune conviction ne remplace le travail.": ["On-the-ground research, analysis of real-world use and business models: no conviction can replace hard work.", "Vor-Ort-Recherche, Nutzungsanalyse und Prüfung von Geschäftsmodellen: Eine Überzeugung ersetzt keine sorgfältige Arbeit."],
+    "S’engager au-delà du capital": ["Commit beyond capital", "Mehr als Kapital einbringen"],
+    "Gouvernance, recrutement, croissance externe et transformation : nous mettons les mains dans le concret, avec les équipes.": ["Governance, hiring, acquisitions and transformation: we work on the practical details with our teams.", "Governance, Personalgewinnung, Zukäufe und Transformation: Gemeinsam mit den Teams arbeiten wir an konkreten Lösungen."],
+    "Donner au temps sa valeur": ["Give time its value", "Der Zeit ihren Wert geben"],
+    "Nous refusons les raccourcis. Notre horizon permet aux entreprises de investir, de se transformer et de grandir sans précipitation.": ["We reject shortcuts. Our long-term horizon gives companies the time to invest, transform and grow without rushing.", "Wir lehnen Abkürzungen ab. Unser langfristiger Horizont gibt Unternehmen Zeit, zu investieren, sich zu verändern und nachhaltig zu wachsen."],
+    "Des stratégies complémentaires, unifiées par une sélectivité absolue et une même discipline du risque. Choisissez un terrain pour explorer notre approche.": ["Complementary strategies, united by rigorous selectivity and a consistent approach to risk. Choose an area to explore our approach.", "Komplementäre Strategien, verbunden durch konsequente Auswahl und eine einheitliche Risikodisziplin. Wählen Sie einen Bereich, um unseren Ansatz kennenzulernen."],
+    "Contrôle & co-investissement": ["Control & co-investment", "Kontrolle & Co-Investments"],
+    "Ticket d’investissement": ["Investment size", "Investitionsvolumen"], "Horizon de détention": ["Holding period", "Anlagehorizont"], "Implication opérationnelle": ["Operating involvement", "Operative Begleitung"],
+    "Recevoir une étude personnalisée": ["Request a tailored analysis", "Individuelle Analyse anfordern"],
+    "Inscription à la note CC Investment": ["Subscribe to the CC Investment note", "CC Investment Newsletter abonnieren"],
+    "Parlez-nous de votre projet, de votre horizon ou de vos attentes.": ["Tell us about your project, time horizon or expectations.", "Erzählen Sie uns von Ihrem Vorhaben, Ihrem Zeithorizont oder Ihren Erwartungen."],
+    "nom@societe.com": ["name@company.com", "name@unternehmen.de"],
+    "Prendre rendez-vous": ["Book a meeting", "Termin vereinbaren"],
+    "Ouvrir le menu": ["Open menu", "Menü öffnen"], "Fermer le menu": ["Close menu", "Menü schließen"],
+    "Contrat personnalisé": ["Personalised agreement", "Individueller Darlehensvertrag"],
+  };
+  const langButtons = [...document.querySelectorAll('[data-site-lang]')];
+  if (!langButtons.length) return;
+  const getLang = () => { try { return localStorage.getItem('cc-lang') || 'fr'; } catch (_) { return 'fr'; } };
+  const original = new WeakMap();
+  const attrs = new WeakMap();
+  function applyLanguage(lang) {
+    const selected = ['fr','en','de'].includes(lang) ? lang : 'fr';
+    document.documentElement.lang = selected;
+    document.body.dataset.language = selected;
+    const pageTitles = {
+      fr: document.body.classList.contains('locked') || location.pathname.includes('demande-credit') || location.pathname.includes('formulaire-interne') ? 'Demande de crédit — CC Investment' : 'CC Investment — Fonds d’investissement privé',
+      en: document.body.classList.contains('locked') || location.pathname.includes('demande-credit') || location.pathname.includes('formulaire-interne') ? 'Credit application — CC Investment' : 'CC Investment — Private Investment Firm',
+      de: document.body.classList.contains('locked') || location.pathname.includes('demande-credit') || location.pathname.includes('formulaire-interne') ? 'Kreditantrag — CC Investment' : 'CC Investment — Private Investmentgesellschaft'
+    };
+    document.title = pageTitles[selected];
+    try { localStorage.setItem('cc-lang', selected); } catch (_) {}
+    document.querySelectorAll('[data-site-lang]').forEach(button => {
+      const active = button.dataset.siteLang === selected;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue.trim() || node.parentElement.closest('script,style,svg,[aria-hidden="true"]')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (!original.has(node)) original.set(node, node.nodeValue);
+      const base = original.get(node);
+      const key = base.trim();
+      if (selected === 'fr') node.nodeValue = base;
+      else if (phrase[key]) node.nodeValue = base.replace(key, phrase[key][selected === 'en' ? 0 : 1]);
+    }
+    document.querySelectorAll('[placeholder],[aria-label],title').forEach(el => {
+      ['placeholder','aria-label','title'].forEach(attr => {
+        if (!el.hasAttribute(attr)) return;
+        let saved = attrs.get(el); if (!saved) { saved = {}; attrs.set(el, saved); }
+        if (saved[attr] === undefined) saved[attr] = el.getAttribute(attr);
+        const key = saved[attr];
+        if (selected === 'fr') el.setAttribute(attr, key);
+        else if (phrase[key]) el.setAttribute(attr, phrase[key][selected === 'en' ? 0 : 1]);
+      });
+    });
+    document.querySelectorAll('.fr').forEach(el => {
+      el.style.display = selected === 'en' ? 'none' : '';
+      if (!el.dataset.originalText) el.dataset.originalText = el.textContent;
+      if (selected === 'de' && phrase[el.dataset.originalText.trim()]) el.textContent = phrase[el.dataset.originalText.trim()][1];
+      else if (selected !== 'de') el.textContent = el.dataset.originalText;
+    });
+    document.querySelectorAll('.en').forEach(el => { el.style.display = selected === 'en' ? '' : 'none'; });
+  }
+  window.applySiteLanguage = applyLanguage;
+  langButtons.forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.siteLang)));
+  applyLanguage(getLang());
 })();
 </script>
 </body>

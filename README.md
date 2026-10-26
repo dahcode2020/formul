@@ -1,12 +1,13 @@
-# Sillage Capital — site
+# CC Investment — site
 
 Site vitrine statique + formulaire de demande de crédit.
 
 | Fichier | Contenu |
 | --- | --- |
-| `index.html` | **Page d'accueil du site** (vitrine Sillage Capital). Affichée en premier par Bolt et par tout serveur statique. |
+| `index.html` | **Page d'accueil du site** (vitrine CC Investment). Affichée en premier par Bolt et par tout serveur statique. |
 | `demande-credit.html` | Formulaire de demande de crédit bilingue FR/EN : saisie guidée, aperçu, impression / PDF, écran « Accès restreint » par mot de passe. Accessible depuis le menu du site. |
 | `formulaire-interne.html` | Le même formulaire **sans** écran de mot de passe (démonstration / usage interne). |
+| `contrat-personnalise.html` | Générateur local d’un projet de contrat de prêt, avec champs variables, calcul et tableau d’amortissement ACT/360, référence automatique, date à l’impression, aperçu et PDF. Contient un avertissement de vérification juridique et un accès restreint. |
 
 Chaque page est autonome : CSS et JS sont inline, aucune dépendance de production.
 
@@ -15,7 +16,7 @@ Chaque page est autonome : CSS et JS sont inline, aucune dépendance de producti
 ```bash
 npm install
 npm run dev      # http://localhost:5173  → page d'accueil du site
-npm run build    # génère dist/ (les trois pages)
+npm run build    # génère dist/ (les quatre pages)
 npm run preview  # sert dist/ sur http://localhost:4173
 ```
 
@@ -32,8 +33,8 @@ Le mot de passe est défini dans `demande-credit.html` (constante `GATE_PASS`, a
 `VioXsRAiC6wy`). Il est visible dans le code source : c'est un dissuasif, pas une protection
 réelle. Aucune donnée saisie n'est transmise : tout reste dans le navigateur de l'utilisateur.
 
-## Charte graphique
+## Identité et localisation
 
-Le formulaire reprend l'identité du site : encre `#0a0a0a`, papier `#f1efe8`, acide `#d9ff43`,
-orange `#ff5a36` en accent d'alerte, Archivo + DM Mono, angles vifs, boutons mono capitales,
-champs en filet souligné, aperçu imprimable documentaire (sections en aplat noir).
+Le site présente CC Investment comme basé à Monaco. La charte reprend l’image fournie : bleu marine (`#00205c`, `#001756`, `#00438d`), gris argent (`#929395`) et blanc. Les titres utilisent Cormorant Garamond et les textes Inter.
+
+E-mail de contact : `contact@churchill-capital.pro`. Les formulaires de contact, d’inscription à la note et de demande de crédit ouvrent un brouillon adressé à cette boîte dans l’application de messagerie du visiteur. Le générateur de contrat est un outil de rédaction local uniquement ; son texte source est en anglais et doit être relu par un avocat compétent avant tout usage. La page est statique et ne peut pas envoyer d’e-mail directement sans serveur ou service d’envoi configuré : le visiteur doit confirmer l’envoi. Pour le formulaire de crédit, les fichiers sélectionnés doivent être joints manuellement au brouillon.

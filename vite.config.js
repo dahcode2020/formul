@@ -32,6 +32,7 @@ export default defineConfig({
         accueil: fileURLToPath(new URL('./index.html', import.meta.url)),
         demande: fileURLToPath(new URL('./demande-credit.html', import.meta.url)),
         interne: fileURLToPath(new URL('./formulaire-interne.html', import.meta.url)),
+        contrat: fileURLToPath(new URL('./contrat-personnalise.html', import.meta.url)),
       },
     },
   },

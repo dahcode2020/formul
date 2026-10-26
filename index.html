@@ -3,28 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#0a0a0a">
-  <meta name="description" content="Sillage Capital, fonds d’investissement privé indépendant. Private equity, dette privée et real assets : des convictions fortes, un capital engagé, une vision de long terme.">
-  <title>Sillage Capital — Fonds d’investissement privé</title>
+  <meta name="theme-color" content="#00205c">
+  <meta name="description" content="CC Investment, fonds d’investissement privé indépendant. Private equity, dette privée et real assets : des convictions fortes, un capital engagé, une vision de long terme.">
+  <title>CC Investment — Fonds d’investissement privé</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23d9ff43'/%3E%3Cpath d='M17 46L46 17M20 20h25v25' stroke='%230a0a0a' stroke-width='7' fill='none'/%3E%3C/svg%3E">
 
   <style>
     :root {
-      --ink: #0a0a0a;
-      --ink-soft: #141414;
-      --paper: #f1efe8;
-      --paper-deep: #e5e2d9;
-      --acid: #d9ff43;
-      --orange: #ff5a36;
-      --grey: #97978f;
-      --line-dark: rgba(255,255,255,.16);
-      --line-light: rgba(10,10,10,.18);
-      --mono: "DM Mono", monospace;
-      --sans: "Archivo", sans-serif;
+      /* Charte CC Investment — reprise du logo : bleu marine, gris, blanc */
+      --navy: #00205c;
+      --navy-deep: #001756;
+      --navy-light: #00438d;
+      --steel: #6f8bb3;
+      --ink: #001756;
+      --ink-soft: #00205c;
+      --paper: #ffffff;
+      --paper-deep: #eef1f7;
+      --acid: #cfd9e6;
+      --orange: #929395;
+      --grey: #929395;
+      --line-dark: rgba(255,255,255,.18);
+      --line-light: rgba(0,32,92,.16);
+      --mono: "Inter", system-ui, sans-serif;
+      --sans: "Cormorant Garamond", "Times New Roman", serif;
+      --body: "Inter", system-ui, sans-serif;
       --container: 1480px;
       --header-h: 86px;
     }
@@ -46,9 +52,9 @@
       overflow-x: hidden;
       background: var(--ink);
       color: var(--paper);
-      font-family: var(--sans);
+      font-family: var(--body);
       font-size: 16px;
-      line-height: 1.5;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
@@ -126,8 +132,9 @@
 
     .section-title {
       font-size: clamp(3.4rem, 7.3vw, 7.7rem);
-      font-weight: 900;
-      letter-spacing: -.07em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .86;
       text-transform: uppercase;
     }
@@ -240,7 +247,7 @@
     .site-header.scrolled {
       top: 0;
       height: 74px;
-      background: rgba(10,10,10,.93);
+      background: rgba(0,23,86,.93);
       backdrop-filter: blur(16px);
     }
 
@@ -260,23 +267,14 @@
     }
 
     .brand-mark {
-      position: relative;
-      width: 31px;
-      height: 31px;
-      overflow: hidden;
-      background: var(--acid);
+      display: block;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 auto;
+      background: linear-gradient(135deg, var(--navy-light), var(--navy-deep));
     }
 
-    .brand-mark::before,
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      background: var(--ink);
-      transform: rotate(-45deg);
-    }
-
-    .brand-mark::before { width: 5px; height: 45px; left: 13px; top: -7px; }
-    .brand-mark::after { width: 16px; height: 4px; left: 14px; top: 6px; transform: none; }
+    .brand-mark svg { display: block; width: 100%; height: 100%; }
 
     .brand-type {
       display: flex;
@@ -285,10 +283,16 @@
     }
 
     .brand-name {
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -.055em;
+      font-size: 17px;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .13em;
+      text-transform: uppercase;
+      white-space: nowrap;
     }
+
+    .brand-name .wm-a { color: var(--paper); }
+    .brand-name .wm-b { color: var(--acid); }
 
     .brand-sub {
       margin-top: 5px;
@@ -298,6 +302,9 @@
       text-transform: uppercase;
     }
 
+    .language-switch { display: inline-flex; align-items: center; gap: 3px; flex: 0 0 auto; }
+    .language-switch button { border: 1px solid rgba(255,255,255,.28); background: transparent; color: #fff; padding: 5px 7px; font: 500 9px var(--mono); cursor: pointer; }
+    .language-switch button.is-active { background: #fff; color: var(--navy); }
     .desktop-nav {
       display: flex;
       align-items: center;
@@ -313,7 +320,7 @@
       font-size: 10px;
       letter-spacing: .06em;
       text-transform: uppercase;
-      color: rgba(241,239,232,.75);
+      color: rgba(255,255,255,.75);
       transition: color .25s ease;
     }
 
@@ -464,8 +471,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, var(--ink) 0%, rgba(10,10,10,.55) 24%, transparent 62%),
-        linear-gradient(0deg, rgba(10,10,10,.82), transparent 50%);
+        linear-gradient(90deg, var(--ink) 0%, rgba(0,23,86,.55) 24%, transparent 62%),
+        linear-gradient(0deg, rgba(0,23,86,.82), transparent 50%);
     }
 
     .hero-visual img {
@@ -560,8 +567,9 @@
     .hero-title {
       max-width: 1330px;
       font-size: clamp(4.8rem, 10.1vw, 10.6rem);
-      font-weight: 900;
-      letter-spacing: -.075em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .82;
       text-transform: uppercase;
     }
@@ -593,11 +601,11 @@
 
     .hero-side-label {
       max-width: 280px;
-      color: rgba(241,239,232,.56);
+      color: rgba(255,255,255,.56);
     }
 
     .hero-intro {
-      color: rgba(241,239,232,.82);
+      color: rgba(255,255,255,.82);
       font-size: 17px;
       line-height: 1.55;
     }
@@ -638,7 +646,7 @@
     }
 
     .hero-stat-label {
-      color: rgba(241,239,232,.56);
+      color: rgba(255,255,255,.56);
       font-family: var(--mono);
       font-size: 9px;
       letter-spacing: .07em;
@@ -697,8 +705,9 @@
     .manifesto-title {
       max-width: 1300px;
       font-size: clamp(3.7rem, 8vw, 8.4rem);
-      font-weight: 900;
-      letter-spacing: -.075em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .87;
       text-transform: uppercase;
     }
@@ -842,7 +851,7 @@
     .strategies-copy {
       max-width: 390px;
       padding-bottom: 8px;
-      color: rgba(241,239,232,.63);
+      color: rgba(255,255,255,.63);
       font-size: 16px;
       line-height: 1.7;
     }
@@ -930,7 +939,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(0deg, rgba(10,10,10,.65), transparent 55%);
+      background: linear-gradient(0deg, rgba(0,23,86,.65), transparent 55%);
     }
 
     .strategy-image img {
@@ -967,7 +976,7 @@
 
     .strategy-description {
       max-width: 670px;
-      color: rgba(241,239,232,.68);
+      color: rgba(255,255,255,.68);
       font-size: 15px;
       line-height: 1.65;
     }
@@ -1247,7 +1256,7 @@
     .filter-btn {
       min-height: 40px;
       padding: 0 16px;
-      border: 1px solid rgba(10,10,10,.35);
+      border: 1px solid rgba(0,23,86,.35);
       background: transparent;
       color: var(--ink);
       font-family: var(--mono);
@@ -1375,15 +1384,16 @@
     .simulator-title {
       margin-bottom: 38px;
       font-size: clamp(3.5rem, 6.3vw, 6.9rem);
-      font-weight: 900;
-      letter-spacing: -.07em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .87;
       text-transform: uppercase;
     }
 
     .simulator-copy {
       max-width: 470px;
-      color: rgba(241,239,232,.65);
+      color: rgba(255,255,255,.65);
       font-size: 16px;
       line-height: 1.7;
     }
@@ -1396,7 +1406,7 @@
       gap: 14px;
       padding: 16px 0;
       border-bottom: 1px solid var(--line-dark);
-      color: rgba(241,239,232,.78);
+      color: rgba(255,255,255,.78);
       font-size: 13px;
     }
 
@@ -1668,8 +1678,9 @@
 
     .faq-title {
       font-size: clamp(3.2rem, 5.8vw, 6rem);
-      font-weight: 900;
-      letter-spacing: -.07em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .88;
       text-transform: uppercase;
     }
@@ -1736,7 +1747,7 @@
       position: absolute;
       right: -2vw;
       bottom: -15vw;
-      color: rgba(10,10,10,.065);
+      color: rgba(0,23,86,.065);
       font-size: 48vw;
       font-weight: 400;
       line-height: 1;
@@ -1750,8 +1761,9 @@
     .closing-title {
       max-width: 1300px;
       font-size: clamp(4rem, 9vw, 9.5rem);
-      font-weight: 900;
-      letter-spacing: -.08em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .82;
       text-transform: uppercase;
     }
@@ -1850,10 +1862,11 @@
     .newsletter-feedback { min-height: 18px; margin-top: 10px; color: var(--acid); font-family: var(--mono); font-size: 9px; }
 
     .footer-word {
-      margin: 10px -1vw 28px;
-      font-size: clamp(5.4rem, 15.8vw, 16rem);
-      font-weight: 900;
-      letter-spacing: -.09em;
+      margin: 10px 0 28px;
+      font-size: clamp(2.6rem, 8.6vw, 8.6rem);
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .7;
       text-align: center;
       text-transform: uppercase;
@@ -1947,8 +1960,9 @@
 
     .contact-title {
       font-size: clamp(3rem, 5vw, 5rem);
-      font-weight: 900;
-      letter-spacing: -.07em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .87;
       text-transform: uppercase;
     }
@@ -2062,8 +2076,9 @@
     .case-dialog-title {
       margin-bottom: 25px;
       font-size: clamp(2.7rem, 5vw, 5rem);
-      font-weight: 900;
-      letter-spacing: -.07em;
+      font-weight: 600;
+      font-family: var(--sans);
+      letter-spacing: .01em;
       line-height: .9;
       text-transform: uppercase;
     }
@@ -2117,6 +2132,7 @@
       :root { --header-h: 74px; }
       .container { width: min(calc(100% - 40px), var(--container)); }
       .desktop-nav, .header-cta { display: none; }
+      .language-switch { margin-left: auto; }
       .menu-toggle { display: block; }
       .hero { padding-top: 124px; }
       .hero-visual { width: 58%; opacity: .75; }
@@ -2155,14 +2171,16 @@
       .container { width: calc(100% - 32px); }
       .topline-inner { font-size: 8px; }
       .topline-center { display: none; }
-      .brand-name { font-size: 20px; }
+      .language-switch button { padding: 4px 5px; font-size: 8px; }
+      .brand-name { font-size: 15px; }
       .brand-sub { font-size: 6px; }
       .brand-mark { width: 28px; height: 28px; }
+      .brand-mark svg { width: 100%; height: 100%; }
       .brand-mark::before { left: 12px; }
       .hero { min-height: 850px; padding-top: 115px; }
       .hero-main { justify-content: flex-start; padding-top: 64px; }
       .hero-visual { width: 100%; clip-path: none; opacity: .42; }
-      .hero-visual::after { background: linear-gradient(90deg, rgba(10,10,10,.78), rgba(10,10,10,.2)), linear-gradient(0deg, var(--ink), transparent 60%); }
+      .hero-visual::after { background: linear-gradient(90deg, rgba(0,23,86,.78), rgba(0,23,86,.2)), linear-gradient(0deg, var(--ink), transparent 60%); }
       .hero-coordinate { display: none; }
       .hero-grid { opacity: .18; }
       .hero-kicker { margin-bottom: 24px; font-size: 9px; }
@@ -2250,7 +2268,7 @@
       .closing .button { width: 100%; }
       .footer-top { grid-template-columns: 1fr 1fr; gap: 45px 25px; }
       .footer-newsletter { grid-column: 1 / -1; }
-      .footer-word { margin-top: 25px; font-size: 20vw; }
+      .footer-word { margin-top: 25px; font-size: 11vw; }
       .footer-disclaimer { grid-template-columns: 1fr; gap: 16px; }
       .footer-bottom { flex-direction: column; gap: 16px; }
       .contact-layout { grid-template-columns: 1fr; }
@@ -2311,7 +2329,7 @@
 
   <div class="topline" id="topline">
     <div class="container topline-inner">
-      <span>Sillage / Private Investment Fund</span>
+      <span>CC Investment / Private Investment Fund</span>
       <span class="topline-center">Indépendant par nature. Exigeant par choix.</span>
       <span>Réservé aux investisseurs avertis</span>
     </div>
@@ -2319,11 +2337,14 @@
 
   <header class="site-header" id="siteHeader">
     <div class="container header-inner">
-      <a class="brand" href="#accueil" aria-label="Sillage Capital — Accueil">
-        <span class="brand-mark" aria-hidden="true"></span>
+      <a class="brand" href="#accueil" aria-label="CC Investment — Accueil">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false" aria-hidden="true">
+          <path d="M41 21.5a13.5 13.5 0 1 0 0 21" fill="none" stroke="#fff" stroke-width="5.4" stroke-linecap="round"/>
+          <path d="M51.5 26a8.6 8.6 0 1 0 0 12" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>
+        </svg></span>
         <span class="brand-type">
-          <span class="brand-name">SILLAGE</span>
-          <span class="brand-sub">Private Capital</span>
+          <span class="brand-name"><span class="wm-a">CC</span> <span class="wm-b">INVESTMENT</span></span>
+          <span class="brand-sub">Monaco</span>
         </span>
       </a>
 
@@ -2334,8 +2355,14 @@
         <a class="nav-link" href="#portfolio">Portefeuille</a>
         <a class="nav-link" href="#perspectives">Perspectives</a>
         <a class="nav-link" href="demande-credit.html">Demande de crédit <span class="arrow" aria-hidden="true">↗</span></a>
+        <a class="nav-link" href="contrat-personnalise.html">Contrat personnalisé</a>
       </nav>
 
+      <div class="language-switch" role="group" aria-label="Choisir la langue">
+        <button type="button" data-site-lang="fr" aria-label="Français">FR</button>
+        <button type="button" data-site-lang="en" aria-label="English">EN</button>
+        <button type="button" data-site-lang="de" aria-label="Deutsch">DE</button>
+      </div>
       <button class="button button-outline header-cta" type="button" data-open-contact data-intent="access">
         Espace investisseur <span class="arrow" aria-hidden="true">↗</span>
       </button>
@@ -2354,14 +2381,15 @@
       <a href="#portfolio"><span>04</span>Portefeuille</a>
       <a href="#perspectives"><span>05</span>Perspectives</a>
       <a href="demande-credit.html"><span>06</span>Demande de crédit</a>
+      <a href="contrat-personnalise.html"><span>07</span>Contrat personnalisé</a>
     </nav>
     <div class="mobile-menu-bottom">
       <button class="button button-acid" type="button" data-open-contact data-intent="access">
         Espace investisseur <span class="arrow" aria-hidden="true">↗</span>
       </button>
       <div class="mobile-contact-row mono">
-        <span>Paris · Luxembourg</span>
-        <span data-paris-time>--:--</span>
+        <span>Monaco</span>
+        <span data-monaco-time>--:--</span>
       </div>
     </div>
   </div>
@@ -2372,7 +2400,7 @@
       <div class="hero-visual" aria-hidden="true">
         <img id="heroImage" src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=85" alt="">
       </div>
-      <span class="hero-coordinate mono" aria-hidden="true">48.8566° N — 2.3522° E / PARIS</span>
+      <span class="hero-coordinate mono" aria-hidden="true">43.7384° N — 7.4246° E / MONACO</span>
 
       <div class="hero-seal" aria-hidden="true">
         <svg viewBox="0 0 140 140">
@@ -2387,7 +2415,7 @@
       <div class="container hero-main">
         <div class="eyebrow hero-kicker">
           <span class="live-dot" aria-hidden="true"></span>
-          Fonds d’investissement privé · Paris / Luxembourg
+          Fonds d’investissement privé · Monaco
         </div>
 
         <h1 class="hero-title" id="heroTitle">
@@ -2468,7 +2496,7 @@
         <div class="manifesto-grid">
           <figure class="manifesto-image reveal">
             <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1000&q=85" alt="Espace de travail contemporain du comité d’investissement" loading="lazy">
-            <span class="image-number mono">FIG. 01 — PARIS</span>
+            <span class="image-number mono">FIG. 01 — MONACO</span>
             <figcaption class="image-tag mono">Le comité d’investissement<br>Une voix. Une responsabilité.</figcaption>
           </figure>
 
@@ -2603,26 +2631,26 @@
               <span class="mono" style="color:#777">Base 100 · Données mensuelles</span>
             </div>
             <div class="chart-legend mono">
-              <span class="legend-item"><i class="legend-line" aria-hidden="true"></i>Sillage composite</span>
+              <span class="legend-item"><i class="legend-line" aria-hidden="true"></i>CC Investment composite</span>
               <span class="legend-item"><i class="legend-line benchmark" aria-hidden="true"></i>Indice de référence</span>
             </div>
           </div>
 
           <div class="chart-wrap" id="chartWrap">
-            <svg id="performanceChart" viewBox="0 0 1000 420" preserveAspectRatio="none" role="img" aria-label="Évolution de la performance Sillage sur un an">
+            <svg id="performanceChart" viewBox="0 0 1000 420" preserveAspectRatio="none" role="img" aria-label="Évolution de la performance CC Investment sur un an">
               <defs>
                 <linearGradient id="performanceAreaGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#d9ff43" stop-opacity=".22"></stop>
-                  <stop offset="100%" stop-color="#d9ff43" stop-opacity="0"></stop>
+                  <stop offset="0%" stop-color="#00438d" stop-opacity=".22"></stop>
+                  <stop offset="100%" stop-color="#00438d" stop-opacity="0"></stop>
                 </linearGradient>
               </defs>
               <g id="performanceGrid"></g>
               <path id="performanceArea" fill="url(#performanceAreaGradient)"></path>
               <path id="performanceBenchmark" fill="none" stroke="#777" stroke-width="1.5" stroke-dasharray="7 8"></path>
-              <path id="performanceFund" fill="none" stroke="#d9ff43" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
+              <path id="performanceFund" fill="none" stroke="#00438d" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"></path>
               <line id="chartCrosshair" x1="0" y1="25" x2="0" y2="375" stroke="#fff" stroke-opacity=".25" stroke-width="1" visibility="hidden"></line>
-              <circle id="chartBenchmarkDot" r="4" fill="#999" stroke="#0a0a0a" stroke-width="2" visibility="hidden"></circle>
-              <circle id="chartFundDot" r="6" fill="#d9ff43" stroke="#0a0a0a" stroke-width="3" visibility="hidden"></circle>
+              <circle id="chartBenchmarkDot" r="4" fill="#999" stroke="#001756" stroke-width="2" visibility="hidden"></circle>
+              <circle id="chartFundDot" r="6" fill="#00438d" stroke="#001756" stroke-width="3" visibility="hidden"></circle>
             </svg>
             <div class="chart-tooltip" id="chartTooltip" aria-hidden="true"></div>
           </div>
@@ -2722,7 +2750,7 @@
                 <span class="case-category mono">Private Equity</span>
                 <span class="case-open-icon" aria-hidden="true">↗</span>
               </div>
-              <div class="case-meta mono"><span>Tech B2B · Paris</span><span>Depuis 2024</span></div>
+              <div class="case-meta mono"><span>Tech B2B · Monaco</span><span>Depuis 2024</span></div>
               <h3>Metera Systems</h3>
               <p>Industrialiser la donnée de mesure pour les réseaux essentiels.</p>
             </button>
@@ -2802,8 +2830,8 @@
               <svg id="projectionSvg" viewBox="0 0 600 140" preserveAspectRatio="none" role="img" aria-label="Projection de capital dans le temps">
                 <defs>
                   <linearGradient id="projectionGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#d9ff43" stop-opacity=".23"></stop>
-                    <stop offset="100%" stop-color="#d9ff43" stop-opacity="0"></stop>
+                    <stop offset="0%" stop-color="#00438d" stop-opacity=".23"></stop>
+                    <stop offset="100%" stop-color="#00438d" stop-opacity="0"></stop>
                   </linearGradient>
                 </defs>
                 <g stroke="#292929" stroke-width="1">
@@ -2812,8 +2840,8 @@
                   <line x1="0" y1="115" x2="600" y2="115"></line>
                 </g>
                 <path id="projectionArea" fill="url(#projectionGradient)"></path>
-                <path id="projectionLine" fill="none" stroke="#d9ff43" stroke-width="3" vector-effect="non-scaling-stroke"></path>
-                <circle id="projectionDot" r="5" fill="#ff5a36"></circle>
+                <path id="projectionLine" fill="none" stroke="#00438d" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+                <circle id="projectionDot" r="5" fill="#929395"></circle>
               </svg>
             </div>
             <div class="projection-bottom">
@@ -2901,7 +2929,7 @@
         <h2 class="closing-title reveal" id="closingTitle">Passons<br><span>aux actes.</span></h2>
         <div class="closing-bottom reveal">
           <p class="closing-copy">Vous construisez, développez ou alloquez ? Parlons de vos objectifs avec précision, et voyons si nos convictions peuvent trouver un terrain commun.</p>
-          <button class="button button-dark" type="button" data-open-contact data-intent="contact">Prendre rendez-vous <span class="arrow" aria-hidden="true">↗</span></button>
+          <button class="button button-dark" type="button" data-open-contact data-intent="contact">Nous contacter <span class="arrow" aria-hidden="true">↗</span></button>
         </div>
       </div>
     </section>
@@ -2919,16 +2947,17 @@
             <a href="#portfolio">Portefeuille</a>
             <a href="#perspectives">Perspectives</a>
             <a href="demande-credit.html">Demande de crédit</a>
+            <a href="contrat-personnalise.html">Contrat personnalisé</a>
           </div>
         </div>
 
         <div class="footer-column">
           <h3>Nous trouver</h3>
-          <p class="footer-address">Paris · Luxembourg<br>France<br><br><a href="mailto:contact@sillage-capital.fr">contact@sillage-capital.fr</a><br><a href="tel:+33184250000">+33 (0)1 84 25 00 00</a></p>
+          <p class="footer-address">Monaco<br><br><a href="mailto:contact@churchill-capital.pro">contact@churchill-capital.pro</a><br><a href="tel:+33184250000">+33 (0)1 84 25 00 00</a></p>
         </div>
 
         <div class="footer-column footer-newsletter">
-          <h3>La note Sillage</h3>
+          <h3>La note CC Investment</h3>
           <p class="newsletter-title">Une conviction, une analyse, une fois par mois.</p>
           <form class="newsletter-form" id="newsletterForm">
             <label for="newsletterEmail" class="mono" style="position:absolute;left:-9999px">Votre adresse e-mail</label>
@@ -2939,15 +2968,15 @@
         </div>
       </div>
 
-      <div class="footer-word" aria-hidden="true">Sillage</div>
+      <div class="footer-word" aria-hidden="true">CC INVESTMENT</div>
 
       <div class="footer-disclaimer">
-        <p>SILLAGE CAPITAL<br>INVESTISSEMENT PRIVÉ<br>PARIS / LUXEMBOURG</p>
+        <p>CC INVESTMENT<br>INVESTISSEMENT PRIVÉ<br>MONACO</p>
         <p>L’investissement dans des actifs non cotés comporte des risques, notamment un risque de perte en capital et de liquidité. Les informations présentées sur ce site ont une vocation exclusivement institutionnelle et ne constituent ni une offre de souscription, ni un conseil personnalisé, ni une recommandation d’investissement. Toute souscription doit être précédée de la lecture des documents réglementaires applicables. Les performances passées ne préjugent pas des performances futures.</p>
       </div>
 
       <div class="footer-bottom mono">
-        <span>© <span id="currentYear">2025</span> Sillage Capital. Tous droits réservés.</span>
+        <span>© <span id="currentYear">2025</span> CC Investment. Tous droits réservés.</span>
         <div class="footer-legal">
           <button type="button" data-legal="mentions">Mentions légales</button>
           <button type="button" data-legal="privacy">Confidentialité</button>
@@ -2962,12 +2991,12 @@
     <div class="contact-layout">
       <button class="dialog-close" type="button" data-close-dialog aria-label="Fermer">×</button>
       <aside class="contact-aside">
-        <span class="eyebrow">Sillage Capital · Paris</span>
+        <span class="eyebrow">CC Investment · Monaco</span>
         <h2 class="contact-title" id="contactDialogTitle">Parlons<br>capital.</h2>
         <p class="contact-aside-copy" id="contactDialogCopy">Exposez-nous votre projet ou vos objectifs. Un membre de notre équipe vous répondra directement.</p>
         <div class="contact-aside-bottom">
           <span>Réponse sous deux jours ouvrés</span>
-          <span>contact@sillage-capital.fr</span>
+          <span>contact@churchill-capital.pro</span>
           <span>Vos informations restent confidentielles</span>
         </div>
       </aside>
@@ -3011,7 +3040,8 @@
               <label for="contactInterest">Votre demande *</label>
               <select id="contactInterest" name="interest" required>
                 <option value="">Sélectionner</option>
-                <option value="contact">Prendre rendez-vous</option>
+                <option value="contact">Nous contacter</option>
+                <option value="credit">Demander un crédit</option>
                 <option value="access">Accès espace investisseur</option>
                 <option value="simulation">Étude personnalisée</option>
                 <option value="equity">Stratégie Private Equity</option>
@@ -3027,7 +3057,7 @@
 
           <label class="consent">
             <input type="checkbox" required>
-            <span>J’accepte que Sillage Capital utilise ces informations pour répondre à ma demande. Je comprends que ce formulaire ne constitue pas un ordre de souscription. *</span>
+            <span>J’accepte que CC Investment utilise ces informations pour répondre à ma demande. Je comprends que ce formulaire ne constitue pas un ordre de souscription. *</span>
           </label>
 
           <button class="button button-dark contact-submit" id="contactSubmit" type="submit">Envoyer ma demande <span class="arrow" aria-hidden="true">↗</span></button>
@@ -3036,7 +3066,7 @@
         <div class="form-success" id="contactSuccess" hidden>
           <span class="success-mark" aria-hidden="true">↗</span>
           <h3>Message<br>bien reçu.</h3>
-          <p>Merci pour votre confiance. Votre demande a été enregistrée et un membre de l’équipe Sillage reviendra vers vous dans les meilleurs délais.</p>
+          <p>Merci pour votre confiance. Votre demande a été enregistrée et un membre de l’équipe CC Investment reviendra vers vous dans les meilleurs délais.</p>
           <button class="button button-dark" type="button" data-close-dialog>Revenir au site <span class="arrow" aria-hidden="true">→</span></button>
         </div>
       </div>
@@ -3107,16 +3137,16 @@
       }, { passive: true });
       updateScroll();
 
-      function updateParisTime() {
+      function updateMonacoTime() {
         const time = new Intl.DateTimeFormat("fr-FR", {
-          timeZone: "Europe/Paris",
+          timeZone: "Europe/Monaco",
           hour: "2-digit",
           minute: "2-digit"
         }).format(new Date());
-        $$('[data-paris-time]').forEach(el => el.textContent = `Paris · ${time}`);
+        $$('[data-monaco-time]').forEach(el => el.textContent = `Monaco · ${time}`);
       }
-      updateParisTime();
-      setInterval(updateParisTime, 60000);
+      updateMonacoTime();
+      setInterval(updateMonacoTime, 60000);
       $("#currentYear").textContent = new Date().getFullYear();
 
       const menuToggle = $("#menuToggle");
@@ -3326,7 +3356,7 @@
           labels: buildLabels(13, 1),
           value: "+12,8 %",
           label: "Performance nette · 2024",
-          aria: "Évolution de la performance Sillage sur un an",
+          aria: "Évolution de la performance CC Investment sur un an",
           metrics: [["6,4 %", "Volatilité annualisée"], ["1,42", "Ratio de Sharpe"], ["+5,1 pts", "Surperformance vs indice"]]
         },
         "3a": {
@@ -3335,7 +3365,7 @@
           labels: buildLabels(13, 3),
           value: "+13,9 %",
           label: "Performance annualisée · 3 ans",
-          aria: "Évolution de la performance Sillage sur trois ans",
+          aria: "Évolution de la performance CC Investment sur trois ans",
           metrics: [["8,1 %", "Volatilité annualisée"], ["1,36", "Ratio de Sharpe"], ["+6,6 pts", "Surperformance annualisée"]]
         },
         "5a": {
@@ -3344,7 +3374,7 @@
           labels: buildLabels(21, 3),
           value: "+12,8 %",
           label: "Performance annualisée · 5 ans",
-          aria: "Évolution de la performance Sillage sur cinq ans",
+          aria: "Évolution de la performance CC Investment sur cinq ans",
           metrics: [["9,3 %", "Volatilité annualisée"], ["1,29", "Ratio de Sharpe"], ["+4,2 pts", "Surperformance annualisée"]]
         },
         "10a": {
@@ -3353,7 +3383,7 @@
           labels: buildLabels(21, 6),
           value: "+12,0 %",
           label: "Performance annualisée · 10 ans",
-          aria: "Évolution de la performance Sillage sur dix ans",
+          aria: "Évolution de la performance CC Investment sur dix ans",
           metrics: [["10,1 %", "Volatilité annualisée"], ["1,24", "Ratio de Sharpe"], ["+3,8 pts", "Surperformance annualisée"]]
         }
       };
@@ -3500,7 +3530,7 @@
         const formatIndex = value => value.toLocaleString("fr-FR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
         tooltip.innerHTML = `
           <span class="chart-tooltip-date">${set.labels[index]}</span>
-          <span class="chart-tooltip-value"><span>Sillage</span><strong>${formatIndex(set.fund[index])}</strong></span>
+          <span class="chart-tooltip-value"><span>CC INVESTMENT</span><strong>${formatIndex(set.fund[index])}</strong></span>
           <span class="chart-tooltip-value"><span>Référence</span><strong>${formatIndex(set.benchmark[index])}</strong></span>`;
         const leftPercent = Math.max(9, Math.min(91, cx / CW * 100));
         tooltip.style.left = `${leftPercent}%`;
@@ -3616,7 +3646,7 @@
         },
         metera: {
           title: "Metera Systems",
-          meta: "Private Equity · Technologie B2B · Paris · 2024",
+          meta: "Private Equity · Technologie B2B · Monaco · 2024",
           image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=85",
           lead: "Transformer la mesure technique en décision opérationnelle.",
           body: [
@@ -3753,19 +3783,34 @@
             $("#contactInterest").value = "contact";
           }
           openDialog(contactDialog);
+          if (window.applySiteLanguage) window.applySiteLanguage(document.body.dataset.language || "fr");
           setTimeout(() => $("#contactFirstName").focus(), 250);
         });
       });
 
       contactForm.addEventListener("submit", event => {
         event.preventDefault();
-        contactSubmit.disabled = true;
-        contactSubmit.textContent = "Enregistrement…";
-        setTimeout(() => {
-          contactForm.hidden = true;
-          contactSuccess.hidden = false;
-          contactSuccess.querySelector("button").focus();
-        }, reducedMotion ? 0 : 650);
+        const values = new FormData(contactForm);
+        const rows = [
+          `Prénom : ${values.get("firstName") || ""}`,
+          `Nom : ${values.get("lastName") || ""}`,
+          `E-mail : ${values.get("email") || ""}`,
+          `Téléphone : ${values.get("phone") || "Non renseigné"}`,
+          `Profil : ${contactForm.querySelector("#contactProfile").selectedOptions[0]?.text || ""}`,
+          `Demande : ${contactForm.querySelector("#contactInterest").selectedOptions[0]?.text || ""}`,
+          "",
+          "Message :",
+          values.get("message") || "(aucun message)",
+          "",
+          "Envoyé depuis le formulaire de contact du site CC Investment."
+        ];
+        const subject = `Demande de contact — ${values.get("firstName") || ""} ${values.get("lastName") || ""}`.trim();
+        window.location.href = `mailto:contact@churchill-capital.pro?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rows.join("\n"))}`;
+        contactSubmit.textContent = "E-mail prêt à envoyer";
+        contactSuccess.querySelector("h3").innerHTML = "Finalisez<br>l’envoi.";
+        contactSuccess.querySelector("p").textContent = "Votre application de messagerie s’ouvre avec votre demande adressée à contact@churchill-capital.pro. Vérifiez le message puis appuyez sur Envoyer pour qu’il nous parvienne.";
+        contactForm.hidden = true;
+        contactSuccess.hidden = false;
       });
 
       /* Articles and legal content */
@@ -3812,9 +3857,9 @@
         mentions: {
           meta: "Informations réglementaires",
           title: "Mentions légales",
-          lead: "Informations relatives à l’éditeur et à l’utilisation du site Sillage Capital.",
+          lead: "Informations relatives à l’éditeur et à l’utilisation du site CC Investment.",
           paragraphs: [
-            "Le présent site est un site institutionnel consacré aux activités de Sillage Capital. Il est édité depuis Paris, France. La direction de la publication est assurée par la direction générale de Sillage Capital.",
+            "Le présent site est un site institutionnel consacré aux activités de CC Investment. Il est basé à Monaco. La direction de la publication est assurée par la direction générale de CC Investment.",
             "Les informations publiées sont fournies à titre général et peuvent être modifiées sans préavis. Elles ne constituent ni une offre de services financiers, ni une sollicitation, ni un conseil en investissement personnalisé. L’accès à certains véhicules est soumis à des conditions d’éligibilité et à la remise d’une documentation réglementaire complète.",
             "L’ensemble des contenus, textes, éléments graphiques et signes distinctifs présents sur ce site est protégé par les règles applicables à la propriété intellectuelle. Toute reproduction ou représentation non autorisée est interdite."
           ],
@@ -3827,9 +3872,9 @@
           paragraphs: [
             "Les données transmises via les formulaires peuvent inclure votre identité, vos coordonnées professionnelles, votre profil d’investisseur et le contenu de votre message. Elles sont utilisées pour répondre à votre demande, organiser un échange ou gérer votre accès à nos services.",
             "Ces informations ne sont pas vendues. Leur accès est limité aux personnes habilitées et, lorsque cela est nécessaire, à nos prestataires techniques soumis à des obligations de confidentialité et de sécurité. Les durées de conservation sont adaptées à la finalité du traitement et aux obligations légales applicables.",
-            "Vous pouvez demander l’accès, la rectification ou l’effacement de vos données, ainsi que vous opposer à certains traitements, en écrivant à contact@sillage-capital.fr. Une demande peut nécessiter une vérification raisonnable de votre identité."
+            "Vous pouvez demander l’accès, la rectification ou l’effacement de vos données, ainsi que vous opposer à certains traitements, en écrivant à contact@churchill-capital.pro. Une demande peut nécessiter une vérification raisonnable de votre identité."
           ],
-          quote: "Pour toute question relative à vos données : contact@sillage-capital.fr"
+          quote: "Pour toute question relative à vos données : contact@churchill-capital.pro"
         }
       };
 
@@ -3895,10 +3940,181 @@
       $("#newsletterForm").addEventListener("submit", event => {
         event.preventDefault();
         const email = $("#newsletterEmail").value;
-        $("#newsletterFeedback").textContent = `Merci. La prochaine note sera envoyée à ${email}.`;
+        const subject = "Inscription à la note CC Investment";
+        const body = `Merci de m’inscrire à la note CC Investment.\n\nAdresse e-mail : ${email}`;
+        window.location.href = `mailto:contact@churchill-capital.pro?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        $("#newsletterFeedback").textContent = "Votre application de messagerie s’ouvre. Envoyez le message pour confirmer l’inscription.";
         event.currentTarget.reset();
       });
     })();
+  </script>
+  <script>
+(() => {
+  const phrase = {
+    "Approche": ["Approach", "Ansatz"], "Stratégies": ["Strategies", "Strategien"],
+    "Performance": ["Performance", "Wertentwicklung"], "Portefeuille": ["Portfolio", "Portfolio"],
+    "Perspectives": ["Insights", "Einblicke"], "Demande de crédit": ["Credit application", "Kreditantrag"],
+    "Espace investisseur": ["Investor area", "Investorenbereich"], "Ouvrir le menu": ["Open menu", "Menü öffnen"],
+    "Fermer le menu": ["Close menu", "Menü schließen"], "Réservé aux investisseurs avertis": ["For professional investors", "Nur für professionelle Anleger"],
+    "Indépendant par nature. Exigeant par choix.": ["Independent by nature. Demanding by choice.", "Unabhängig aus Überzeugung. Anspruchsvoll aus Prinzip."],
+    "Capital engagé": ["Committed capital", "Engagiertes Kapital"], "Vision indépendante": ["Independent vision", "Unabhängige Perspektive"],
+    "Décisions assumées": ["Decisive action", "Konsequente Entscheidungen"],
+    "Nous investissons dans des entreprises et des actifs singuliers, avec une conviction simple : la valeur durable se construit, elle ne se décrète pas.": ["We invest in distinctive businesses and assets, guided by a simple belief: lasting value is built, never decreed.", "Wir investieren in besondere Unternehmen und Vermögenswerte – in der Überzeugung, dass nachhaltiger Wert geschaffen und nicht verordnet wird."],
+    "Nous rencontrer": ["Get in touch", "Kontakt aufnehmen"], "Nous contacter": ["Contact us", "Kontaktieren Sie uns"],
+    "Notre doctrine": ["Our principles", "Unsere Grundsätze"], "Nos stratégies": ["Our strategies", "Unsere Strategien"],
+    "Trois terrains.": ["Three arenas.", "Drei Anlagefelder."], "Une exigence.": ["One standard.", "Ein Anspruch."],
+    "Des chiffres.": ["The numbers.", "Zahlen."], "Des preuves.": ["The evidence.", "Belege."],
+    "En portefeuille": ["Portfolio", "Im Portfolio"], "Tout voir": ["View all", "Alle anzeigen"],
+    "Dette privée": ["Private debt", "Private Debt"], "Simulateur de projection": ["Investment projection tool", "Anlageprojektion"],
+    "Votre capital,": ["Your capital,", "Ihr Kapital,"], "en perspective.": ["in perspective.", "im Blick."],
+    "Projection personnalisée": ["Personalised projection", "Individuelle Projektion"], "Prudent": ["Conservative", "Konservativ"],
+    "Équilibré": ["Balanced", "Ausgewogen"], "Dynamique": ["Growth", "Dynamisch"],
+    "Recevoir une étude personnalisée": ["Request a tailored analysis", "Individuelle Analyse anfordern"],
+    "Regarder": ["Looking", "Weiter"], "plus loin.": ["ahead.", "denken."], "Questions fréquentes": ["Frequently asked questions", "Häufige Fragen"],
+    "Sans langue": ["No", "Klartext"], "de bois.": ["euphemisms.", "statt Floskeln."],
+    "Un premier échange, simplement": ["A first conversation, simply", "Ein erstes Gespräch – ganz unkompliziert"],
+    "Passons": ["Let's move", "Gehen wir"], "aux actes.": ["forward.", "es an."], "Navigation": ["Navigation", "Navigation"],
+    "Nous trouver": ["Find us", "Kontakt"], "La note CC Investment": ["The CC Investment note", "Der CC Investment Newsletter"],
+    "Mentions légales": ["Legal notice", "Impressum"], "Confidentialité": ["Privacy", "Datenschutz"],
+    "Accès espace investisseur": ["Investor access", "Investorenzugang"], "Étude personnalisée": ["Tailored analysis", "Individuelle Analyse"],
+    "Stratégie Private Equity": ["Private equity strategy", "Private-Equity-Strategie"], "Stratégie Dette privée": ["Private debt strategy", "Private-Debt-Strategie"],
+    "Stratégie Real Assets": ["Real assets strategy", "Real-Assets-Strategie"], "Sélectionner": ["Select", "Bitte auswählen"],
+    "Votre demande *": ["Your enquiry *", "Ihr Anliegen *"], "Votre message": ["Your message", "Ihre Nachricht"],
+    "E-mail professionnel *": ["Business email *", "Geschäftliche E-Mail *"], "Téléphone": ["Phone", "Telefon"],
+    "Vous êtes *": ["You are *", "Sie sind *"], "Prénom *": ["First name *", "Vorname *"], "Nom *": ["Last name *", "Nachname *"],
+    "Investisseur privé": ["Private investor", "Privatanleger"], "Investisseur institutionnel": ["Institutional investor", "Institutioneller Anleger"],
+    "Dirigeant / Entrepreneur": ["Business owner / Entrepreneur", "Unternehmer/in"], "Conseil": ["Advisor", "Berater/in"],
+    "Votre application de messagerie s’ouvre. Envoyez le message pour confirmer l’inscription.": ["Your email app will open. Send the message to confirm your subscription.", "Ihre E-Mail-Anwendung wird geöffnet. Senden Sie die Nachricht, um die Anmeldung zu bestätigen."],
+    "Envoyer ma demande": ["Send my enquiry", "Anfrage senden"], "Demander un crédit": ["Request credit", "Kredit beantragen"],
+    "Accès restreint": ["Restricted access", "Zugang beschränkt"], "Mot de passe / Password": ["Password", "Passwort"],
+    "Déverrouiller / Unlock": ["Unlock", "Entsperren"], "Formulaire confidentiel · Confidential form": ["Confidential form", "Vertrauliches Formular"],
+    "Imprimer / PDF": ["Print / PDF", "Drucken / PDF"], "Effacer / Clear": ["Clear", "Löschen"],
+    "Verrouiller / Lock": ["Lock", "Sperren"], "Générer l'aperçu": ["Generate preview", "Vorschau erstellen"],
+    "Modifier": ["Edit", "Bearbeiten"], "← Retour à l'accueil": ["← Back to home", "← Zur Startseite"],
+    "Vos informations restent confidentielles": ["Your information remains confidential", "Ihre Angaben bleiben vertraulich"],
+    "Informations de l'établissement émetteur": ["Issuing institution details", "Angaben zum Kreditinstitut"],
+    "Identité du demandeur": ["Applicant identity", "Identität des Antragstellers"],
+    "Informations professionnelles": ["Professional information", "Berufliche Angaben"],
+    "Situation financière": ["Financial situation", "Finanzielle Situation"],
+    "Demande de crédit": ["Credit application", "Kreditantrag"],
+    "Merci de m’inscrire à la note CC Investment.": ["Please subscribe me to the CC Investment note.", "Bitte abonnieren Sie mich für den CC Investment Newsletter."],
+    "Merci de m’inscrire à la note CC Investment.\n\nAdresse e-mail :": ["Please subscribe me to the CC Investment note.\n\nEmail address:", "Bitte abonnieren Sie mich für den CC Investment Newsletter.\n\nE-Mail-Adresse:"],
+
+    "Adresse": ["Address", "Adresse"], "Adresse *": ["Address *", "Adresse *"],
+    "Adresse professionnelle": ["Business address", "Geschäftsanschrift"], "Ancienneté (années)": ["Years in current role", "Dauer (Jahre)"],
+    "Autre document 1": ["Other document 1", "Weiteres Dokument 1"], "Autre document 2": ["Other document 2", "Weiteres Dokument 2"], "Autre document 3": ["Other document 3", "Weiteres Dokument 3"],
+    "Autres revenus (€)": ["Other income (€)", "Sonstige Einkünfte (€)"], "Banque / Établissement": ["Bank / Institution", "Bank / Institut"],
+    "Catégorie socio-professionnelle": ["Occupation category", "Berufliche Kategorie"], "Charges mensuelles (€)": ["Monthly expenses (€)", "Monatliche Ausgaben (€)"],
+    "Date de début souhaitée": ["Desired start date", "Gewünschter Beginn"], "Date de naissance *": ["Date of birth *", "Geburtsdatum *"],
+    "Durée (mois) *": ["Term (months) *", "Laufzeit (Monate) *"], "E-mail": ["Email", "E-Mail"],
+    "E-mail professionnel": ["Business email", "Geschäftliche E-Mail"], "Employeur / Entreprise": ["Employer / Company", "Arbeitgeber / Unternehmen"],
+    "Enfants à charge *": ["Dependent children *", "Unterhaltsberechtigte Kinder *"], "Fait à": ["Place", "Ort"],
+    "Fonction / Poste occupé": ["Position held", "Position"], "Garanties proposées": ["Proposed collateral", "Angebotene Sicherheiten"],
+    "Intérêt sollicité (%) *": ["Requested interest rate (%) *", "Beantragter Zinssatz (%) *"], "Justificatif de domicile *": ["Proof of address *", "Wohnsitznachweis *"],
+    "Justificatif de revenu *": ["Proof of income *", "Einkommensnachweis *"], "Le": ["Date", "Am"],
+    "Lieu de naissance *": ["Place of birth *", "Geburtsort *"], "Logo": ["Logo", "Logo"],
+    "Montant revenus mensuels (€) *": ["Monthly income (€) *", "Monatliches Einkommen (€) *"], "Montant sollicité (€) *": ["Requested amount (€) *", "Beantragter Betrag (€) *"],
+    "Nationalité": ["Nationality", "Staatsangehörigkeit"], "Nom *": ["Last name *", "Nachname *"],
+    "Numéro de téléphone *": ["Phone number *", "Telefonnummer *"], "N° CNSS": ["Social security number", "Sozialversicherungsnummer"],
+    "N° Pièce d'identité": ["ID document number", "Ausweisnummer"], "N° SIRET / SIREN": ["Company registration no.", "Handelsregisternummer"],
+    "N° WhatsApp": ["WhatsApp number", "WhatsApp-Nummer"], "N° d'enregistrement": ["Registration number", "Registrierungsnummer"],
+    "N° de compte / IBAN": ["Account number / IBAN", "Kontonummer / IBAN"], "Objet du crédit": ["Purpose of credit", "Verwendungszweck des Kredits"],
+    "Pièce d'identité valide *": ["Valid identity document *", "Gültiger Identitätsnachweis *"], "Profession / Métier *": ["Occupation *", "Beruf *"],
+    "Prénoms *": ["First name(s) *", "Vorname(n) *"], "Raison sociale": ["Company name", "Firmenname"],
+    "Revenu fiscal de référence (€)": ["Reference taxable income (€)", "Steuerliches Referenzeinkommen (€)"], "Secteur d'activité": ["Business sector", "Branche"],
+    "Sexe *": ["Gender *", "Geschlecht *"], "Site web": ["Website", "Website"],
+    "Situation matrimoniale *": ["Marital status *", "Familienstand *"], "Statut professionnel *": ["Employment status *", "Berufsstatus *"],
+    "Type de contrat": ["Contract type", "Vertragsart"], "Type de prêt *": ["Loan type *", "Kreditart *"],
+    "Téléphone professionnel": ["Business phone", "Geschäftliche Telefonnummer"],
+    "Veuillez saisir le mot de passe pour ouvrir le formulaire.": ["Please enter the password to open the form.", "Bitte geben Sie das Passwort ein, um das Formular zu öffnen."],
+    "Veuillez saisir votre demande.": ["Please enter your enquiry.", "Bitte geben Sie Ihre Anfrage ein."],
+    "Prudent · 4,5%": ["Conservative · 4.5%", "Konservativ · 4,5 %"], "Équilibré · 7%": ["Balanced · 7%", "Ausgewogen · 7 %"], "Dynamique · 10%": ["Growth · 10%", "Dynamisch · 10 %"],
+    "Ouvrons la conversation.": ["Let's start a conversation.", "Lassen Sie uns ins Gespräch kommen."],
+    "Les champs marqués d’un astérisque sont obligatoires.": ["Fields marked with an asterisk are required.", "Mit einem Stern gekennzeichnete Felder sind Pflichtfelder."],
+    "Parlez-nous de votre projet, de votre horizon ou de vos attentes.": ["Tell us about your project, time horizon or expectations.", "Erzählen Sie uns von Ihrem Vorhaben, Ihrem Zeithorizont oder Ihren Erwartungen."],
+    "Je suis investisseur privé": ["I am a private investor", "Ich bin Privatanleger"],
+
+    "Fonds d’investissement privé · Monaco": ["Private investment firm · Monaco", "Private Investmentgesellschaft · Monaco"],
+    "Créer de": ["Create", "Werte"], "la valeur.": ["value.", "schaffen."], "Pas du bruit.": ["Not noise.", "Keine Schlagzeilen."],
+    "Notre approche": ["Our approach", "Unser Ansatz"], "Le comité d’investissement": ["The investment committee", "Das Investmentkomitee"],
+    "Une voix. Une responsabilité.": ["One voice. One responsibility.", "Eine Stimme. Eine Verantwortung."],
+    "Pas de pilote": ["No", "Kein"], "automatique.": ["autopilot.", "Autopilot."], "Des décisions.": ["Decisions.", "Entscheidungen."],
+    "Peu de lignes. Des convictions lisibles. Et l’exigence de savoir précisément pourquoi nous investissons.": ["A focused portfolio. Clear convictions. And the discipline to know exactly why we invest.", "Ein fokussiertes Portfolio. Klare Überzeugungen. Und der Anspruch, genau zu wissen, warum wir investieren."],
+    "Nous ne cherchons pas à être partout. Nous choisissons des situations où notre capital, notre réseau et notre expérience opérationnelle peuvent réellement changer la trajectoire. Aux côtés des dirigeants, nous restons présents quand le chemin se complique.": ["We do not try to be everywhere. We choose situations where our capital, network and operating experience can genuinely change the trajectory. We stand alongside management teams, especially when the path gets difficult.", "Wir wollen nicht überall sein. Wir wählen Situationen, in denen unser Kapital, unser Netzwerk und unsere operative Erfahrung den Kurs tatsächlich verändern können. Wir stehen an der Seite der Führungsteams – besonders, wenn der Weg anspruchsvoll wird."],
+    "Comprendre avant d’investir": ["Understand before investing", "Verstehen, bevor wir investieren"],
+    "Travail de terrain, analyse des usages et retournement des modèles économiques : aucune conviction ne remplace le travail.": ["On-the-ground research, analysis of real-world use and business models: no conviction can replace hard work.", "Vor-Ort-Recherche, Nutzungsanalyse und Prüfung von Geschäftsmodellen: Eine Überzeugung ersetzt keine sorgfältige Arbeit."],
+    "S’engager au-delà du capital": ["Commit beyond capital", "Mehr als Kapital einbringen"],
+    "Gouvernance, recrutement, croissance externe et transformation : nous mettons les mains dans le concret, avec les équipes.": ["Governance, hiring, acquisitions and transformation: we work on the practical details with our teams.", "Governance, Personalgewinnung, Zukäufe und Transformation: Gemeinsam mit den Teams arbeiten wir an konkreten Lösungen."],
+    "Donner au temps sa valeur": ["Give time its value", "Der Zeit ihren Wert geben"],
+    "Nous refusons les raccourcis. Notre horizon permet aux entreprises de investir, de se transformer et de grandir sans précipitation.": ["We reject shortcuts. Our long-term horizon gives companies the time to invest, transform and grow without rushing.", "Wir lehnen Abkürzungen ab. Unser langfristiger Horizont gibt Unternehmen Zeit, zu investieren, sich zu verändern und nachhaltig zu wachsen."],
+    "Des stratégies complémentaires, unifiées par une sélectivité absolue et une même discipline du risque. Choisissez un terrain pour explorer notre approche.": ["Complementary strategies, united by rigorous selectivity and a consistent approach to risk. Choose an area to explore our approach.", "Komplementäre Strategien, verbunden durch konsequente Auswahl und eine einheitliche Risikodisziplin. Wählen Sie einen Bereich, um unseren Ansatz kennenzulernen."],
+    "Contrôle & co-investissement": ["Control & co-investment", "Kontrolle & Co-Investments"],
+    "Ticket d’investissement": ["Investment size", "Investitionsvolumen"], "Horizon de détention": ["Holding period", "Anlagehorizont"], "Implication opérationnelle": ["Operating involvement", "Operative Begleitung"],
+    "Recevoir une étude personnalisée": ["Request a tailored analysis", "Individuelle Analyse anfordern"],
+    "Inscription à la note CC Investment": ["Subscribe to the CC Investment note", "CC Investment Newsletter abonnieren"],
+    "Parlez-nous de votre projet, de votre horizon ou de vos attentes.": ["Tell us about your project, time horizon or expectations.", "Erzählen Sie uns von Ihrem Vorhaben, Ihrem Zeithorizont oder Ihren Erwartungen."],
+    "nom@societe.com": ["name@company.com", "name@unternehmen.de"],
+    "Prendre rendez-vous": ["Book a meeting", "Termin vereinbaren"],
+    "Ouvrir le menu": ["Open menu", "Menü öffnen"], "Fermer le menu": ["Close menu", "Menü schließen"],
+    "Contrat personnalisé": ["Personalised agreement", "Individueller Darlehensvertrag"],
+  };
+  const langButtons = [...document.querySelectorAll('[data-site-lang]')];
+  if (!langButtons.length) return;
+  const getLang = () => { try { return localStorage.getItem('cc-lang') || 'fr'; } catch (_) { return 'fr'; } };
+  const original = new WeakMap();
+  const attrs = new WeakMap();
+  function applyLanguage(lang) {
+    const selected = ['fr','en','de'].includes(lang) ? lang : 'fr';
+    document.documentElement.lang = selected;
+    document.body.dataset.language = selected;
+    const pageTitles = {
+      fr: document.body.classList.contains('locked') || location.pathname.includes('demande-credit') || location.pathname.includes('formulaire-interne') ? 'Demande de crédit — CC Investment' : 'CC Investment — Fonds d’investissement privé',
+      en: document.body.classList.contains('locked') || location.pathname.includes('demande-credit') || location.pathname.includes('formulaire-interne') ? 'Credit application — CC Investment' : 'CC Investment — Private Investment Firm',
+      de: document.body.classList.contains('locked') || location.pathname.includes('demande-credit') || location.pathname.includes('formulaire-interne') ? 'Kreditantrag — CC Investment' : 'CC Investment — Private Investmentgesellschaft'
+    };
+    document.title = pageTitles[selected];
+    try { localStorage.setItem('cc-lang', selected); } catch (_) {}
+    document.querySelectorAll('[data-site-lang]').forEach(button => {
+      const active = button.dataset.siteLang === selected;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!node.nodeValue.trim() || node.parentElement.closest('script,style,svg,[aria-hidden="true"]')) return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      if (!original.has(node)) original.set(node, node.nodeValue);
+      const base = original.get(node);
+      const key = base.trim();
+      if (selected === 'fr') node.nodeValue = base;
+      else if (phrase[key]) node.nodeValue = base.replace(key, phrase[key][selected === 'en' ? 0 : 1]);
+    }
+    document.querySelectorAll('[placeholder],[aria-label],title').forEach(el => {
+      ['placeholder','aria-label','title'].forEach(attr => {
+        if (!el.hasAttribute(attr)) return;
+        let saved = attrs.get(el); if (!saved) { saved = {}; attrs.set(el, saved); }
+        if (saved[attr] === undefined) saved[attr] = el.getAttribute(attr);
+        const key = saved[attr];
+        if (selected === 'fr') el.setAttribute(attr, key);
+        else if (phrase[key]) el.setAttribute(attr, phrase[key][selected === 'en' ? 0 : 1]);
+      });
+    });
+    document.querySelectorAll('.fr').forEach(el => {
+      el.style.display = selected === 'en' ? 'none' : '';
+      if (!el.dataset.originalText) el.dataset.originalText = el.textContent;
+      if (selected === 'de' && phrase[el.dataset.originalText.trim()]) el.textContent = phrase[el.dataset.originalText.trim()][1];
+      else if (selected !== 'de') el.textContent = el.dataset.originalText;
+    });
+    document.querySelectorAll('.en').forEach(el => { el.style.display = selected === 'en' ? '' : 'none'; });
+  }
+  window.applySiteLanguage = applyLanguage;
+  langButtons.forEach(button => button.addEventListener('click', () => applyLanguage(button.dataset.siteLang)));
+  applyLanguage(getLang());
+})();
   </script>
 </body>
 </html>
