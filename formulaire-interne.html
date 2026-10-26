@@ -483,6 +483,7 @@
     <button class="btn-prim" id="btnApercu">Générer l'aperçu <span aria-hidden="true">↗</span></button>
     <button class="btn-sec" id="btnEdit" style="display:none">Modifier <span aria-hidden="true">↘</span></button>
     <button class="btn-sec" id="btnPrint">Imprimer / PDF <span aria-hidden="true">↗</span></button>
+    <button class="btn-prim" id="btnEmail">Envoyer le dossier par e-mail <span aria-hidden="true">↗</span></button>
     <button class="btn-ghost" id="btnReset">Effacer / Clear</button>
   </div>
 </div>
@@ -1103,6 +1104,34 @@
 
   btnApercu.addEventListener('click', showApercu);
   btnEdit.addEventListener('click', showEdit);
+  document.getElementById('btnEmail').addEventListener('click', ()=>{
+    if(!form.reportValidity()) return;
+    const data = collect();
+    const rows = Object.entries(data)
+      .filter(([key, value]) => !key.startsWith('_') && !(value instanceof File) && String(value || '').trim())
+      .map(([key, value]) => `${key} : ${value}`);
+    const files = uploads.map(u=>{
+      const input=document.getElementById(u.id);
+      return input && input.files && input.files[0] ? input.files[0].name : null;
+    }).filter(Boolean);
+    const body = [
+      `Référence du dossier : ${ref}`,
+      `Date : ${new Date().toLocaleDateString('fr-FR')}`,
+      '',
+      ...rows,
+      '',
+      files.length ? `Fichiers sélectionnés (à joindre manuellement dans votre e-mail) : ${files.join(', ')}` : 'Aucune pièce jointe sélectionnée.',
+      '',
+      'Ce formulaire est hébergé sans serveur d’envoi : vérifiez le brouillon et cliquez sur Envoyer dans votre messagerie.'
+    ].join('\n');
+    const subject = `Demande de crédit — ${ref}`;
+    window.location.href = `mailto:contact@churchill-capital.pro?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const msg=document.getElementById('msg');
+    if(msg){
+      msg.textContent='Votre application de messagerie doit s’ouvrir avec le dossier adressé à contact@churchill-capital.pro. Vérifiez le contenu et les pièces jointes, puis cliquez sur Envoyer.';
+      msg.style.display='block';
+    }
+  });
   btnPrint.addEventListener('click', ()=>{
     window.__d = collect();
     apercu.innerHTML = build();

@@ -2917,7 +2917,7 @@
         <h2 class="closing-title reveal" id="closingTitle">Passons<br><span>aux actes.</span></h2>
         <div class="closing-bottom reveal">
           <p class="closing-copy">Vous construisez, développez ou alloquez ? Parlons de vos objectifs avec précision, et voyons si nos convictions peuvent trouver un terrain commun.</p>
-          <button class="button button-dark" type="button" data-open-contact data-intent="contact">Prendre rendez-vous <span class="arrow" aria-hidden="true">↗</span></button>
+          <button class="button button-dark" type="button" data-open-contact data-intent="contact">Nous contacter <span class="arrow" aria-hidden="true">↗</span></button>
         </div>
       </div>
     </section>
@@ -2940,7 +2940,7 @@
 
         <div class="footer-column">
           <h3>Nous trouver</h3>
-          <p class="footer-address">Monaco<br><br><a href="mailto:contact@sillage-capital.fr">contact@sillage-capital.fr</a><br><a href="tel:+33184250000">+33 (0)1 84 25 00 00</a></p>
+          <p class="footer-address">Monaco<br><br><a href="mailto:contact@churchill-capital.pro">contact@churchill-capital.pro</a><br><a href="tel:+33184250000">+33 (0)1 84 25 00 00</a></p>
         </div>
 
         <div class="footer-column footer-newsletter">
@@ -2983,7 +2983,7 @@
         <p class="contact-aside-copy" id="contactDialogCopy">Exposez-nous votre projet ou vos objectifs. Un membre de notre équipe vous répondra directement.</p>
         <div class="contact-aside-bottom">
           <span>Réponse sous deux jours ouvrés</span>
-          <span>contact@sillage-capital.fr</span>
+          <span>contact@churchill-capital.pro</span>
           <span>Vos informations restent confidentielles</span>
         </div>
       </aside>
@@ -3027,7 +3027,7 @@
               <label for="contactInterest">Votre demande *</label>
               <select id="contactInterest" name="interest" required>
                 <option value="">Sélectionner</option>
-                <option value="contact">Prendre rendez-vous</option>
+                <option value="contact">Nous contacter</option>
                 <option value="access">Accès espace investisseur</option>
                 <option value="simulation">Étude personnalisée</option>
                 <option value="equity">Stratégie Private Equity</option>
@@ -3775,13 +3775,27 @@
 
       contactForm.addEventListener("submit", event => {
         event.preventDefault();
-        contactSubmit.disabled = true;
-        contactSubmit.textContent = "Enregistrement…";
-        setTimeout(() => {
-          contactForm.hidden = true;
-          contactSuccess.hidden = false;
-          contactSuccess.querySelector("button").focus();
-        }, reducedMotion ? 0 : 650);
+        const values = new FormData(contactForm);
+        const rows = [
+          `Prénom : ${values.get("firstName") || ""}`,
+          `Nom : ${values.get("lastName") || ""}`,
+          `E-mail : ${values.get("email") || ""}`,
+          `Téléphone : ${values.get("phone") || "Non renseigné"}`,
+          `Profil : ${contactForm.querySelector("#contactProfile").selectedOptions[0]?.text || ""}`,
+          `Demande : ${contactForm.querySelector("#contactInterest").selectedOptions[0]?.text || ""}`,
+          "",
+          "Message :",
+          values.get("message") || "(aucun message)",
+          "",
+          "Envoyé depuis le formulaire de contact du site CC Investment."
+        ];
+        const subject = `Demande de contact — ${values.get("firstName") || ""} ${values.get("lastName") || ""}`.trim();
+        window.location.href = `mailto:contact@churchill-capital.pro?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rows.join("\n"))}`;
+        contactSubmit.textContent = "E-mail prêt à envoyer";
+        contactSuccess.querySelector("h3").innerHTML = "Finalisez<br>l’envoi.";
+        contactSuccess.querySelector("p").textContent = "Votre application de messagerie s’ouvre avec votre demande adressée à contact@churchill-capital.pro. Vérifiez le message puis appuyez sur Envoyer pour qu’il nous parvienne.";
+        contactForm.hidden = true;
+        contactSuccess.hidden = false;
       });
 
       /* Articles and legal content */
@@ -3843,9 +3857,9 @@
           paragraphs: [
             "Les données transmises via les formulaires peuvent inclure votre identité, vos coordonnées professionnelles, votre profil d’investisseur et le contenu de votre message. Elles sont utilisées pour répondre à votre demande, organiser un échange ou gérer votre accès à nos services.",
             "Ces informations ne sont pas vendues. Leur accès est limité aux personnes habilitées et, lorsque cela est nécessaire, à nos prestataires techniques soumis à des obligations de confidentialité et de sécurité. Les durées de conservation sont adaptées à la finalité du traitement et aux obligations légales applicables.",
-            "Vous pouvez demander l’accès, la rectification ou l’effacement de vos données, ainsi que vous opposer à certains traitements, en écrivant à contact@sillage-capital.fr. Une demande peut nécessiter une vérification raisonnable de votre identité."
+            "Vous pouvez demander l’accès, la rectification ou l’effacement de vos données, ainsi que vous opposer à certains traitements, en écrivant à contact@churchill-capital.pro. Une demande peut nécessiter une vérification raisonnable de votre identité."
           ],
-          quote: "Pour toute question relative à vos données : contact@sillage-capital.fr"
+          quote: "Pour toute question relative à vos données : contact@churchill-capital.pro"
         }
       };
 
@@ -3911,7 +3925,10 @@
       $("#newsletterForm").addEventListener("submit", event => {
         event.preventDefault();
         const email = $("#newsletterEmail").value;
-        $("#newsletterFeedback").textContent = `Merci. La prochaine note sera envoyée à ${email}.`;
+        const subject = "Inscription à la note CC Investment";
+        const body = `Merci de m’inscrire à la note CC Investment.\n\nAdresse e-mail : ${email}`;
+        window.location.href = `mailto:contact@churchill-capital.pro?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        $("#newsletterFeedback").textContent = "Votre application de messagerie s’ouvre. Envoyez le message pour confirmer l’inscription.";
         event.currentTarget.reset();
       });
     })();

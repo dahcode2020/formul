@@ -36,4 +36,4 @@ réelle. Aucune donnée saisie n'est transmise : tout reste dans le navigateur d
 
 Le site présente CC Investment comme basé à Monaco. La charte reprend l’image fournie : bleu marine (`#00205c`, `#001756`, `#00438d`), gris argent (`#929395`) et blanc. Les titres utilisent Cormorant Garamond et les textes Inter.
 
-Les coordonnées de contact d’origine ont été conservées, faute de nouvelles coordonnées confirmées ; le domaine et le téléphone pourront être mis à jour dès réception des informations exactes.
+E-mail de contact : `contact@churchill-capital.pro`. Les formulaires de contact, d’inscription à la note et de demande de crédit ouvrent un brouillon adressé à cette boîte dans l’application de messagerie du visiteur. La page est statique et ne peut pas envoyer d’e-mail directement sans serveur ou service d’envoi configuré : le visiteur doit confirmer l’envoi. Pour le formulaire de crédit, les fichiers sélectionnés doivent être joints manuellement au brouillon.
