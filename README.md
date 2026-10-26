@@ -12,6 +12,19 @@ Formulaire de demande de crédit (bilingue FR/EN), statique, sans dépendance ex
 Chaque fichier est autonome (CSS + JS inline) : il suffit de l'ouvrir dans un navigateur ou de le
 déposer sur n'importe quel hébergement statique (GitHub Pages, Netlify…).
 
+## Charte graphique
+
+Le formulaire reprend l'identité visuelle du site Sillage Capital :
+
+| Élément | Valeur |
+| --- | --- |
+| Encre / fond | `#0a0a0a` (ink) / `#f1efe8` (paper) |
+| Accent | `#d9ff43` (acid), `#ff5a36` (orange, réservé aux alertes) |
+| Typographies | Archivo (titres, champs) · DM Mono (libellés, boutons, mentions) |
+| Boutons | angles vifs, libellés mono capitales, flèche `↗` |
+| Champs | filet simple en soulignement, focus acide surligné |
+| Aperçu imprimable | titres de section en aplat noir, contrepoint acide |
+
 Le mot de passe d'accès au formulaire est défini par la constante `GATE_PASS` dans le JS
 (mot de passe actuel : `VioXsRAiC6wy`). Il est visible dans le code source : c'est un dissuasif,
 pas une protection réelle — pour un formulaire confidentiel, il faut une authentification serveur.
