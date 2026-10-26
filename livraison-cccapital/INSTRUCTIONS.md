@@ -5,14 +5,21 @@
 Le dépôt `https://github.com/dahcode2020/cccapital-.git` a été cloné localement dans
 `/home/user/cccapital-`, et une branche `homepage-formulaire` y contient **un commit prêt à pousser** :
 
-```
-75720c4 Ajout du formulaire de demande de credit et lien depuis l'accueil
+``` Ajout du formulaire de demande de credit et lien depuis l'accueil
   + demande-credit.html   (formulaire de demande de crédit, 54 Ko, autonome : CSS + JS inclus,
                            aperçu, impression PDF, écran « Accès restreint » par mot de passe conservé,
                            restylé selon la charte du site : ink / papier / acid, Archivo + DM Mono,
                            angles vifs, filets en soulignement, cartouches acide)
   ~ index.html            (+3 lignes : liens « Demande de crédit » dans la nav desktop,
                            le menu mobile et le pied de page ; la page vitrine existante est intacte)
+```
+
+Second commit, même branche :
+
+```
+e2c3649 Projet lancable dans Bolt.ai : configuration Vite et README
+  + package.json, package-lock.json, vite.config.js (.gitignore)
+  + README.md (pages, lancement npm, accès au formulaire)
 ```
 
 Décisions retenues (selon vos réponses) :
@@ -49,7 +56,7 @@ cd cccapital-
 git checkout -b homepage-formulaire
 
 # depuis ce dépôt (formul) :
-git am /chemin/vers/livraison-cccapital/0001-formulaire-demande-de-credit.patch
+git am /chemin/vers/livraison-cccapital/0001-formulaire-demande-de-credit-et-config-bolt.patch
 
 git push -u origin homepage-formulaire
 gh pr create --base main --head homepage-formulaire \
@@ -65,9 +72,19 @@ de lien ajoutées dans `index.html`, ou rejouer le bundle :
 
 | Fichier | Rôle |
 | --- | --- |
-| `0001-formulaire-demande-de-credit.patch` | commit complet (format `git am`) |
+| `0001-formulaire-demande-de-credit-et-config-bolt.patch` | les deux commits (format `git am`) |
 | `homepage-formulaire.bundle` | branche complète, applicable via `git fetch` |
 | `PR-body.md` | corps de PR prêt à l'emploi |
+
+## Afficher le résultat dans Bolt.ai
+
+Une fois la branche présente sur GitHub (`dahcode2020/cccapital-`), l'import Bolt se fait avec
+<https://bolt.new/~/github.com/dahcode2020/cccapital-…> (*Import from GitHub*), puis
+`npm install && npm run dev` (port 5173). La configuration Vite du second commit est déjà réglée
+pour les aperçus embarqués (`allowedHosts`, CORS, `0.0.0.0`).
+
+Le dépôt `dahcode2020/formul` est, lui, déjà prêt et fusionné sur `main` :
+<https://bolt.new/~/github.com/dahcode2020/formul> (mot de passe du formulaire : `VioXsRAiC6wy`).
 
 ## À savoir
 

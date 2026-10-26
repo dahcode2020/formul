@@ -27,6 +27,13 @@ Ajout du formulaire de demande de crédit au site, accessible depuis la page d'a
 - Testé en local (ouverture directe du fichier et via serveur statique) : formulaire, aperçu,
   impression et liens de navigation fonctionnels.
 
+## Lancement en sandbox (Bolt.ai)
+
+- `package.json` / `vite.config.js` / `.gitignore` ajoutés : `npm install && npm run dev` (port 5173)
+- écoute `0.0.0.0`, `allowedHosts: true` (`*.bolt.host`, `*.e2b.app`), `cors: true`, HMR derrière proxy HTTPS
+- `npm run build` génère `dist/index.html` + `dist/demande-credit.html`
+- `README.md` : pages, lancement, accès au formulaire
+
 ## Vérification
 
 ```bash
